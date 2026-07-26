@@ -84,8 +84,9 @@ titre sur les puces — un paragraphe suivi de sa source.
   },
   "sections": {
     "macro": [
-      { "text": "Un paragraphe factuel, avec attribution.",
-        "source": "Nom du média", "url": "https://..." }
+      { "text": "Un paragraphe factuel.",
+        "source": "Nom du média", "url": "https://...",
+        "published": "2026-07-27", "updated": "2026-07-27" }
     ],
     "geo": [], "micro": [], "actions": [], "obligations": []
   }
@@ -121,6 +122,40 @@ dates séparément.
 **Refuser d'écrire uniquement si un brief porte déjà la date de publication du
 jour.** Une séance déjà couverte n'est pas un motif de refus : deux briefs
 successifs peuvent légitimement citer la même clôture.
+
+### Date de l'article — contrôle obligatoire
+
+Chaque puce porte deux champs de date, qu'il ne faut **jamais confondre** :
+
+- **`published`** — date de publication d'origine, `AAAA-MM-JJ`
+- **`updated`** — date de dernière modification si elle est visible, sinon absente
+
+La distinction n'est pas cosmétique. Un article publié en mars et remis à jour
+hier n'est pas un article d'hier : son corps peut être ancien.
+
+**Le piège des live blogs.** Une page de suivi en continu porte dans son URL la
+date de sa *création*, pas celle de son contenu. Exemple vécu dans ce dépôt :
+`cnbc.com/2026/07/23/stock-market-today-live-updates.html` a été citée pour la
+séance du 24 — la date de l'URL indiquait le 23. Elle n'était pas fausse, elle ne
+répondait simplement pas à la question. Préférer un article figé ; si l'on cite un
+live blog, le signaler dans `updated` et vérifier que le passage cité porte bien
+sur la fenêtre couverte.
+
+**Comment établir la date** :
+
+1. Le titre, quand il l'affiche — Boursorama horodate les siens
+   (`- 24/07/2026 à 18:02 -`). Attention : c'est souvent l'heure de mise à jour.
+2. L'URL — indice utile mais **non probant** pour les pages mises à jour.
+3. **Aller lire la page** quand un doute subsiste. C'est le seul moyen fiable de
+   distinguer publication et mise à jour.
+
+**Si la date de publication reste introuvable, écarter l'article.** Ne pas
+laisser `published` à `null` en se disant que ce n'est pas grave : un article non
+daté peut avoir six mois, et rien ne le signalera au lecteur.
+
+**Fenêtre acceptable** : le *contenu* doit porter sur la période allant de la
+publication du brief précédent à maintenant. C'est le contenu qui décide, pas
+l'horodatage de la page.
 
 ### Schéma de `news/index.json`
 
@@ -280,5 +315,5 @@ Règles de sourcing :
 - **Jamais de nom de personne physique** dans le brief, sauf dirigeant ou
   responsable public s'exprimant à titre officiel (« le président de la Banque
   centrale européenne »). Pas de coordonnées, jamais.
-- Préférer un article **daté de la séance concernée**. Une reprise plus tardive
-  ajoute du bruit sans information.
+- Préférer un article **daté de la fenêtre couverte**. Une reprise plus tardive
+  ajoute du bruit sans information. Voir le contrôle de date ci-dessous.

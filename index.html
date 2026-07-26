@@ -152,6 +152,7 @@
       <span id="gen"></span>
       <button id="refresh">Rafraîchir</button>
       <button id="print">Imprimer</button>
+      <button id="copy" title="Copie une instruction à coller dans Claude Code">Copier pour Claude</button>
       <a id="runlink" href="#" target="_blank" rel="noopener" hidden>Lancer un relevé ↗</a>
     </div>
   </header>
@@ -494,6 +495,25 @@ async function load(){
 
 (async function(){
   document.getElementById("print").onclick = () => window.print();
+
+  /* Bouton de copie : l'instruction ne contient AUCUN chemin personnel — cette
+     page est publique, et un chemin de repertoire utilisateur y serait une fuite.
+     Elle est donc relative au dossier du projet. */
+  const btnCopy = document.getElementById("copy");
+  btnCopy.onclick = async () => {
+    const txt = "Depuis le dossier veille-marches : lis news/BRIEF_PROMPT.md "
+              + "et génère le brief marchés du jour en suivant ses instructions, "
+              + "puis commite et pousse.";
+    try{
+      await navigator.clipboard.writeText(txt);
+      btnCopy.textContent = "Copié ✓";
+    }catch{
+      /* Le presse-papiers exige un contexte sécurisé : en local sur http il
+         échoue. On affiche alors le texte pour qu'il reste copiable à la main. */
+      window.prompt("Copier cette instruction :", txt);
+    }
+    setTimeout(() => { btnCopy.textContent = "Copier pour Claude"; }, 2000);
+  };
   document.getElementById("refresh").onclick = () => load();
 
   /* Déduit l'URL du dépôt depuis l'adresse GitHub Pages : compte.github.io/depot
