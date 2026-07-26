@@ -36,5 +36,5 @@ date,instrument,value,source
 2026-07-24,USD/JPY,163.821700,ecb:derive
 2026-07-24,VIX,18.580000,fred:VIXCLS+yahoo:^VIX
 2026-07-25,Bitcoin,64273.800000,kraken:XBTUSD
-2026-07-26,Bitcoin,64444.600000,kraken:XBTUSD
+2026-07-26,Bitcoin,64462.600000,kraken:XBTUSD
 2026-07-26,Fear & Greed crypto,26.000000,alternative.me:fng

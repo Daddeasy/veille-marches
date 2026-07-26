@@ -483,8 +483,11 @@ USD_DENOM = {"S&P 500", "Nasdaq 100", "Or", "Brent", "Bitcoin"}
 
 class Instrument:
     def __init__(self, label, zone, kind, sources, stale_days=None, note="",
-                 traded_247=False, xcheck_tol=2.0, dec=None, freq="daily"):
+                 traded_247=False, xcheck_tol=2.0, dec=None, freq="daily",
+                 ticker="", ccy=""):
         self.label = label
+        self.ticker = ticker          # ticker de marche usuel, pas le symbole source
+        self.ccy = ccy                # devise de cotation, ou unite pour un taux
         self.zone = zone
         self.kind = kind
         self.sources = sources
@@ -523,21 +526,24 @@ FUT = "reglement du contrat a terme"
 INSTRUMENTS = [
     # --- Actions -----------------------------------------------------------
     # FRED s'est revele plus frais que Yahoo sur les indices US en historique.
-    I("S&P 500",       "US", "index", [fred("SP500", CLOSE), yahoo("^GSPC")]),
-    I("Nasdaq 100",    "US", "index", [fred("NASDAQ100", CLOSE), yahoo("^NDX")]),
-    I("CAC 40",        "EU", "index", [yahoo("^FCHI")]),
-    I("Euro Stoxx 50", "EU", "index", [yahoo("^STOXX50E")]),
-    I("Nikkei 225",    "JP", "index", [yahoo("^N225")]),
-    I("Shanghai Comp.", "CN", "index", [yahoo("000001.SS")]),
+    I("S&P 500",       "US", "index", [fred("SP500", CLOSE), yahoo("^GSPC")],
+      ticker="SPX", ccy="USD"),
+    I("Nasdaq 100",    "US", "index", [fred("NASDAQ100", CLOSE), yahoo("^NDX")],
+      ticker="NDX", ccy="USD"),
+    I("CAC 40",        "EU", "index", [yahoo("^FCHI")], ticker="CAC", ccy="EUR"),
+    I("Euro Stoxx 50", "EU", "index", [yahoo("^STOXX50E")], ticker="SX5E", ccy="EUR"),
+    I("Nikkei 225",    "JP", "index", [yahoo("^N225")], ticker="NKY", ccy="JPY"),
+    I("Shanghai Comp.", "CN", "index", [yahoo("000001.SS")], ticker="SHCOMP", ccy="CNY"),
     # Flux verifie propre : 21 lignes, aucun trou. Cote en wons.
-    I("KOSPI",         "KR", "index", [yahoo("^KS11")]),
+    I("KOSPI",         "KR", "index", [yahoo("^KS11")], ticker="KOSPI", ccy="KRW"),
 
     # --- Change ------------------------------------------------------------
     # BCE en primaire, PAS FRED : ses series de change accusent une semaine de
     # retard, verifie a la mesure. A savoir, c'est un fixing de 14h15 CET et non
     # une cloture de seance — le champ basis le dit.
     I("EUR/USD", "FX", "fx",
-      [ecb("EXR/D.USD.EUR.SP00.A"), yahoo("EURUSD=X")]),
+      [ecb("EXR/D.USD.EUR.SP00.A"), yahoo("EURUSD=X")],
+      ticker="EURUSD", ccy="USD"),
 
     # --- Taux --------------------------------------------------------------
     # Verifie : ^TNX n'est PAS multiplie par 10 sur l'endpoint chart (4,7030
@@ -547,7 +553,8 @@ INSTRUMENTS = [
     # different de quelques bp, d'ou le libelle mixte.
     I("10Y US", "US", "yield",
       [combine(fred("DGS10", H15), yahoo("^TNX"),
-               basis="H.15 en historique, cloture pour le dernier point")]),
+               basis="H.15 en historique, cloture pour le dernier point")],
+      ticker="US10Y", ccy="%"),
     # Banque de France en primaire (TEC 10 quotidien, cle gratuite), repli FRED
     # mensuel. Serie mensuelle publiee avec ~six semaines de decalage, d'ou le
     # seuil de fraicheur elargi : sinon elle est signalee perimee chaque jour et
@@ -555,7 +562,7 @@ INSTRUMENTS = [
     I("10Y France", "EU", "yield",
       [webstat("FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"),
        fred("IRLTLT01FRM156N", MONTHLY_AVG)],
-      stale_days=75, freq="monthly",
+      stale_days=75, freq="monthly", ticker="FR10Y", ccy="%",
       note="BdF TEC 10 quotidien si cle presente, sinon FRED mensuel"),
 
     # --- Matieres premieres / crypto, en dollars --------------------------
@@ -565,15 +572,16 @@ INSTRUMENTS = [
     # fusion est donc sans caveat et ne sert qu'a recuperer la derniere seance
     # via le champ meta de Yahoo. Variation en points, pas en pourcentage.
     I("VIX", "US", "points",
-      [combine(fred("VIXCLS", CLOSE), yahoo("^VIX"), basis=CLOSE)]),
+      [combine(fred("VIXCLS", CLOSE), yahoo("^VIX"), basis=CLOSE)],
+      ticker="VIX", ccy="pts"),
     # Echelle 0-100, donc une variation de 20 points en un jour serait aberrante.
     # Cote le week-end comme le bitcoin, d'ou traded_247.
     I("Fear & Greed crypto", "CRY", "points", [fng_crypto()],
-      traded_247=True, dec=0,
+      traded_247=True, dec=0, ticker="FNG", ccy="0-100",
       note="alternative.me — 0 = peur extreme, 100 = avidite extreme"),
 
     # --- Matieres premieres / crypto, en dollars --------------------------
-    I("Or", "COM", "price", [yahoo("GC=F", FUT)]),
+    I("Or", "COM", "price", [yahoo("GC=F", FUT)], ticker="XAU", ccy="USD"),
     # Yahoo en primaire : la presse cote le contrat a terme du mois avant, pas le
     # comptant physique, et le comptant FRED retarde de quatre jours. FRED reste
     # en recoupement, ce qui conserve le garde-fou contre l'artefact de contrat.
@@ -581,10 +589,10 @@ INSTRUMENTS = [
     # deport), d'ou la tolerance elargie : sinon l'alerte sonne chaque jour.
     I("Brent", "COM", "price",
       [yahoo("BZ=F", FUT), fred("DCOILBRENTEU", SPOT)],
-      xcheck_tol=6.0,
+      xcheck_tol=6.0, ticker="BRENT", ccy="USD",
       note="contrat a terme du mois avant ; recoupe avec le comptant FRED"),
     I("Bitcoin", "CRY", "price", [kraken("XBTUSD"), yahoo("BTC-USD", UTC_CLOSE)],
-      traded_247=True),
+      traded_247=True, ticker="BTC", ccy="USD"),
 ]
 
 
@@ -657,6 +665,8 @@ def compute(inst: Instrument, series: Series) -> dict:
     out: dict = {
         "level": round(level, prec),
         "date": last_date.isoformat(),
+        "ticker": inst.ticker,
+        "ccy": inst.ccy,
         "zone": inst.zone,
         "kind": inst.kind,
         "unit": inst.unit,
