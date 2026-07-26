@@ -1,12 +1,17 @@
 {
   "date": "2026-07-24",
-  "generated_at": "2026-07-26T12:30:00Z",
+  "generated_at": "2026-07-26T13:15:00Z",
   "focus": {
     "title": "Repli des semi-conducteurs et des valeurs de mémoires",
     "body": "Le mouvement traverse les trois zones. Un indice sectoriel des semi-conducteurs américains a cédé 4,3 % et le Nasdaq 100 termine à 28 128,34, en baisse de 1,15 %, quand le S&P 500 finit quasi inchangé à 7 411,98 (+0,05 %). Les actions japonaises ont reculé sous la conduite du fabricant de mémoires Kioxia Holdings, en baisse de 16 %, les investisseurs dénouant des positions à effet de levier accumulées sur la technologie. Le Nikkei 225 termine à 64 611,15 (−2,73 %) et le KOSPI à 6 690,62 (−5,72 %), Séoul étant la place la plus exposée au cycle des mémoires."
   },
   "sections": {
     "macro": [
+      {
+        "text": "Les places européennes ont rebondi après la publication des indices PMI, avant de progresser encore en fin de séance à la suite d'une intervention de la présidente de la Banque centrale européenne. Le CAC 40 termine à 8 372,28, en hausse de 0,88 %.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/apres-lagarde-et-les-houthis-les-marches-relevent-la-tete-cae90ee35aaba8dc2c2b5983701a93b7"
+      },
       {
         "text": "La Banque du Japon devrait laisser son taux directeur inchangé à 1 % lors de sa réunion des 30 et 31 juillet, selon des sources citées par Nikkei Asia.",
         "source": "Nikkei Asia",
@@ -16,23 +21,28 @@
         "text": "Les actions chinoises ont effacé leurs pertes de début de séance après le ton prudent de la Banque populaire de Chine, les attentes de relance à court terme s'étant estompées.",
         "source": "South China Morning Post",
         "url": "https://www.scmp.com/business/china-business/article/3337678/china-shares-edge-lower-hopes-fade-near-term-stimulus-boost"
-      },
-      {
-        "text": "L'activité économique européenne est qualifiée de robuste, aux côtés de publications de résultats supérieures aux attentes.",
-        "source": "Bloomberg",
-        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
       }
     ],
     "geo": [
       {
-        "text": "Les actions ont prolongé leurs gains après une information selon laquelle le Pakistan explore une voie vers une reprise des discussions au point mort entre les États-Unis et l'Iran, à la suite d'une initiative chinoise. Le Brent termine à 96,78 dollars, en baisse de 3,88 %.",
-        "source": "Bloomberg",
-        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
+        "text": "L'armée américaine a lancé une nouvelle série de frappes contre des cibles militaires en Iran, pour la treizième nuit consécutive. Les échanges de frappes entre les deux pays ont repris depuis deux semaines et se sont intensifiés ces derniers jours.",
+        "source": "Zonebourse",
+        "url": "https://www.zonebourse.com/actualite-bourse/pas-de-vacances-pour-la-geopolitique-ce7f51dbde8ff126"
       },
       {
-        "text": "Les investisseurs évaluaient les derniers développements du conflit au Moyen-Orient. Le VIX se détend à 18,58, en baisse de 0,12 point.",
+        "text": "Les Houthis ont ciblé deux navires saoudiens en mer Rouge. Leur blocage du détroit de Bab el-Mandeb s'ajoute à celui du détroit d'Ormuz, de facto fermé par Téhéran : deux voies critiques pour l'approvisionnement énergétique mondial. Le Brent, qui avait franchi les 100 dollars, termine à 96,78 dollars, en baisse de 3,88 %.",
+        "source": "Zonebourse",
+        "url": "https://www.zonebourse.com/actualite-bourse/le-petrole-clôture-en-hausse-de-1-l-espoir-d-une-reprise-des-negociations-usa-iran-ce7f51dade8dff26"
+      },
+      {
+        "text": "Des médiateurs régionaux ont soumis à Washington et à Téhéran une proposition de cessez-le-feu de dix jours, destinée à remettre sur les rails le protocole d'accord du mois précédent. Ni la Maison-Blanche ni l'Iran ne l'ont acceptée, chaque camp cherchant à améliorer sa position avant de s'engager.",
+        "source": "Axios",
+        "url": "https://www.axios.com/2026/07/21/iran-war-ceasefire-proposal-trump-troops"
+      },
+      {
+        "text": "Le trafic dans le détroit d'Ormuz, par où passaient 20 % du pétrole mondial avant le début du conflit fin février, reste très en deçà de ses moyennes d'avant-guerre : trente transits vérifiés seulement entre vendredi et dimanche. Au moins trois militaires américains ont été tués dans les combats. Le VIX se détend malgré tout à 18,58, en baisse de 0,12 point.",
         "source": "CNBC",
-        "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html"
+        "url": "https://www.cnbc.com/2026/07/21/us-iran-war-trump-hormuz-houthis.html"
       }
     ],
     "micro": [
@@ -81,9 +91,9 @@
         "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html"
       },
       {
-        "text": "Le 10 ans français n'est disponible qu'en moyenne mensuelle en l'absence de clé Banque de France : 3,68 % pour juin, en baisse de 6 pb sur le mois.",
-        "source": "Banque de France",
-        "url": "https://webstat.banque-france.fr/fr/catalogue/fm/FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"
+        "text": "Le 10 ans français termine à 3,980 %, en hausse de 1,23 pb, contre 3,968 % la veille. Le Bund allemand ressort à 3,183 %, en hausse de 0,98 pb, soit un écart de 80 pb entre la France et l'Allemagne.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/quotes/FR10Y-FR"
       }
     ]
   }

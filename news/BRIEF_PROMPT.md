@@ -13,6 +13,26 @@ l'abonnement Claude : aucune clé API facturée, aucun coût au token.
 2. **Chercher** dans la presse financière spécialisée les faits de la dernière
    séance (voir la liste de domaines plus bas).
 
+   **Une recherche dédiée par rubrique, pas une seule recherche marchés
+   recyclée.** C'est l'erreur à ne pas commettre : une requête du type « stock
+   market close » remonte ce que les articles boursiers mentionnent de la
+   géopolitique et de la macro *en passant*, ce qui produit des puces creuses du
+   genre « les investisseurs évaluaient les développements du conflit ». Lancer
+   au minimum :
+
+   - une requête **géopolitique** sur les faits eux-mêmes (conflits, frappes,
+     négociations, détroits, sanctions), pas sur leur effet de marché
+   - une requête **macro** sur les publications du jour (PMI, inflation, emploi,
+     interventions de banquiers centraux)
+   - une requête **micro** sur les résultats et opérations d'entreprises
+   - une requête **marchés** pour les indices
+   - une requête **obligataire et crédit**, sinon les mouvements de taux ne sont
+     jamais expliqués
+
+   Constat de terrain : `boursorama.com` et `zonebourse.com` donnent la meilleure
+   couverture francophone d'une séance précise, souvent avec un titre horodaté.
+   Les interroger en français, avec la date.
+
 3. **Écrire `news/brief-AAAA-MM-JJ.json`** dans la structure ci-dessous, puis
    ajouter la date **en tête** du tableau `dates` de `news/index.json`.
 
@@ -134,6 +154,11 @@ Un nombre lu dans un article n'est pas repris tel quel : soit il existe dans
 `latest.json` et on utilise cette valeur, soit on décrit le fait sans le
 chiffrer. Si la presse et le pipeline divergent, le pipeline fait foi et la
 divergence est mentionnée.
+
+**Seule exception** : un chiffre qui n'existe pas dans le pipeline par nature —
+un plus-haut intraday, un titre individuel, un volume, une statistique macro —
+peut être cité, mais **toujours attribué** (« le Brent, qui avait franchi les
+100 dollars »). Les niveaux de clôture, eux, viennent exclusivement du pipeline.
 
 Cas réel : Bloomberg donnait le CAC 40 à +0,1 % là où le pipeline calculait
 +0,88 %. Vérification faite, le chiffre de presse était un relevé en séance, pas
