@@ -413,9 +413,21 @@ async function initBrief(){
        écrira news/brief-AAAA-MM-JJ.json et news/index.json.</span>`;
     return;
   }
-  sel.innerHTML = briefIndex.map(d => `<option value="${d}">${d}</option>`).join("");
-  renderBrief(await loadBrief(briefIndex[0]));
-  sel.onchange = async () => renderBrief(await loadBrief(sel.value));
+  sel.innerHTML = briefIndex.map(d => `<option value="${d}">${frDate(d)}</option>`).join("");
+  const show = async (d) => {
+    const b = await loadBrief(d);
+    renderBrief(b);
+    /* Deux dates distinctes, et il faut les distinguer : le brief du lundi
+       matin rattrape le week-end, alors que les cours affiches restent ceux de
+       la seance de vendredi. Les confondre laisserait croire que le marche a
+       cote pendant le week-end. */
+    const el = document.getElementById("briefdate");
+    el.textContent = b && b.session && b.session !== d
+      ? `publié le ${frDate(d)} · cours de la séance du ${frDate(b.session)}`
+      : (b ? `séance du ${frDate(d)}` : "");
+  };
+  await show(briefIndex[0]);
+  sel.onchange = () => show(sel.value);
 }
 
 /* Recherche plein texte : charge les briefs a la demande et les garde en cache. */

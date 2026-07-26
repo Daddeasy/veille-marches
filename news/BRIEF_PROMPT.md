@@ -75,8 +75,9 @@ titre sur les puces — un paragraphe suivi de sa source.
 
 ```json
 {
-  "date": "2026-07-24",
-  "generated_at": "2026-07-25T06:20:00Z",
+  "date": "2026-07-27",
+  "session": "2026-07-24",
+  "generated_at": "2026-07-27T06:20:00Z",
   "focus": {
     "title": "Titre court du sujet dominant",
     "body": "Un paragraphe de trois à cinq phrases."
@@ -94,13 +95,41 @@ titre sur les puces — un paragraphe suivi de sa source.
 Les cinq clés de `sections` doivent être présentes, même vides. L'ordre de rendu
 est fixé par le site.
 
+## Indexation : date de publication, pas séance de marché
+
+Le fichier se nomme `news/brief-<AAAA-MM-JJ>.json` où la date est **celle du jour
+où le brief est écrit**, et non celle de la séance de marché. Le JSON porte les
+deux :
+
+- `date` — jour de publication, celui du nom de fichier
+- `session` — séance de marché à laquelle se rapportent les cours de `latest.json`
+
+Les deux diffèrent dès qu'un jour non ouvré s'intercale. **Le brief du lundi
+matin est le cas normal, pas l'exception** : il est publié le lundi, les cours
+sont ceux de la clôture du vendredi, et il doit couvrir **toute l'actualité
+depuis vendredi soir — samedi et dimanche compris**. C'est le brief le plus utile
+de la semaine, celui qui rattrape deux jours de géopolitique et de communiqués.
+
+La fenêtre d'actualité à couvrir va donc de la **publication du brief précédent**
+(voir la première date de `news/index.json`) à maintenant. Pas « la dernière
+séance ».
+
+Ne jamais écrire que le marché a bougé pendant un jour non ouvré. Les cours sont
+ceux de `session` ; les faits peuvent être postérieurs. Le site affiche les deux
+dates séparément.
+
+**Refuser d'écrire uniquement si un brief porte déjà la date de publication du
+jour.** Une séance déjà couverte n'est pas un motif de refus : deux briefs
+successifs peuvent légitimement citer la même clôture.
+
 ### Schéma de `news/index.json`
 
 ```json
 { "dates": ["2026-07-24", "2026-07-23"] }
 ```
 
-Ordre décroissant — le site affiche le premier élément par défaut.
+Ordre décroissant des **dates de publication** — le site affiche le premier
+élément par défaut.
 
 ---
 

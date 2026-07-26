@@ -24,8 +24,11 @@ Génère le brief presse quotidien de ce dépôt.
    indices, et une requête obligataire. Une requête unique produit des puces
    creuses.
 
-5. **Écris `news/brief-<target_date>.json`**, ajoute la date en tête de
-   `news/index.json`.
+5. **Écris `news/brief-<date du jour>.json`** — indexé sur la date de
+   PUBLICATION, pas sur la séance. Le JSON porte `date` (aujourd'hui) et
+   `session` (la `target_date` de `latest.json`). La fenêtre d'actualité va de la
+   publication du brief précédent à maintenant : un lundi, tout le week-end est
+   inclus.
 
 6. **Lance `py privacy_check.py`.** Le dépôt est public. Ne commite pas tant
    qu'il n'est pas vert.
@@ -40,5 +43,6 @@ Génère le brief presse quotidien de ce dépôt.
 
 ## Si un jour de bourse est férié
 
-Si `target_date` est identique à celle du brief déjà publié, ne réécris rien :
-dis-le et arrête-toi. Un brief en doublon écrase l'archive du jour précédent.
+Refuse d'écrire seulement si un brief porte déjà la date d'aujourd'hui. Une
+séance déjà citée n'est pas un motif de refus : le brief du lundi cite la clôture
+du vendredi, comme celui du vendredi soir.
