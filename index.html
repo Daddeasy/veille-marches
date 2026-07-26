@@ -285,18 +285,22 @@ function renderBoard(data){
       <b>${off.map(o => o[0]).join(", ")}</b>.</div>`;
   }
 
-  /* L'âge de la donnée compte plus que l'heure du relevé : c'est lui qui dit si
-     le pipeline a tourné ce matin ou s'il est en panne depuis trois jours. */
+  /* Heure réelle du dernier relevé, dans le fuseau du lecteur — plus parlant
+     qu'un âge relatif : « à 12:10 » se compare tout de suite à l'heure qu'il est,
+     là où « il y a 2 h » demande un calcul. L'âge reste en infobulle, et sert de
+     seuil d'alerte : au-delà de 36 h un jour ouvré, le pipeline n'a pas tourné. */
   if (data.generated_at){
     const gen = new Date(data.generated_at);
     const hours = (Date.now() - gen) / 36e5;
-    const age = hours < 1 ? "à l'instant"
-              : hours < 24 ? `il y a ${Math.round(hours)} h`
-              : `il y a ${Math.round(hours / 24)} j`;
+    const hhmm = gen.toLocaleTimeString("fr-FR", {hour:"2-digit", minute:"2-digit"});
+    const sameDay = gen.toDateString() === new Date().toDateString();
     const el = document.getElementById("gen");
-    el.textContent = "relevé " + age;
-    el.title = gen.toLocaleString("fr-FR");
-    /* Au-delà de 36 h un jour ouvré, le pipeline n'a pas tourné comme prévu. */
+    el.textContent = sameDay
+      ? `relevé à ${hhmm}`
+      : `relevé le ${frDate(gen.toISOString().slice(0,10))} à ${hhmm}`;
+    el.title = hours < 1 ? "il y a moins d'une heure"
+             : hours < 24 ? `il y a ${Math.round(hours)} h`
+             : `il y a ${Math.round(hours / 24)} j`;
     el.className = hours > 36 ? "k-warn" : "";
   }
 
