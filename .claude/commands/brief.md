@@ -30,14 +30,20 @@ Génère le brief presse quotidien de ce dépôt.
    publication du brief précédent à maintenant : un lundi, tout le week-end est
    inclus.
 
-6. **Lance `py privacy_check.py`.** Le dépôt est public. Ne commite pas tant
+6. **Lance `py brief_check.py`.** Il relève la vraie date de publication de
+   chaque article dans les métadonnées de sa page. Tout article hors fenêtre doit
+   être retiré — ne jamais se fier à l'URL seule, un suivi en continu porte la
+   date de sa création. Les pages inaccessibles au robot doivent porter
+   `date_unverified: true`.
+
+7. **Lance `py privacy_check.py`.** Le dépôt est public. Ne commite pas tant
    qu'il n'est pas vert.
 
-7. **Commite et pousse** sur `main`. Utilise
+8. **Commite et pousse** sur `main`. Utilise
    `git -c user.name="veille-marches" -c user.email="noreply@localhost" commit`
    pour ne pas exposer d'adresse personnelle dans l'historique public.
 
-8. **Donne-moi le lien** vers `https://daddeasy.github.io/veille-marches/` et
+9. **Donne-moi le lien** vers `https://daddeasy.github.io/veille-marches/` et
    résume en trois lignes ce que dit le brief, pour que je sache s'il vaut la
    peine d'être ouvert.
 

@@ -63,6 +63,13 @@ jobs:
         continue-on-error: true
         run: python selfcheck.py
 
+      - name: Controle des dates d'article du brief
+        # Un article du 17 juillet et un autre du 25 decembre precedent avaient
+        # ete cites pour la seance du 24 juillet. Toleré en avertissement : le
+        # brief est ecrit a la main pour l'instant, ce controle sert d'alerte.
+        continue-on-error: true
+        run: python brief_check.py
+
       - name: Garde-fou confidentialite
         # Echoue DUR, sans continue-on-error : si une donnee personnelle est
         # detectee, rien ne doit etre commite ni pousse. Un depot public garde

@@ -3,8 +3,8 @@
   "session": "2026-07-24",
   "generated_at": "2026-07-26T13:15:00Z",
   "focus": {
-    "title": "Repli des semi-conducteurs et des valeurs de mémoires",
-    "body": "Le mouvement traverse les trois zones. Un indice sectoriel des semi-conducteurs américains a cédé 4,3 % et le Nasdaq 100 termine à 28 128,34, en baisse de 1,15 %, quand le S&P 500 finit quasi inchangé à 7 411,98 (+0,05 %). Les actions japonaises ont reculé sous la conduite du fabricant de mémoires Kioxia Holdings, en baisse de 16 %, les investisseurs dénouant des positions à effet de levier accumulées sur la technologie. Le Nikkei 225 termine à 64 611,15 (−2,73 %) et le KOSPI à 6 690,62 (−5,72 %), Séoul étant la place la plus exposée au cycle des mémoires."
+    "title": "Repli des semi-conducteurs, l'Europe termine dans le vert",
+    "body": "Séance disjointe entre les zones. Un indice sectoriel des semi-conducteurs américains a cédé 4,3 % et le Nasdaq 100 termine à 28 128,34, en baisse de 1,15 %, quand le S&P 500 finit quasi inchangé à 7 411,98 (+0,05 %). L'Europe progresse à contre-courant, le CAC 40 à 8 372,28 (+0,88 %) et l'Euro Stoxx 50 à 6 280,94 (+1,14 %), après les indices PMI et une intervention de la présidente de la Banque centrale européenne. L'Asie recule nettement : Nikkei 225 à 64 611,15 (−2,73 %), KOSPI à 6 690,62 (−5,72 %), Shanghai Composite à 3 814,20 (−1,61 %)."
   },
   "sections": {
     "macro": [
@@ -18,13 +18,7 @@
         "text": "La Banque du Japon devrait laisser son taux directeur inchangé à 1 % lors de sa réunion des 30 et 31 juillet, selon des sources citées par Nikkei Asia.",
         "source": "Nikkei Asia",
         "url": "https://asia.nikkei.com/economy/bank-of-japan/bank-of-japan-to-keep-key-rate-at-next-week-s-policy-meeting-sources",
-        "published": null
-      },
-      {
-        "text": "Les actions chinoises ont effacé leurs pertes de début de séance après le ton prudent de la Banque populaire de Chine, les attentes de relance à court terme s'étant estompées.",
-        "source": "South China Morning Post",
-        "url": "https://www.scmp.com/business/china-business/article/3337678/china-shares-edge-lower-hopes-fade-near-term-stimulus-boost",
-        "published": null
+        "published": "2026-07-24"
       }
     ],
     "geo": [
@@ -32,25 +26,15 @@
         "text": "L'armée américaine a lancé une nouvelle série de frappes contre des cibles militaires en Iran, pour la treizième nuit consécutive. Les échanges de frappes entre les deux pays ont repris depuis deux semaines et se sont intensifiés ces derniers jours.",
         "source": "Zonebourse",
         "url": "https://www.zonebourse.com/actualite-bourse/pas-de-vacances-pour-la-geopolitique-ce7f51dbde8ff126",
-        "published": null
+        "published": null,
+        "date_unverified": true
       },
       {
         "text": "Les Houthis ont ciblé deux navires saoudiens en mer Rouge. Leur blocage du détroit de Bab el-Mandeb s'ajoute à celui du détroit d'Ormuz, de facto fermé par Téhéran : deux voies critiques pour l'approvisionnement énergétique mondial. Le Brent, qui avait franchi les 100 dollars, termine à 96,78 dollars, en baisse de 3,88 %.",
         "source": "Zonebourse",
         "url": "https://www.zonebourse.com/actualite-bourse/le-petrole-clôture-en-hausse-de-1-l-espoir-d-une-reprise-des-negociations-usa-iran-ce7f51dade8dff26",
-        "published": null
-      },
-      {
-        "text": "Des médiateurs régionaux ont soumis à Washington et à Téhéran une proposition de cessez-le-feu de dix jours, destinée à remettre sur les rails le protocole d'accord du mois précédent. Ni la Maison-Blanche ni l'Iran ne l'ont acceptée, chaque camp cherchant à améliorer sa position avant de s'engager.",
-        "source": "Axios",
-        "url": "https://www.axios.com/2026/07/21/iran-war-ceasefire-proposal-trump-troops",
-        "published": "2026-07-21"
-      },
-      {
-        "text": "Le trafic dans le détroit d'Ormuz, par où passaient 20 % du pétrole mondial avant le début du conflit fin février, reste très en deçà de ses moyennes d'avant-guerre : trente transits vérifiés seulement entre vendredi et dimanche. Au moins trois militaires américains ont été tués dans les combats. Le VIX se détend malgré tout à 18,58, en baisse de 0,12 point.",
-        "source": "CNBC",
-        "url": "https://www.cnbc.com/2026/07/21/us-iran-war-trump-hormuz-houthis.html",
-        "published": "2026-07-21"
+        "published": null,
+        "date_unverified": true
       }
     ],
     "micro": [
@@ -58,19 +42,15 @@
         "text": "Intel a gagné 3,6 % avant l'ouverture après un deuxième trimestre supérieur aux attentes et des prévisions de troisième trimestre au-dessus du consensus, portées par la demande liée à l'intelligence artificielle. Une hausse de 3,5 % d'Apple a soutenu le Dow Jones, en progression de 235,60 points, soit 0,46 %, à 51 947,25.",
         "source": "CNBC",
         "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html",
-        "published": "2026-07-23"
+        "published": "2026-07-23",
+        "updated": "2026-07-24",
+        "note_source": "suivi en continu : contenu portant sur la séance du 24/07"
       },
       {
         "text": "Les résultats de SAP ont dépassé les estimations des analystes.",
         "source": "Bloomberg",
         "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates",
         "published": "2026-07-24"
-      },
-      {
-        "text": "Kioxia Holdings a reculé de 16 %, sur des interrogations quant à la durée du cycle haussier lié à l'intelligence artificielle.",
-        "source": "Nikkei Asia",
-        "url": "https://asia.nikkei.com/business/markets/japanese-stocks-plunge-as-ai-deleverage-sends-kioxia-down-16",
-        "published": null
       }
     ],
     "actions": [
@@ -78,7 +58,9 @@
         "text": "Aux États-Unis, le S&P 500 termine à 7 411,98 (+0,05 %) et le Nasdaq 100 à 28 128,34 (−1,15 %). Le Dow Jones progresse de 0,46 % à 51 947,25.",
         "source": "CNBC",
         "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html",
-        "published": "2026-07-23"
+        "published": "2026-07-23",
+        "updated": "2026-07-24",
+        "note_source": "suivi en continu : contenu portant sur la séance du 24/07"
       },
       {
         "text": "En Europe, le CAC 40 avance à 8 372,28 (+0,88 %) et l'Euro Stoxx 50 à 6 280,94 (+1,14 %). Le Stoxx Europe 600 gagne 0,8 % à la clôture de Londres, la technologie surperformant de 1,2 % et les télécoms reculant de 1,2 %.",
@@ -96,7 +78,8 @@
         "text": "L'or progresse à 4 070,80 dollars (+0,60 %) et le Bitcoin à 64 463 dollars. Le Brent recule de 3,88 % à 96,78 dollars. L'euro s'établit à 1,1377 dollar au fixing de la Banque centrale européenne. L'indice Fear & Greed crypto ressort à 26, en zone de peur.",
         "source": "alternative.me",
         "url": "https://alternative.me/crypto/fear-and-greed-index/",
-        "published": null
+        "published": null,
+        "date_unverified": true
       }
     ],
     "obligations": [
@@ -104,13 +87,16 @@
         "text": "Le rendement du 10 ans américain revient à 4,679 %, en baisse de 2,4 pb. La presse le donnait en repli d'un point de base à 4,693 %, l'écart s'expliquant par la différence entre relevé H.15 et clôture de marché.",
         "source": "CNBC",
         "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html",
-        "published": "2026-07-23"
+        "published": "2026-07-23",
+        "updated": "2026-07-24",
+        "note_source": "suivi en continu : contenu portant sur la séance du 24/07"
       },
       {
         "text": "Le 10 ans français termine à 3,980 %, en hausse de 1,23 pb, contre 3,968 % la veille. Le Bund allemand ressort à 3,183 %, en hausse de 0,98 pb, soit un écart de 80 pb entre la France et l'Allemagne.",
         "source": "CNBC",
         "url": "https://www.cnbc.com/quotes/FR10Y-FR",
-        "published": null
+        "published": null,
+        "date_unverified": true
       }
     ]
   }

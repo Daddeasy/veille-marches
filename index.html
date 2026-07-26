@@ -150,7 +150,6 @@
     <div class="meta">
       <span class="diag" id="diag"></span>
       <span id="gen"></span>
-      <button id="refresh">Rafraîchir</button>
       <button id="print">Imprimer</button>
       <button id="copy" title="Copie une instruction à coller dans Claude Code">Copier pour Claude</button>
       <a id="runlink" href="#" target="_blank" rel="noopener" hidden>Lancer un relevé ↗</a>
@@ -376,10 +375,14 @@ function briefHTML(brief, highlight){
        puce : le texte reste lisible d'un trait, et les sources sont dedoublonnees. */
     const seenSrc = new Map();
     for (const it of items) if (it.url && !seenSrc.has(it.url))
-      seenSrc.set(it.url, it.source || "source");
+      seenSrc.set(it.url, {name: it.source || "source",
+                           unv: !!it.date_unverified, pub: it.published});
     const srcLine = seenSrc.size
-      ? `<div class="srcs">Sources : ` + [...seenSrc].map(([u, n]) =>
-          `<a href="${u}" target="_blank" rel="noopener">${n} ↗</a>`).join(" · ") + `</div>`
+      ? `<div class="srcs">Sources : ` + [...seenSrc].map(([u, m]) =>
+          `<a href="${u}" target="_blank" rel="noopener" title="${
+            m.pub ? "publié le " + frDate(m.pub)
+                  : "date de publication non vérifiable"}">${m.name}${
+            m.unv ? " ⚠" : ""} ↗</a>`).join(" · ") + `</div>`
       : "";
 
     html += `<div class="zone"><h3>${title}</h3><ul class="bul">`
@@ -468,13 +471,11 @@ async function search(term){
 
 /* ------------------------------------------------------------------ init --- */
 
-/* Relit latest.json et le brief sans recharger la page. Le bouton ne relance PAS
-   le pipeline : une page statique ne peut pas déclencher un workflow GitHub sans
-   y embarquer un jeton, ce qui est exclu sur un dépôt public. Pour forcer un
-   relevé, passer par Actions → Run workflow (lien « Lancer un relevé »). */
+/* Charge latest.json et le brief. Pas de bouton de rafraîchissement : F5 fait
+   exactement la même chose, et une page statique ne peut de toute façon pas
+   déclencher le pipeline sans embarquer un jeton, ce qui est exclu sur un dépôt
+   public. Pour forcer un relevé, passer par Actions → Run workflow. */
 async function load(){
-  const btn = document.getElementById("refresh");
-  btn.disabled = true; btn.textContent = "…";
   document.getElementById("alert").innerHTML = "";
   try{
     renderBoard(await getJSON("latest.json"));
@@ -490,7 +491,6 @@ async function load(){
   }
   briefCache = {};                     // vide le cache pour relire les briefs
   await initBrief();
-  btn.disabled = false; btn.textContent = "Rafraîchir";
 }
 
 (async function(){
@@ -514,7 +514,6 @@ async function load(){
     }
     setTimeout(() => { btnCopy.textContent = "Copier pour Claude"; }, 2000);
   };
-  document.getElementById("refresh").onclick = () => load();
 
   /* Déduit l'URL du dépôt depuis l'adresse GitHub Pages : compte.github.io/depot
      donne github.com/compte/depot/actions. Absent en local, donc masqué. */
