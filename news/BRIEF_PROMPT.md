@@ -1,7 +1,8 @@
 # Brief presse quotidien — instructions de génération
 
-Prompt exécuté chaque matin par une tâche planifiée Claude Code. Il tourne sur
-l'abonnement Claude : aucune clé API facturée, aucun coût au token.
+Spécification du brief quotidien. Déclenchée par la commande `/brief` dans
+Claude Code, depuis ce dossier. Tourne sur l'abonnement Claude : aucune clé API
+facturée, aucun coût au token.
 
 ---
 

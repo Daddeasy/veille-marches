@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
-.claude/
+
+# Reglages locaux de l'editeur, non partages
+.claude/*
+# ... sauf les commandes du projet, qui doivent voyager avec lui
+!.claude/commands/
