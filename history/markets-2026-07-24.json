@@ -1,7 +1,7 @@
 {
   "date": "2026-07-24",
   "target_date": "2026-07-24",
-  "generated_at": "2026-07-26T10:45:38+00:00",
+  "generated_at": "2026-07-26T11:33:11+00:00",
   "eurusd": 1.1377,
   "markets": {
     "S&P 500": {
@@ -409,7 +409,7 @@
       "eur_pct": -3.7515
     },
     "Bitcoin": {
-      "level": 64493.5,
+      "level": 64451.2,
       "date": "2026-07-26",
       "ticker": "BTC",
       "ccy": "USD",
@@ -418,32 +418,32 @@
       "unit": "pct",
       "dec": 2,
       "traded_247": true,
-      "change": 0.2808,
-      "pct": 0.2808,
+      "change": 0.215,
+      "pct": 0.215,
       "change_from": "2026-07-25",
       "change_days": 1,
-      "w1": -0.2854,
-      "m1": 7.4727,
-      "m3": -18.0033,
-      "ytd": -27.3164,
+      "w1": -0.3508,
+      "m1": 7.4022,
+      "m3": -18.0571,
+      "ytd": -27.364,
       "hi52": 124766.5,
       "lo52": 58531.9,
-      "pctile_1y": 14.2,
+      "pctile_1y": 11.8,
       "source": "kraken:XBTUSD",
       "basis": "cloture 00h UTC",
       "age_days": 0,
       "crosscheck": {
         "comparable": true,
         "source": "yahoo:BTC-USD",
-        "value": 64493.769531,
-        "divergence_pct": 0.0,
+        "value": 64437.179688,
+        "divergence_pct": 0.022,
         "tolerance_pct": 2.0,
         "ok": true
       },
       "target_date": "2026-07-25",
       "on_target": true,
-      "eur_level": 56687.615364,
-      "eur_pct": 0.4125
+      "eur_level": 56650.435088,
+      "eur_pct": 0.3467
     }
   },
   "diagnostics": {
