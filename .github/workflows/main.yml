@@ -29,7 +29,9 @@ concurrency:
 jobs:
   releve:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # 12 min 47 mesure en sequentiel avant parallelisation : la marge etait
+    # trop mince. Relevé a 25 pour absorber une lenteur de FRED.
+    timeout-minutes: 25
 
     steps:
       - uses: actions/checkout@v4

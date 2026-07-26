@@ -16,6 +16,7 @@ Usage :  py market_prices.py
 
 from __future__ import annotations
 
+import concurrent.futures
 import csv
 import datetime as dt
 import io
@@ -34,6 +35,15 @@ TIMEOUT = 40          # FRED est parfois lent
 RETRIES = 3
 HISTORY_YEARS = 2     # profondeur demandee aux sources
 MAX_ERRORS_OK = 4     # au-dela, le job sort en code 1 pour declencher l'alerte GitHub
+
+# Nombre d'instruments interroges en parallele. Le travail est presque
+# exclusivement de l'attente reseau, donc des fils suffisent — inutile de sortir
+# l'asynchrone. Mesure : la collecte sequentielle a mis 12 min 47 sur un runner
+# GitHub, pour une limite de job fixee a 25 minutes. FRED est lent par
+# intermittence et le script reessaie jusqu'a trois fois avec 40 s d'attente :
+# une seule serie recalcitrante coutait deux minutes a elle seule.
+# Plafonne a 6 pour ne pas se faire limiter par les sources.
+WORKERS = 6
 
 # Age minimal de meta.regularMarketTime pour considerer que la seance est close
 # et que le prix est etabli plutot qu'intraday. Voir yahoo() pour le detail.
@@ -1059,12 +1069,30 @@ def render_console(payload: dict) -> None:
 def main() -> int:
     markets: dict[str, dict] = {}
 
-    log(f"{DIM}Collecte de {len(INSTRUMENTS)} instruments...{RESET}")
+    log(f"{DIM}Collecte de {len(INSTRUMENTS)} instruments "
+        f"({WORKERS} en parallele)...{RESET}")
+    started = time.monotonic()
+
+    # Les resultats sont recuperes dans le desordre puis reordonnes selon
+    # INSTRUMENTS : l'affichage et le JSON gardent un ordre stable, ce qui evite
+    # un diff git bruyant a chaque execution.
+    with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {pool.submit(fetch_instrument, inst): inst for inst in INSTRUMENTS}
+        gathered: dict[str, dict] = {}
+        for future in concurrent.futures.as_completed(futures):
+            inst = futures[future]
+            try:
+                gathered[inst.label] = future.result()
+            except Exception as exc:                  # noqa: BLE001
+                gathered[inst.label] = {"error": f"{type(exc).__name__}: {exc}",
+                                        "zone": inst.zone, "kind": inst.kind}
+
     for inst in INSTRUMENTS:
-        entry = fetch_instrument(inst)
+        entry = gathered[inst.label]
         markets[inst.label] = entry
         state = "ERREUR" if "error" in entry else entry.get("source", "")
         log(f"{DIM}  {inst.label:<24} {state}{RESET}")
+    log(f"{DIM}  collecte en {time.monotonic() - started:.0f} s{RESET}")
 
     add_eur_view(markets)
 
