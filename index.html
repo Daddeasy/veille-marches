@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Veille marchés</title>
+<style>
+  :root{
+    --bg:#0a0e16; --panel:#111725; --panel2:#161d2d; --line:#232c40;
+    --ink:#e7ecf5; --dim:#8794ad; --faint:#5b6780;
+    --pos:#3fbf7f; --neg:#e0555f; --warn:#e0a33f; --accent:#f26522;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+
+  /* ---------- en-tete ---------- */
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}
+  .brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  h1{margin:0;font-size:20px;letter-spacing:-.01em;font-weight:650}
+  h1 .tick{color:var(--accent)}
+  .refdate{font-family:var(--mono);font-size:13px;color:var(--dim)}
+  .meta{margin-top:8px;font-size:12.5px;color:var(--faint);
+        display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .diag{font-family:var(--mono)}
+  .diag b{font-weight:600}
+  .diag .k-ok{color:var(--pos)} .diag .k-warn{color:var(--warn)} .diag .k-err{color:var(--neg)}
+  button{font:inherit;color:var(--ink);background:var(--panel2);
+         border:1px solid var(--line);border-radius:6px;padding:5px 11px;cursor:pointer}
+  button:hover{border-color:var(--faint)}
+  button:disabled{opacity:.5;cursor:default}
+  .meta a{color:#7fb4ea;text-decoration:none;font-size:12.5px}
+  .meta a:hover{text-decoration:underline}
+  .meta .k-warn{color:var(--warn);font-weight:600}
+
+  /* ---------- groupes ---------- */
+  section{margin-bottom:30px}
+  .ghead{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+  .ghead h2{margin:0;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+            color:var(--dim);font-weight:650}
+  .ghead .rule{flex:1;height:1px;background:var(--line)}
+
+  .grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(186px,1fr))}
+
+  /* ---------- tuile ---------- */
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+        padding:10px 12px 9px}
+  .tile.bad{border-color:#4a2630}
+  .tile .lab{font-size:12px;color:var(--dim);display:flex;justify-content:space-between;
+             gap:6px;align-items:flex-start}
+  .tile .lab span:first-child{font-weight:550;color:#c3cde0}
+  .lvl{font-family:var(--mono);font-size:21px;letter-spacing:-.02em;margin-top:4px;
+       display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .chg{font-family:var(--mono);font-size:13px;font-weight:600}
+  .tri{font-size:9px;margin-right:3px;vertical-align:1px;font-family:var(--sans)}
+  .up{color:var(--pos)} .down{color:var(--neg)} .flat{color:var(--dim)}
+  .sub{margin-top:3px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .stale-date{color:var(--warn)}
+
+  .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;padding:1.5px 5px;
+         border-radius:4px;text-transform:uppercase;white-space:nowrap;font-weight:600}
+  .b-stale{background:#3a2c12;color:var(--warn)}
+  .b-susp{background:#3d1c22;color:var(--neg)}
+  .b-pct{background:#1b2c44;color:#7fb4ea}
+  .b-lag{background:#2b2f3d;color:#a3b0c9}
+  .badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+
+  /* ---------- brief ---------- */
+  .news{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:18px 20px}
+  .focus{padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .focus h3{margin:0 0 7px;font-size:14.5px;color:#fff;font-weight:650}
+  .focus p{margin:0;font-size:14.5px;line-height:1.62;color:#dbe3f0}
+  .zone{margin-top:19px}
+  .zone h3{margin:0 0 9px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+           color:var(--accent);font-weight:650}
+  .bul{margin:0;padding-left:18px;list-style:none}
+  .bul li{position:relative;margin-bottom:10px;font-size:13.5px;line-height:1.58;
+          color:#c9d3e4}
+  .bul li::before{content:"▪";position:absolute;left:-15px;color:var(--faint)}
+  .bul a{color:#7fb4ea;font-size:11.5px;text-decoration:none;
+         font-family:var(--mono);white-space:nowrap}
+  .bul a:hover{text-decoration:underline}
+
+  .ctrl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  input[type=search],select{font:inherit;font-size:13.5px;color:var(--ink);
+    background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 9px}
+  input[type=search]{min-width:220px}
+
+  .empty{color:var(--faint);font-size:13.5px;font-style:italic}
+  .err{background:#2a151a;border:1px solid #5a2730;color:#f0b4ba;
+       border-radius:8px;padding:13px 15px;font-size:13.5px}
+  .note{background:#1a1f2e;border:1px solid var(--line);color:var(--dim);
+        border-radius:8px;padding:10px 14px;font-size:12.5px;margin-bottom:22px}
+  .note b{color:#c3cde0;font-weight:550}
+  .note .badge{vertical-align:1px}
+  .err code{font-family:var(--mono);font-size:12.5px;color:#fff}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+         font-size:11.5px;color:var(--faint);line-height:1.7}
+
+  @media print{
+    body{background:#fff;color:#000}
+    .tile,.news{border-color:#bbb;background:#fff;break-inside:avoid}
+    .lab span:first-child,.focus h3,.focus p{color:#000}
+    .bul li{color:#222}
+    .sub,footer{color:#555}
+    button,.ctrl{display:none}
+    .up{color:#0a6b3d} .down{color:#a01722}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <h1><span class="tick">▍</span> Veille marchés</h1>
+      <span class="refdate" id="refdate">chargement…</span>
+    </div>
+    <div class="meta">
+      <span class="diag" id="diag"></span>
+      <span id="gen"></span>
+      <button id="refresh">Rafraîchir</button>
+      <button id="print">Imprimer</button>
+      <a id="runlink" href="#" target="_blank" rel="noopener" hidden>Lancer un relevé ↗</a>
+    </div>
+  </header>
+
+  <div id="alert"></div>
+  <div id="board"></div>
+
+  <section>
+    <div class="ghead"><h2>Brief du jour</h2><span id="briefdate" class="refdate"></span><div class="rule"></div></div>
+    <div class="ctrl">
+      <select id="pickdate"><option>—</option></select>
+      <input type="search" id="q" placeholder="Rechercher dans tout l'historique…">
+    </div>
+    <div class="news" id="news"><span class="empty">chargement…</span></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+
+/* Lecture same-origin : le site est servi par GitHub Pages depuis le depot qui
+   contient latest.json. Aucun CORS, aucune URL a configurer. Le parametre
+   anti-cache reste utile car Pages met en cache quelques minutes. */
+const bust = () => "?t=" + Date.now();
+const getJSON = async (p) => {
+  const r = await fetch(p + bust(), {cache: "no-store"});
+  if (!r.ok) throw new Error(p + " → HTTP " + r.status);
+  return r.json();
+};
+
+/* Regroupement d'affichage. Par famille et non par zone : on lit une bande
+   marches par nature d'actif, alors que le brief presse se lit par zone. */
+const GROUPS = [
+  ["Actions",     ["S&P 500","Nasdaq 100","CAC 40","Euro Stoxx 50","Nikkei 225",
+                   "Shanghai Comp.","KOSPI"]],
+  ["Change",      ["EUR/USD"]],
+  ["Taux",        ["10Y US","10Y France"]],
+  ["Volatilité",  ["VIX"]],
+  ["Matières & crypto", ["Or","Brent","Bitcoin"]],
+];
+
+/* Convention francaise : les points de base s'ecrivent « pb ». */
+const UNIT_SUFFIX = {pct:" %", bp:" pb", pts:" pt"};
+const nf = (v, d) => v.toLocaleString("fr-FR",
+  {minimumFractionDigits:d, maximumFractionDigits:d});
+
+const cls = (v) => v == null ? "flat" : (v > 0 ? "up" : (v < 0 ? "down" : "flat"));
+
+/* Le triangle porte le sens de la variation, donc le +/− devient redondant :
+   on n'affiche que la magnitude. */
+const ARROW = {up:"▲", down:"▼", flat:"–"};
+function signed(v, unit){
+  const d = unit === "pct" ? 2 : (unit === "bp" ? 1 : 2);
+  return `<span class="tri">${ARROW[cls(v)]}</span>`
+       + nf(Math.abs(v), d) + (UNIT_SUFFIX[unit] || "");
+}
+const frDate = (iso) => {
+  const [y,m,d] = iso.split("-");
+  return d + "/" + m;
+};
+
+function tile(label, e){
+  if (!e || e.error){
+    return `<div class="tile bad"><div class="lab"><span>${label}</span></div>
+      <div class="lvl"><span class="flat" style="font-size:15px">indisponible</span></div>
+      <div class="sub"><span>${(e && e.error || "").slice(0,60)}</span></div></div>`;
+  }
+  const unit = e.unit || "pct", chg = e.change;
+  const badges = [];
+  if (e.stale)   badges.push(`<span class="badge b-stale" title="${e.stale_reason||""}">périmé</span>`);
+  if (e.suspect) badges.push(`<span class="badge b-susp" title="${e.suspect_reason||""}">suspect</span>`);
+  if (e.pctile_1y != null && e.pctile_1y >= 90)
+    badges.push(`<span class="badge b-pct" title="amplitude du mouvement, percentile sur 1 an">P${Math.round(e.pctile_1y)}</span>`);
+  /* Instrument pas encore sur la derniere seance close : le brief n'a pas le
+     droit d'en parler au passe immediat, et le lecteur doit le voir. */
+  if (e.on_target === false)
+    badges.push(`<span class="badge b-lag" title="la source n'a pas encore publié la séance du ${e.target_date}">J−${e.lag_days || 1}</span>`);
+
+  /* Date du dernier cours, libellée et mise en évidence quand elle n'est pas à
+     jour. C'est le seul moyen de savoir d'un coup d'œil ce qui est frais : sans
+     elle, un chiffre de la semaine dernière se lit comme celui d'hier. */
+  let ref;
+  if (e.on_target === null){
+    /* Série mensuelle : afficher le mois, pas un jour trompeur. */
+    const d = new Date(e.date + "T00:00:00");
+    ref = `<span class="stale-date">${d.toLocaleDateString("fr-FR",
+      {month:"long", year:"numeric"})} (mensuel)</span>`;
+  } else if (e.on_target === false){
+    ref = `<span class="stale-date">cours du ${frDate(e.date)}</span>`;
+  } else {
+    ref = `cours du ${frDate(e.date)}`;
+  }
+  /* Variation portant sur plus de quatre jours : le dire, plutôt que de laisser
+     croire qu'il s'agit d'un mouvement quotidien. */
+  if ((e.change_days || 0) > 4 && e.on_target !== null)
+    ref += ` <span class="stale-date">· var. depuis le ${frDate(e.change_from)}</span>`;
+
+  /* Nature de la valeur et conversion en euros passent en infobulle : un fixing
+     de 14h15 n'est pas une clôture de séance, l'information reste disponible
+     mais n'encombre plus la tuile. */
+  const tip = [e.basis, e.source,
+               e.eur_level != null ? nf(e.eur_level, e.dec ?? 2) + " €" : null]
+              .filter(Boolean).join(" · ");
+
+  return `<div class="tile" title="${tip}">
+    <div class="lab"><span>${label}</span><span class="badges">${badges.join("")}</span></div>
+    <div class="lvl">${nf(e.level, e.dec ?? 2)}
+      ${chg != null ? `<span class="chg ${cls(chg)}">${signed(chg,unit)}</span>` : ""}</div>
+    <div class="sub"><span>${ref}</span></div>
+  </div>`;
+}
+
+function renderBoard(data){
+  const m = data.markets || {};
+  const d = data.diagnostics || {};
+  const target = d.target_date || data.target_date || data.date;
+
+  document.getElementById("refdate").textContent =
+    "séance du " + new Date(target + "T00:00:00").toLocaleDateString("fr-FR",
+      {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+
+  const bits = [`<b class="k-ok">${(d.aligned||[]).length}</b> sur la séance`];
+  const off = d.off_target || [];
+  if (off.length)
+    bits.push(`<b class="k-warn">${off.length}</b> en retard de publication`);
+  if ((d.errors||[]).length)  bits.push(`<b class="k-err">${d.errors.length}</b> erreurs`);
+  if ((d.stale||[]).length)   bits.push(`<b class="k-warn">${d.stale.length}</b> périmés`);
+  if ((d.suspect||[]).length) bits.push(`<b class="k-warn">${d.suspect.length}</b> suspects`);
+  document.getElementById("diag").innerHTML = bits.join("  ·  ");
+
+  /* Les instruments en retard sont nommés en clair. Aucune source gratuite ne
+     publie leur séance du jour cible ; les masquer laisserait croire que tout
+     le tableau porte la même date. */
+  if (off.length){
+    document.getElementById("alert").innerHTML = `<div class="note">
+      Pas encore publiés pour le ${frDate(target)} — affichés à leur date réelle,
+      repérables par le badge <span class="badge b-lag">J−n</span> :
+      <b>${off.map(o => o[0]).join(", ")}</b>.</div>`;
+  }
+
+  /* L'âge de la donnée compte plus que l'heure du relevé : c'est lui qui dit si
+     le pipeline a tourné ce matin ou s'il est en panne depuis trois jours. */
+  if (data.generated_at){
+    const gen = new Date(data.generated_at);
+    const hours = (Date.now() - gen) / 36e5;
+    const age = hours < 1 ? "à l'instant"
+              : hours < 24 ? `il y a ${Math.round(hours)} h`
+              : `il y a ${Math.round(hours / 24)} j`;
+    const el = document.getElementById("gen");
+    el.textContent = "relevé " + age;
+    el.title = gen.toLocaleString("fr-FR");
+    /* Au-delà de 36 h un jour ouvré, le pipeline n'a pas tourné comme prévu. */
+    el.className = hours > 36 ? "k-warn" : "";
+  }
+
+  const seen = new Set();
+  let html = "";
+  for (const [title, labels] of GROUPS){
+    const cards = labels.filter(l => l in m).map(l => (seen.add(l), tile(l, m[l]))).join("");
+    if (cards) html += `<section><div class="ghead"><h2>${title}</h2><div class="rule"></div></div>
+      <div class="grid">${cards}</div></section>`;
+  }
+  const rest = Object.keys(m).filter(l => !seen.has(l));
+  if (rest.length) html += `<section><div class="ghead"><h2>Autres</h2><div class="rule"></div></div>
+    <div class="grid">${rest.map(l => tile(l, m[l])).join("")}</div></section>`;
+
+  document.getElementById("board").innerHTML = html;
+
+  const notes = Object.entries(m).filter(([,e]) => e && e.note)
+    .map(([l,e]) => `${l} — ${e.note}`);
+  document.getElementById("foot").innerHTML =
+    `Sources : Réserve fédérale de St. Louis (FRED), Banque centrale européenne,
+     ministère des Finances japonais, Kraken, Yahoo Finance. Relevé automatique
+     en jours ouvrés. Chaque instrument porte sa propre date de clôture : à 6h UTC
+     l'Asie n'a pas fini sa séance.
+     ${notes.length ? "<br><br>" + notes.join("<br>") : ""}`;
+}
+
+/* ---------------------------------------------------------------- brief ---- */
+
+/* Ordre repris du weekly interne : focus, puis macro, géopolitique, micro,
+   actions, obligataire. L'ordre compte — c'est celui dans lequel le lecteur
+   s'attend à trouver l'information. Les clés sont ordonnées, le rendu suit. */
+const SECTIONS = {
+  macro:       "Contexte macroéconomique",
+  geo:         "Géopolitique",
+  micro:       "Contexte microéconomique",
+  actions:     "Marchés actions",
+  obligations: "Marchés obligataires",
+};
+let briefCache = {};   // date -> brief
+let briefIndex = [];
+
+/* Rend un brief en chaine HTML. Separer la construction de l'ecriture dans le
+   DOM permet a la recherche de concatener plusieurs briefs sans manipulation
+   d'elements temporaires. */
+function briefHTML(brief, highlight){
+  if (!brief) return `<span class="empty">Aucun brief pour cette date.</span>`;
+
+  const mark = (t) => {
+    if (!highlight || !t) return t || "";
+    const safe = highlight.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return t.replace(new RegExp("(" + safe + ")", "gi"),
+      '<mark style="background:#3d3416;color:#f0d78a">$1</mark>');
+  };
+
+  /* Le focus ouvre le brief : un seul sujet, celui qui a dominé la séance. */
+  let html = "";
+  if (brief.focus && brief.focus.body){
+    html += `<div class="focus">
+      ${brief.focus.title ? `<h3>Le focus du jour — ${mark(brief.focus.title)}</h3>` : ""}
+      <p>${mark(brief.focus.body)}</p></div>`;
+  }
+
+  /* Puces sans titre, comme dans le weekly : un paragraphe court par fait,
+     suivi de sa source cliquable. */
+  for (const [key, title] of Object.entries(SECTIONS)){
+    const items = (brief.sections && brief.sections[key]) || [];
+    if (!items.length) continue;
+    html += `<div class="zone"><h3>${title}</h3><ul class="bul">`
+      + items.map(it => `<li>${mark(it.text)}${
+          it.url ? ` <a href="${it.url}" target="_blank" rel="noopener">${
+            it.source || "source"} ↗</a>` : ""}</li>`).join("")
+      + `</ul></div>`;
+  }
+  return html || `<span class="empty">Brief vide.</span>`;
+}
+
+function renderBrief(brief, highlight){
+  document.getElementById("news").innerHTML = briefHTML(brief, highlight);
+}
+
+async function loadBrief(date){
+  if (briefCache[date]) return briefCache[date];
+  try{
+    const b = await getJSON(`news/brief-${date}.json`);
+    briefCache[date] = b;
+    return b;
+  }catch{ return null; }
+}
+
+async function initBrief(){
+  try{ briefIndex = (await getJSON("news/index.json")).dates || []; }
+  catch{ briefIndex = []; }
+
+  const sel = document.getElementById("pickdate");
+  if (!briefIndex.length){
+    sel.innerHTML = `<option>aucun brief</option>`;
+    document.getElementById("news").innerHTML =
+      `<span class="empty">Aucun brief publié pour l'instant. La tâche planifiée
+       écrira news/brief-AAAA-MM-JJ.json et news/index.json.</span>`;
+    return;
+  }
+  sel.innerHTML = briefIndex.map(d => `<option value="${d}">${d}</option>`).join("");
+  renderBrief(await loadBrief(briefIndex[0]));
+  sel.onchange = async () => renderBrief(await loadBrief(sel.value));
+}
+
+/* Recherche plein texte : charge les briefs a la demande et les garde en cache. */
+async function search(term){
+  if (!term){ renderBrief(await loadBrief(document.getElementById("pickdate").value)); return; }
+  const hits = [];
+  for (const d of briefIndex){
+    const b = await loadBrief(d);
+    if (!b) continue;
+    const q = term.toLowerCase();
+    if (!JSON.stringify(b).toLowerCase().includes(q)) continue;
+
+    /* Ne garde que les puces qui contiennent le terme, et le focus s'il le
+       contient : afficher le brief entier noierait le résultat. */
+    const sections = {};
+    for (const [key, items] of Object.entries(b.sections || {})){
+      const keep = (items || []).filter(it => (it.text || "").toLowerCase().includes(q));
+      if (keep.length) sections[key] = keep;
+    }
+    const focus = (b.focus && ((b.focus.title || "") + (b.focus.body || ""))
+                    .toLowerCase().includes(q)) ? b.focus : null;
+    if (focus || Object.keys(sections).length)
+      hits.push({date: d, focus, sections});
+  }
+  const el = document.getElementById("news");
+  if (!hits.length){
+    el.innerHTML = `<span class="empty">Aucun résultat pour « ${term} ».</span>`;
+    return;
+  }
+  el.innerHTML = hits.map(h => `
+    <div style="margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)">
+      <div style="font-family:var(--mono);font-size:11.5px;color:var(--accent);
+                  margin-bottom:6px">${h.date}</div>
+      ${briefHTML(h, term)}
+    </div>`).join("");
+}
+
+/* ------------------------------------------------------------------ init --- */
+
+/* Relit latest.json et le brief sans recharger la page. Le bouton ne relance PAS
+   le pipeline : une page statique ne peut pas déclencher un workflow GitHub sans
+   y embarquer un jeton, ce qui est exclu sur un dépôt public. Pour forcer un
+   relevé, passer par Actions → Run workflow (lien « Lancer un relevé »). */
+async function load(){
+  const btn = document.getElementById("refresh");
+  btn.disabled = true; btn.textContent = "…";
+  document.getElementById("alert").innerHTML = "";
+  try{
+    renderBoard(await getJSON("latest.json"));
+  }catch(err){
+    document.getElementById("refdate").textContent = "";
+    document.getElementById("alert").innerHTML = `<div class="err">
+      <b>Impossible de lire latest.json.</b><br>
+      ${err.message}<br><br>
+      Causes probables : le workflow n'a jamais tourné, ou GitHub Pages n'est pas
+      encore activé sur la branche. Vérifier que <code>latest.json</code> existe
+      bien à la racine du dépôt — un <code>git add history/</code> seul ne le
+      pousse pas.</div>`;
+  }
+  briefCache = {};                     // vide le cache pour relire les briefs
+  await initBrief();
+  btn.disabled = false; btn.textContent = "Rafraîchir";
+}
+
+(async function(){
+  document.getElementById("print").onclick = () => window.print();
+  document.getElementById("refresh").onclick = () => load();
+
+  /* Déduit l'URL du dépôt depuis l'adresse GitHub Pages : compte.github.io/depot
+     donne github.com/compte/depot/actions. Absent en local, donc masqué. */
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+  if (m){
+    const repo = location.pathname.split("/").filter(Boolean)[0];
+    if (repo){
+      const a = document.getElementById("runlink");
+      a.href = `https://github.com/${m[1]}/${repo}/actions`;
+      a.hidden = false;
+    }
+  }
+
+  await load();
+
+  let timer;
+  document.getElementById("q").addEventListener("input", (ev) => {
+    clearTimeout(timer);
+    const v = ev.target.value.trim();
+    timer = setTimeout(() => search(v), 280);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "date": "2026-07-24",
+  "generated_at": "2026-07-26T11:10:00Z",
+  "focus": {
+    "title": "Repli des semi-conducteurs et des valeurs de mémoires",
+    "body": "Le mouvement traverse les trois zones. Selon CNBC, un indice sectoriel des semi-conducteurs américains a cédé 4,3 % et le Nasdaq 100 termine à 28 128,34, en baisse de 1,15 %, quand le S&P 500 finit quasi inchangé à 7 411,98 (+0,05 %). Nikkei Asia rapporte que les actions japonaises ont reculé sous la conduite du fabricant de mémoires Kioxia Holdings, en baisse de 16 %, les investisseurs dénouant selon le média des positions à effet de levier accumulées sur la technologie. Le Nikkei 225 termine à 64 611,15 (−2,73 %) et le KOSPI à 6 690,62 (−5,72 %), Séoul étant la place la plus exposée au cycle des mémoires."
+  },
+  "sections": {
+    "macro": [
+      {
+        "text": "Selon des sources citées par Nikkei Asia, la Banque du Japon devrait laisser son taux directeur inchangé à 1 % lors de sa réunion des 30 et 31 juillet.",
+        "source": "Nikkei Asia",
+        "url": "https://asia.nikkei.com/economy/bank-of-japan/bank-of-japan-to-keep-key-rate-at-next-week-s-policy-meeting-sources"
+      },
+      {
+        "text": "Le South China Morning Post indique que les actions chinoises ont effacé leurs pertes de début de séance après le ton prudent de la Banque populaire de Chine, les attentes de relance à court terme s'étant estompées.",
+        "source": "South China Morning Post",
+        "url": "https://www.scmp.com/business/china-business/article/3337678/china-shares-edge-lower-hopes-fade-near-term-stimulus-boost"
+      },
+      {
+        "text": "Bloomberg fait état d'une activité économique qu'il qualifie de robuste en Europe, aux côtés de publications de résultats supérieures aux attentes.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
+      }
+    ],
+    "geo": [
+      {
+        "text": "Bloomberg rapporte que les actions ont prolongé leurs gains après une information de Reuters selon laquelle le Pakistan explore une voie vers une reprise des discussions au point mort entre les États-Unis et l'Iran, à la suite d'une initiative chinoise. Le Brent termine à 96,78 dollars, en baisse de 3,88 %.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
+      },
+      {
+        "text": "CNBC indique que les investisseurs évaluaient les derniers développements du conflit au Moyen-Orient. Le VIX se détend à 18,58, en baisse de 0,12 point.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html"
+      }
+    ],
+    "micro": [
+      {
+        "text": "Intel a gagné 3,6 % avant l'ouverture après un deuxième trimestre supérieur aux attentes et des prévisions de troisième trimestre au-dessus du consensus, l'entreprise bénéficiant selon CNBC de la demande liée à l'intelligence artificielle. Une hausse de 3,5 % d'Apple a soutenu le Dow Jones, en progression de 235,60 points, soit 0,46 %, à 51 947,25.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html"
+      },
+      {
+        "text": "Les résultats de SAP ont dépassé les estimations des analystes, selon Bloomberg, contribuant à la progression des indices européens.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
+      },
+      {
+        "text": "Kioxia Holdings a reculé de 16 %, d'après Nikkei Asia, sur des interrogations quant à la durée du cycle haussier lié à l'intelligence artificielle.",
+        "source": "Nikkei Asia",
+        "url": "https://asia.nikkei.com/business/markets/japanese-stocks-plunge-as-ai-deleverage-sends-kioxia-down-16"
+      }
+    ],
+    "actions": [
+      {
+        "text": "Aux États-Unis, le S&P 500 termine à 7 411,98 (+0,05 %) et le Nasdaq 100 à 28 128,34 (−1,15 %). CNBC donne le Dow Jones en hausse de 0,46 % à 51 947,25.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html"
+      },
+      {
+        "text": "En Europe, le CAC 40 progresse à 8 372,28 (+0,88 %) et l'Euro Stoxx 50 à 6 280,94 (+1,14 %). Bloomberg donne le Stoxx Europe 600 en hausse de 0,8 % à la clôture de Londres, la technologie surperformant de 1,2 % et les télécoms reculant de 1,2 %.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
+      },
+      {
+        "text": "En Asie, le Nikkei 225 recule à 64 611,15 (−2,73 %), le KOSPI à 6 690,62 (−5,72 %) et le Shanghai Composite à 3 814,20 (−1,61 %). Bloomberg relève que la valeur totale des échanges à Shenzhen et Shanghai est tombée sous 2 200 milliards de yuans, soit environ 325 milliards de dollars, au plus bas depuis le 13 avril, les investisseurs délaissant selon le média le secteur technologique chinois.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-24/chinese-stock-turnover-shrinks-as-sentiment-cools-on-tech-sector"
+      },
+      {
+        "text": "L'or progresse à 4 070,80 dollars (+0,60 %) et le Bitcoin à 64 418 dollars (+0,16 %). Le Brent recule de 3,88 % à 96,78 dollars. L'euro s'établit à 1,1377 dollar au fixing de la Banque centrale européenne.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-24/european-stocks-edge-higher-as-sap-earnings-beat-estimates"
+      }
+    ],
+    "obligations": [
+      {
+        "text": "Le rendement du 10 ans américain revient à 4,679 %, en baisse de 2,4 pb. CNBC le donnait en repli d'un point de base à 4,693 %, l'écart s'expliquant par la différence entre relevé H.15 et clôture de marché.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/23/stock-market-today-live-updates.html"
+      },
+      {
+        "text": "Le 10 ans français n'est disponible qu'en moyenne mensuelle en l'absence de clé Banque de France : 3,68 % pour juin, en baisse de 6 pb sur le mois.",
+        "source": "Banque de France",
+        "url": "https://webstat.banque-france.fr/fr/catalogue/fm/FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"
+      }
+    ]
+  }
+}

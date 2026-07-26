@@ -1,0 +1,96 @@
+name: Releve marches quotidien
+
+on:
+  schedule:
+    # 05:00 UTC, du lundi au vendredi — soit 7h00 a Paris en ete, 6h00 en hiver.
+    # Cet horaire est contraint par la suite : la tache qui redige le brief presse
+    # tourne a 05:30 UTC et lit latest.json, elle doit donc passer APRES. Tout ce
+    # qui concerne la seance de la veille est publie a cette heure (H.15 sort a
+    # 20:15 UTC la veille, le fixing BCE a 14:00 UTC).
+    # Attention : GitHub planifie en UTC, sans heure d'ete — l'heure locale
+    # decale donc d'une heure entre ete et hiver. C'est une limite de la
+    # plateforme, il n'y a pas de moyen de fixer un horaire local.
+    #
+    # A cette heure l'Asie n'a pas fini sa seance du jour : le Nikkei cloture a
+    # 06:00 UTC, Shanghai a 07:00. Les indices asiatiques renvoient donc la
+    # cloture de la veille — ce qui est precisement ce que l'on veut. Chaque
+    # instrument porte de toute facon sa propre date dans le JSON.
+    - cron: "0 5 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Evite deux executions concurrentes qui se pousseraient dessus.
+concurrency:
+  group: releve-marches
+  cancel-in-progress: false
+
+jobs:
+  releve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Aucun pip install : le script n'utilise que la bibliotheque standard.
+      # Pas de yfinance (scraper non officiel qui casse a chaque changement
+      # de Yahoo), pas de requests. Rien qui puisse deriver de version.
+
+      - name: Collecte des cotations
+        id: collecte
+        # On ne veut PAS que l'echec du script interrompe le job avant le
+        # commit : meme une collecte partielle doit etre sauvegardee. L'echec
+        # est retenu dans steps.collecte.outcome et rejoue a la toute fin.
+        continue-on-error: true
+        env:
+          # Optionnel : debloque le 10Y France en quotidien (TEC 10 de la Banque
+          # de France). Absent, la source est ignoree et le repli FRED mensuel
+          # prend le relais sans rien casser. Cle gratuite sur
+          # webstat.banque-france.fr/signup
+          WEBSTAT_CLIENT_ID: ${{ secrets.WEBSTAT_CLIENT_ID }}
+        run: python market_prices.py
+
+      - name: Controle de coherence pipeline / app
+        # Attrape une divergence de forme entre le JSON produit et ce que
+        # index.html lit — un defaut qui, sinon, se traduit par des tuiles
+        # vides sans aucune erreur visible.
+        continue-on-error: true
+        run: python selfcheck.py
+
+      - name: Commit et push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # latest.json ET series.csv doivent etre ajoutes explicitement :
+          # un "git add history/" seul ne les pousse jamais, et l'app lit
+          # precisement latest.json. Piege classique.
+          git add history/ latest.json series.csv
+
+          if git diff --cached --quiet; then
+            echo "Rien a committer (donnees inchangees)."
+            exit 0
+          fi
+
+          git commit -m "Releve marches $(date -u +%Y-%m-%d)"
+
+          # Rebase avant push : si un run manuel s'est intercale, on evite
+          # un rejet pour non-fast-forward.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Propager l'echec de collecte
+        # Sans cette etape, une panne partielle resterait silencieuse : le job
+        # passerait au vert et GitHub n'enverrait aucun mail. Or un workflow
+        # planifie sur depot public finit desactive apres 60 jours d'inactivite,
+        # sans redemarrage automatique. Une panne non vue tue le projet.
+        if: steps.collecte.outcome == 'failure'
+        run: |
+          echo "::error::Trop d'instruments en erreur — voir le log de collecte."
+          exit 1
