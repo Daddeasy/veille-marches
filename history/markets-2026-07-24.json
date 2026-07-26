@@ -1,7 +1,7 @@
 {
   "date": "2026-07-24",
   "target_date": "2026-07-24",
-  "generated_at": "2026-07-26T12:10:18+00:00",
+  "generated_at": "2026-07-26T12:22:59+00:00",
   "eurusd": 1.1377,
   "markets": {
     "S&P 500": {
@@ -21,22 +21,27 @@
       "m1": 0.7306,
       "m3": 3.4459,
       "ytd": 8.2752,
-      "hi52": 7609.7798,
-      "lo52": 6238.0098,
+      "hi52": 7609.78,
+      "lo52": 6238.01,
       "pctile_1y": 7.7,
-      "source": "yahoo:^GSPC+meta",
+      "source": "fred:SP500",
       "basis": "cloture de seance",
-      "fallback_notes": [
-        "fred:SP500: TimeoutError"
-      ],
       "age_days": 2,
+      "crosscheck": {
+        "comparable": true,
+        "source": "yahoo:^GSPC",
+        "value": 7411.98,
+        "divergence_pct": 0.0,
+        "tolerance_pct": 2.0,
+        "ok": true
+      },
       "target_date": "2026-07-24",
       "on_target": true,
       "eur_level": 6514.8809,
       "eur_pct": 0.1814
     },
     "Nasdaq 100": {
-      "level": 28128.342,
+      "level": 28128.34,
       "date": "2026-07-24",
       "ticker": "NDX",
       "ccy": "USD",
@@ -52,18 +57,23 @@
       "m1": -3.7362,
       "m3": 3.0204,
       "ytd": 11.4,
-      "hi52": 30660.5996,
-      "lo52": 22763.3105,
+      "hi52": 30660.6,
+      "lo52": 22763.31,
       "pctile_1y": 71.2,
-      "source": "yahoo:^NDX+meta",
+      "source": "fred:NASDAQ100",
       "basis": "cloture de seance",
-      "fallback_notes": [
-        "fred:NASDAQ100: TimeoutError"
-      ],
       "age_days": 2,
+      "crosscheck": {
+        "comparable": true,
+        "source": "yahoo:^NDX",
+        "value": 28128.342,
+        "divergence_pct": 0.0,
+        "tolerance_pct": 2.0,
+        "ok": true
+      },
       "target_date": "2026-07-24",
       "on_target": true,
-      "eur_level": 24723.865694,
+      "eur_level": 24723.863936,
       "eur_pct": -1.0156
     },
     "CAC 40": {
@@ -249,7 +259,7 @@
       "ytd": 51.6,
       "hi52": 4.703,
       "lo52": 3.953,
-      "pctile_1y": 43.4,
+      "pctile_1y": 43.3,
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
       "age_days": 2,
@@ -275,10 +285,12 @@
       "source": "cnbc:FR10Y-FR",
       "basis": "cloture de seance",
       "fallback_notes": [
-        "webstat:FRMOYTEC10: ValueError",
-        "fred:IRLTLT01FRM156N: TimeoutError"
+        "webstat:FRMOYTEC10: ValueError"
       ],
       "age_days": 2,
+      "crosscheck": {
+        "comparable": false
+      },
       "target_date": "2026-07-24",
       "on_target": true
     },
@@ -301,7 +313,7 @@
       "ytd": 3.63,
       "hi52": 31.05,
       "lo52": 13.47,
-      "pctile_1y": 10.5,
+      "pctile_1y": 10.6,
       "source": "fred:VIXCLS+yahoo:^VIX",
       "basis": "cloture de seance",
       "age_days": 2,
@@ -387,17 +399,17 @@
       "pctile_1y": 84.4,
       "source": "yahoo:BZ=F",
       "basis": "reglement du contrat a terme",
-      "fallback_notes": [
-        "fred:DCOILBRENTEU: TimeoutError"
-      ],
       "age_days": 2,
+      "crosscheck": {
+        "comparable": false
+      },
       "target_date": "2026-07-24",
       "on_target": true,
       "eur_level": 85.066362,
       "eur_pct": -3.7515
     },
     "Bitcoin": {
-      "level": 64543.2,
+      "level": 64505.4,
       "date": "2026-07-26",
       "ticker": "BTC",
       "ccy": "USD",
@@ -406,32 +418,32 @@
       "unit": "pct",
       "dec": 2,
       "traded_247": true,
-      "change": 0.3581,
-      "pct": 0.3581,
+      "change": 0.2993,
+      "pct": 0.2993,
       "change_from": "2026-07-25",
       "change_days": 1,
-      "w1": -0.2086,
-      "m1": 7.5555,
-      "m3": -17.9401,
-      "ytd": -27.2604,
+      "w1": -0.267,
+      "m1": 7.4925,
+      "m3": -17.9882,
+      "ytd": -27.303,
       "hi52": 124766.5,
       "lo52": 58531.9,
-      "pctile_1y": 17.0,
+      "pctile_1y": 14.8,
       "source": "kraken:XBTUSD",
       "basis": "cloture 00h UTC",
       "age_days": 0,
       "crosscheck": {
         "comparable": true,
         "source": "yahoo:BTC-USD",
-        "value": 64530.0,
-        "divergence_pct": 0.02,
+        "value": 64503.921875,
+        "divergence_pct": 0.002,
         "tolerance_pct": 2.0,
         "ok": true
       },
       "target_date": "2026-07-25",
       "on_target": true,
-      "eur_level": 56731.299991,
-      "eur_pct": 0.4898
+      "eur_level": 56698.075064,
+      "eur_pct": 0.431
     }
   },
   "diagnostics": {
