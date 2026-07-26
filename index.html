@@ -152,7 +152,8 @@
       <span id="gen"></span>
       <button id="print">Imprimer</button>
       <button id="copy" title="Copie une instruction à coller dans Claude Code">Copier pour Claude</button>
-      <a id="runlink" href="#" target="_blank" rel="noopener" hidden>Lancer un relevé ↗</a>
+      <a id="runlink" href="#" target="_blank" rel="noopener" hidden
+         title="Ouvre l'onglet Actions de GitHub, où le bouton Run workflow force une collecte immédiate">Forcer une collecte sur GitHub ↗</a>
     </div>
   </header>
 
@@ -516,7 +517,10 @@ async function load(){
   };
 
   /* Déduit l'URL du dépôt depuis l'adresse GitHub Pages : compte.github.io/depot
-     donne github.com/compte/depot/actions. Absent en local, donc masqué. */
+     donne github.com/compte/depot/actions. Ce lien n'exécute rien lui-même — une
+     page statique ne peut pas déclencher un workflow sans embarquer un jeton. Il
+     ouvre seulement l'endroit où le bouton Run workflow se trouve. Masqué en
+     local, faute de pouvoir deviner le dépôt. */
   const m = location.hostname.match(/^([^.]+)\.github\.io$/);
   if (m){
     const repo = location.pathname.split("/").filter(Boolean)[0];
