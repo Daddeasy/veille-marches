@@ -378,6 +378,37 @@ def kraken(pair: str = "XBTUSD", basis: str = UTC_CLOSE):
     return fetch
 
 
+def fng_crypto(basis: str = "publication quotidienne 00h UTC"):
+    """Indice Fear & Greed crypto d'alternative.me.
+
+    API publique documentee, gratuite, sans cle et sans en-tete particulier :
+    c'est une source legitime, contrairement a l'equivalent de CNN dont
+    l'endpoint renvoie 418 tant qu'on ne se fait pas passer pour son propre
+    site. Echelle 0 a 100 : 0 = peur extreme, 100 = avidite extreme.
+    """
+
+    def fetch() -> Series:
+        url = "https://api.alternative.me/fng/?limit=800"
+        payload = json.loads(_get(url))
+        if (payload.get("metadata") or {}).get("error"):
+            raise ValueError(f"alternative.me : {payload['metadata']['error']}")
+        out: Series = []
+        for row in payload.get("data", []):
+            try:
+                date = dt.datetime.fromtimestamp(
+                    int(row["timestamp"]), dt.timezone.utc).date()
+                out.append((date, float(row["value"])))
+            except (KeyError, TypeError, ValueError):
+                continue
+        if not out:
+            raise ValueError("alternative.me : aucune observation")
+        return _clean(out)
+
+    fetch.label = "alternative.me:fng"                # type: ignore[attr-defined]
+    fetch.basis = basis                               # type: ignore[attr-defined]
+    return fetch
+
+
 def combine(*sources, basis: str | None = None):
     """Fusionne plusieurs sources en une seule serie, les suivantes completant
     la premiere. Sert quand une source porte l'historique et une autre la
@@ -535,6 +566,11 @@ INSTRUMENTS = [
     # via le champ meta de Yahoo. Variation en points, pas en pourcentage.
     I("VIX", "US", "points",
       [combine(fred("VIXCLS", CLOSE), yahoo("^VIX"), basis=CLOSE)]),
+    # Echelle 0-100, donc une variation de 20 points en un jour serait aberrante.
+    # Cote le week-end comme le bitcoin, d'ou traded_247.
+    I("Fear & Greed crypto", "CRY", "points", [fng_crypto()],
+      traded_247=True, dec=0,
+      note="alternative.me — 0 = peur extreme, 100 = avidite extreme"),
 
     # --- Matieres premieres / crypto, en dollars --------------------------
     I("Or", "COM", "price", [yahoo("GC=F", FUT)]),
