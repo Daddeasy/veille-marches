@@ -16,7 +16,13 @@ l'abonnement Claude : aucune clé API facturée, aucun coût au token.
 3. **Écrire `news/brief-AAAA-MM-JJ.json`** dans la structure ci-dessous, puis
    ajouter la date **en tête** du tableau `dates` de `news/index.json`.
 
-4. **Commiter et pousser** les deux fichiers.
+4. **Lancer `py privacy_check.py`** avant tout commit. Le dépôt est public :
+   aucun nom de personne, adresse, téléphone ou nom de société ne doit y entrer.
+   Un article de presse peut contenir de telles données — ne jamais les recopier.
+   Si le script sort en erreur, corriger le brief et relancer. Ne pas committer
+   tant qu'il n'est pas vert.
+
+5. **Commiter et pousser** les deux fichiers.
 
 ---
 
@@ -216,5 +222,8 @@ Règles de sourcing :
 - Sur une **statistique macro**, la source primaire prime sur son commentaire de
   presse. Citer l'institution qui publie.
 - Un fait présent dans une seule source non officielle est recoupé ou écarté.
+- **Jamais de nom de personne physique** dans le brief, sauf dirigeant ou
+  responsable public s'exprimant à titre officiel (« le président de la Banque
+  centrale européenne »). Pas de coordonnées, jamais.
 - Préférer un article **daté de la séance concernée**. Une reprise plus tardive
   ajoute du bruit sans information.

@@ -63,6 +63,17 @@ jobs:
         continue-on-error: true
         run: python selfcheck.py
 
+      - name: Garde-fou confidentialite
+        # Echoue DUR, sans continue-on-error : si une donnee personnelle est
+        # detectee, rien ne doit etre commite ni pousse. Un depot public garde
+        # une trace meme apres correction.
+        # PRIVACY_DENYLIST contient les noms de personnes et de societes a
+        # bannir. Il est lu depuis un secret pour ne pas figurer dans le depot —
+        # ecrire ces noms dans le code exposerait ce qu'on cherche a cacher.
+        env:
+          PRIVACY_DENYLIST: ${{ secrets.PRIVACY_DENYLIST }}
+        run: python privacy_check.py
+
       - name: Commit et push
         run: |
           git config user.name  "github-actions[bot]"
