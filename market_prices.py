@@ -378,6 +378,67 @@ def kraken(pair: str = "XBTUSD", basis: str = UTC_CLOSE):
     return fetch
 
 
+def cnbc(symbol: str, basis: str = CLOSE):
+    """CNBC — cotation obligataire souveraine, endpoint JSON public.
+
+    Seule voie identifiee vers un 10 ans FRANCAIS QUOTIDIEN sans inscription :
+    la BCE ne publie la France qu'en mensuel (ses series pays du dataset FM
+    renvoient 404, jokers compris), Eurostat ne diffuse pas de serie quotidienne,
+    DBnomics ne mirroite pas le jeu « marches financiers » de la Banque de
+    France, et Stooq, Boursorama et Zonebourse sont hors d'atteinte.
+
+    Aucune protection n'est contournee : une requete ordinaire avec un
+    User-Agent suffit, contrairement a l'equivalent de CNN qui renvoie 418 tant
+    qu'on ne falsifie pas l'en-tete Referer. C'est la meme categorie que
+    l'endpoint chart de Yahoo, sur lequel repose deja la moitie des indicateurs.
+
+    Deux limites assumees :
+      - endpoint non documente, donc susceptible de changer sans preavis. Le
+        repli FRED mensuel reste derriere pour que rien ne casse.
+      - il renvoie un INSTANTANE, pas une serie. On reconstruit donc deux points
+        — la cloture precedente et la derniere — ce qui suffit a la variation
+        quotidienne mais ne donne ni percentile ni variation 1M. series.csv
+        accumulera l'historique jour apres jour.
+
+    Recoupe a la main : US10Y-US donnait 4,681 % la ou FRED plus Yahoo
+    ressortaient a 4,679 %, soit 0,2 pb d'ecart.
+    """
+
+    def fetch() -> Series:
+        url = ("https://quote.cnbc.com/quote-html-webservice/restQuote/"
+               f"symbolType/symbol?symbols={urllib.parse.quote(symbol)}"
+               "&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json")
+        payload = json.loads(_get(url))
+        quotes = payload["FormattedQuoteResult"]["FormattedQuote"]
+        if not isinstance(quotes, list):
+            quotes = [quotes]
+        q = quotes[0]
+
+        def num(raw) -> float | None:
+            if raw in (None, ""):
+                return None
+            try:
+                return float(str(raw).replace("%", "").replace(",", "").strip())
+            except ValueError:
+                return None
+
+        last = num(q.get("last"))
+        prev = num(q.get("previous_day_closing") or q.get("bond_prev_day_closing_price"))
+        stamp = q.get("last_time") or ""
+        if last is None or len(stamp) < 10:
+            raise ValueError(f"cnbc {symbol} : reponse inexploitable")
+        date = dt.date.fromisoformat(stamp[:10])
+
+        out: Series = [(date, last)]
+        if prev is not None:
+            out.append((prev_business_day(date), prev))
+        return _clean(out)
+
+    fetch.label = f"cnbc:{symbol}"                    # type: ignore[attr-defined]
+    fetch.basis = basis                               # type: ignore[attr-defined]
+    return fetch
+
+
 def fng_crypto(basis: str = "publication quotidienne 00h UTC"):
     """Indice Fear & Greed crypto d'alternative.me.
 
@@ -559,11 +620,19 @@ INSTRUMENTS = [
     # mensuel. Serie mensuelle publiee avec ~six semaines de decalage, d'ou le
     # seuil de fraicheur elargi : sinon elle est signalee perimee chaque jour et
     # l'alerte devient du bruit qu'on cesse de lire.
+    # Trois sources en cascade. CNBC en primaire : c'est la seule voie identifiee
+    # vers un 10 ans francais QUOTIDIEN sans inscription. Webstat ensuite si la
+    # cle est presente (source de reference, le TEC 10 de la Banque de France).
+    # FRED mensuel en dernier recours.
+    # freq reste "daily" et le seuil de fraicheur serre a 5 jours : si CNBC
+    # disparait et qu'on retombe sur le mensuel, l'alerte doit se declencher
+    # bruyamment plutot que de laisser passer une moyenne pour une cloture.
     I("10Y France", "EU", "yield",
-      [webstat("FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"),
+      [cnbc("FR10Y-FR"),
+       webstat("FM.D.FR.EUR.FR2.BB.FRMOYTEC10.HSTA"),
        fred("IRLTLT01FRM156N", MONTHLY_AVG)],
-      stale_days=75, freq="monthly", ticker="FR10Y", ccy="%",
-      note="BdF TEC 10 quotidien si cle presente, sinon FRED mensuel"),
+      ticker="FR10Y", ccy="%",
+      note="CNBC en quotidien ; BdF TEC 10 si cle ; sinon FRED mensuel"),
 
     # --- Matieres premieres / crypto, en dollars --------------------------
     # --- Volatilite -------------------------------------------------------

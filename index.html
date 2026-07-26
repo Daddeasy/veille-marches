@@ -89,19 +89,21 @@
 
   /* ---------- brief ---------- */
   .news{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:18px 20px}
-  .focus{padding-bottom:16px;border-bottom:1px solid var(--line)}
-  .focus h3{margin:0 0 7px;font-size:14.5px;color:#fff;font-weight:650}
-  .focus p{margin:0;font-size:14.5px;line-height:1.62;color:#dbe3f0}
-  .zone{margin-top:19px}
-  .zone h3{margin:0 0 9px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  /* Un seul corps de texte dans tout le brief — focus et puces a la meme taille.
+     Seuls les intitules de rubrique et la ligne de sources s'en distinguent. */
+  .news{font-size:13.5px}
+  .focus{padding-bottom:15px;border-bottom:1px solid var(--line)}
+  .focus h3{margin:0 0 6px;font-size:13.5px;color:#fff;font-weight:650}
+  .focus p{margin:0;line-height:1.6;color:#dbe3f0}
+  .zone{margin-top:18px}
+  .zone h3{margin:0 0 8px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
            color:var(--accent);font-weight:650}
-  .bul{margin:0;padding-left:18px;list-style:none}
-  .bul li{position:relative;margin-bottom:10px;font-size:13.5px;line-height:1.58;
-          color:#c9d3e4}
+  .bul{margin:0;padding-left:17px;list-style:none}
+  .bul li{position:relative;margin-bottom:9px;line-height:1.6;color:#c9d3e4}
   .bul li::before{content:"▪";position:absolute;left:-15px;color:var(--faint)}
-  .bul a{color:#7fb4ea;font-size:11.5px;text-decoration:none;
-         font-family:var(--mono);white-space:nowrap}
-  .bul a:hover{text-decoration:underline}
+  .srcs{margin-top:8px;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
+  .srcs a{color:#7fb4ea;text-decoration:none}
+  .srcs a:hover{text-decoration:underline}
 
   .ctrl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
   input[type=search],select{font:inherit;font-size:13.5px;color:var(--ink);
@@ -117,7 +119,9 @@
   .note .badge{vertical-align:1px}
   .err code{font-family:var(--mono);font-size:12.5px;color:#fff}
   footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
-         font-size:11.5px;color:var(--faint);line-height:1.7}
+         font-size:11.5px;color:var(--faint);line-height:1.8}
+  footer b{color:var(--dim)}
+  footer .badge{margin:0 2px}
 
   @media print{
     body{background:#fff;color:#000}
@@ -220,8 +224,6 @@ function row(label, e){
   const badges = [];
   if (e.stale)   badges.push(`<span class="badge b-stale" title="${e.stale_reason||""}">périmé</span>`);
   if (e.suspect) badges.push(`<span class="badge b-susp" title="${e.suspect_reason||""}">suspect</span>`);
-  if (e.pctile_1y != null && e.pctile_1y >= 90)
-    badges.push(`<span class="badge b-pct" title="amplitude du mouvement, percentile sur 1 an">P${Math.round(e.pctile_1y)}</span>`);
 
   /* Date du dernier cours, en ambre si elle n'est pas à jour. Sans elle, un
      chiffre de la semaine dernière se lit comme celui d'hier. */
@@ -314,10 +316,15 @@ function renderBoard(data){
   const notes = Object.entries(m).filter(([,e]) => e && e.note)
     .map(([l,e]) => `${l} — ${e.note}`);
   document.getElementById("foot").innerHTML =
-    `Sources : Réserve fédérale de St. Louis (FRED), Banque centrale européenne,
-     ministère des Finances japonais, Kraken, Yahoo Finance. Relevé automatique
-     en jours ouvrés. Chaque instrument porte sa propre date de clôture : à 6h UTC
-     l'Asie n'a pas fini sa séance.
+    `<b>Légende</b> — <span class="badge b-stale">périmé</span> la source n'a pas publié depuis
+     plusieurs jours. <span class="badge b-susp">suspect</span> variation hors
+     bornes de plausibilité, ou sources divergentes. Date en ambre : le cours n'est
+     pas celui de la dernière séance close. Survoler une ligne donne la nature
+     exacte de la valeur et sa source.
+     <br><br>
+     Sources : Réserve fédérale de St. Louis (FRED), Banque centrale européenne,
+     Banque de France, Kraken, alternative.me, Yahoo Finance. Relevé automatique
+     en jours ouvrés à 5h00 UTC.
      ${notes.length ? "<br><br>" + notes.join("<br>") : ""}`;
 }
 
@@ -362,11 +369,19 @@ function briefHTML(brief, highlight){
   for (const [key, title] of Object.entries(SECTIONS)){
     const items = (brief.sections && brief.sections[key]) || [];
     if (!items.length) continue;
+    /* Les liens sont regroupes sous la rubrique plutot qu'accroches a chaque
+       puce : le texte reste lisible d'un trait, et les sources sont dedoublonnees. */
+    const seenSrc = new Map();
+    for (const it of items) if (it.url && !seenSrc.has(it.url))
+      seenSrc.set(it.url, it.source || "source");
+    const srcLine = seenSrc.size
+      ? `<div class="srcs">Sources : ` + [...seenSrc].map(([u, n]) =>
+          `<a href="${u}" target="_blank" rel="noopener">${n} ↗</a>`).join(" · ") + `</div>`
+      : "";
+
     html += `<div class="zone"><h3>${title}</h3><ul class="bul">`
-      + items.map(it => `<li>${mark(it.text)}${
-          it.url ? ` <a href="${it.url}" target="_blank" rel="noopener">${
-            it.source || "source"} ↗</a>` : ""}</li>`).join("")
-      + `</ul></div>`;
+      + items.map(it => `<li>${mark(it.text)}</li>`).join("")
+      + `</ul>${srcLine}</div>`;
   }
   return html || `<span class="empty">Brief vide.</span>`;
 }

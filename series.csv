@@ -17,6 +17,7 @@ date,instrument,value,source
 2026-07-23,Shanghai Comp.,3876.777100,yahoo:000001.SS
 2026-07-23,Spread HY US,2.770000,fred:BAMLH0A0HYM2
 2026-07-23,VIX,18.700000,fred:VIXCLS
+2026-07-24,10Y France,3.980000,cnbc:FR10Y-FR
 2026-07-24,10Y US,4.679000,fred:DGS10+yahoo:^TNX
 2026-07-24,Brent,96.780000,yahoo:BZ=F
 2026-07-24,CAC 40,8372.280000,yahoo:^FCHI+meta
@@ -36,5 +37,5 @@ date,instrument,value,source
 2026-07-24,USD/JPY,163.821700,ecb:derive
 2026-07-24,VIX,18.580000,fred:VIXCLS+yahoo:^VIX
 2026-07-25,Bitcoin,64273.800000,kraken:XBTUSD
-2026-07-26,Bitcoin,64462.600000,kraken:XBTUSD
+2026-07-26,Bitcoin,64493.500000,kraken:XBTUSD
 2026-07-26,Fear & Greed crypto,26.000000,alternative.me:fng
