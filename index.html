@@ -261,6 +261,9 @@
   .k-det{display:block;color:var(--faint);margin-top:2px;line-height:1.45}
   .k-num{font-family:var(--mono);text-align:right;width:1%;white-space:nowrap;
          font-variant-numeric:tabular-nums;color:var(--dim)}
+  /* Deux classes, encore : .k-num est declaree apres .up et .down et l'emporterait
+     sinon a specificite egale. Le troisieme cas de cette feuille. */
+  .k-num.up{color:var(--pos)} .k-num.down{color:var(--neg)}
   /* Un chiffre sorti prime sur ce qu'on en attendait. Les deux variantes portent
      deux classes : .k-pub est declaree apres .up et .down et l'emporterait sinon
      a specificite egale, comme cela s'est deja produit sur la date de l'encart. */
@@ -672,21 +675,31 @@ function calendarHTML(cal, briefDate){
     if (!e.time && !e.forecast && !e.previous && !e.actual)
       return `<tr class="k-libre${cls}"><td colspan="6">${e.label}</td></tr>`;
 
-    const pub = nombreFr(e.actual), att = nombreFr(e.forecast);
-    let ecart = "", bulle = "";
-    if (pub !== null && att !== null){
-      ecart = pub > att ? " up" : pub < att ? " down" : "";
-      bulle = pub > att ? "au-dessus du consensus"
-            : pub < att ? "en dessous du consensus" : "conforme au consensus";
-    }
+    /* Deux comparaisons, chacune contre sa reference naturelle : le chiffre publie
+       contre le consensus, et le consensus contre le releve precedent. La seconde
+       dit ou le marche attend l'indicateur, information que la premiere ne porte
+       pas — un attendu a +0,2 % apres un precedent a −0,1 % annonce un retournement
+       avant meme la publication.
+       Le precedent, lui, reste neutre : il n'a rien contre quoi se comparer ici. */
+    const sens = (valeur, reference, contre, egal) => {
+      const a = nombreFr(valeur), b = nombreFr(reference);
+      if (a === null || b === null) return {cls: "", tip: ""};
+      if (a > b) return {cls: " up",   tip: `au-dessus ${contre}`};
+      if (a < b) return {cls: " down", tip: `en dessous ${contre}`};
+      return {cls: "", tip: egal};
+    };
+    const p = sens(e.actual, e.forecast, "du consensus", "conforme au consensus");
+    const c = sens(e.forecast, e.previous, "du précédent relevé",
+                   "inchangé par rapport au précédent relevé");
+
     return `<tr class="${cls.trim()}">
       <td class="k-h">${e.time || ""}</td>
       <td class="k-z" title="${ZONE_NOM[e.zone] || ""}">${
         (FLAGS[e.zone] || "") + (e.zone || "")}</td>
       <td class="k-ev">${e.label}${
         e.detail ? `<span class="k-det">${e.detail}</span>` : ""}</td>
-      <td class="k-num k-pub${ecart}" title="${bulle}">${e.actual || ""}</td>
-      <td class="k-num">${e.forecast || ""}</td>
+      <td class="k-num k-pub${p.cls}" title="${p.tip}">${e.actual || ""}</td>
+      <td class="k-num${c.cls}" title="${c.tip}">${e.forecast || ""}</td>
       <td class="k-num k-prec" title="${e.previous ? "précédent " + e.previous : ""}">${
         e.previous || ""}</td>
     </tr>`;
