@@ -1012,6 +1012,12 @@ def fetch_instrument(inst: Instrument, stored: Series | None = None) -> dict:
     entry = compute(inst, primary_series)
     if dropped:
         entry["ignored_after_session"] = dropped
+    # Queue de serie destinee a series.csv. N'archiver que le dernier point rendait
+    # l'archive trop clairsemee pour les sources qui ne renvoient qu'une cotation
+    # courante : le 10 ans francais s'est retrouve avec juin et le 24/07 pour seuls
+    # points, et sa variation « quotidienne » portait sur 53 jours. Retiree du JSON
+    # avant ecriture, elle n'a pas a grossir latest.json.
+    entry["_recent"] = [[d.isoformat(), v] for d, v in primary_series[-8:]]
     entry["source"] = primary["source"]
     # Nature de la valeur portee par la source qui a effectivement repondu,
     # pas par l'instrument : un repli peut changer la nature (le Brent passe
@@ -1083,6 +1089,17 @@ def write_series_csv(path: str, date_label: str, markets: dict) -> int:
     for label, entry in markets.items():
         if "level" not in entry or "date" not in entry:
             continue
+        # Toute la queue de serie, et non le seul dernier point : c'est ce qui
+        # permet a une variation quotidienne de survivre a une source qui ne
+        # publie qu'une cotation courante. Append-only, donc les points deja
+        # archives ne sont pas touches.
+        for date_pt, valeur in entry.get("_recent") or []:
+            cle = (date_pt, label)
+            if cle in rows:
+                continue
+            added += 1
+            rows[cle] = (date_pt, label, f"{valeur:.6f}", entry.get("source", ""))
+
         key = (entry["date"], label)
         # Vraiment append-only, comme l'annonce le titre : une ligne deja ecrite
         # n'est plus touchee. Elle l'etait auparavant, et un lancement en seance
@@ -1262,11 +1279,15 @@ def main() -> int:
     archive_path = os.path.join(ROOT, "history", f"markets-{ref_date}.json")
     series_path = os.path.join(ROOT, "series.csv")
 
+    # series.csv d'abord : il consomme les queues de serie, que le JSON ne doit pas
+    # porter. Les retirer ensuite, avant d'ecrire latest.json.
+    added = write_series_csv(series_path, ref_date, markets)
+    for entry in markets.values():
+        entry.pop("_recent", None)
+
     for path in (latest_path, archive_path):
         with open(path, "w", encoding="utf-8") as fh:
             json.dump(payload, fh, ensure_ascii=False, indent=2)
-
-    added = write_series_csv(series_path, ref_date, markets)
 
     render_console(payload)
     log(f"\n{DIM}latest.json + history/markets-{ref_date}.json ecrits ; "

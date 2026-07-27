@@ -82,7 +82,11 @@
     --mark-bg: light-dark(#fde7c4, #3d3416);
     --mark-ink:light-dark(#5a4300, #f0d78a);
 
-    --mono:ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Menlo,Consolas,monospace;
+    /* Une seule famille sur toute la page. Le jeton --mono a ete retire : les
+       colonnes de chiffres, les dates et les pastilles l'utilisaient, et deux
+       familles dans un meme tableau se voyaient plus qu'elles n'aidaient.
+       L'alignement vertical des chiffres, seule vraie raison du monospace, est tenu
+       par font-variant-numeric:tabular-nums la ou il compte. */
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
   }
   /* Le seul point de bascule. Sans attribut, le systeme decide. */
@@ -98,10 +102,10 @@
   .brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
   h1{margin:0;font-size:20px;letter-spacing:-.01em;font-weight:650}
   h1 .tick{color:var(--accent)}
-  .refdate{font-family:var(--mono);font-size:13px;color:var(--dim)}
+  .refdate{font-size:13px;color:var(--dim);font-variant-numeric:tabular-nums}
   .meta{margin-top:8px;font-size:12.5px;color:var(--faint);
         display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-  .diag{font-family:var(--mono)}
+  .diag{font-variant-numeric:tabular-nums}
   .diag b{font-weight:600}
   .diag .k-ok{color:var(--pos)} .diag .k-warn{color:var(--warn)} .diag .k-err{color:var(--neg)}
   button{font:inherit;color:var(--ink);background:var(--panel2);
@@ -123,25 +127,26 @@
      Un tableau plutot que des tuiles : pour quinze lignes, des cartes gaspillent
      la hauteur et font passer la variation a la ligne. Colonnes alignees, une
      ligne par indicateur, lisible d'un coup d'oeil. */
-  /* Une seule taille de police pour toutes les colonnes : le ticker, le nom, le
-     cours et la variation se lisent sur la meme ligne de base. Seule la famille
-     change — monospace sur les colonnes numeriques pour que les chiffres
-     s'alignent verticalement. */
+  /* Une seule police et une seule taille pour toutes les colonnes : le ticker, le
+     nom, le cours et la variation se lisent sur la meme ligne de base. Les colonnes
+     numeriques etaient en monospace pour aligner les chiffres ; font-variant-numeric
+     s'en charge sans changer de famille, les chiffres tabulaires ayant tous la meme
+     avance. Plus aucune police monospace sur la page. */
   table.board{width:100%;border-collapse:collapse;font-size:13px}
   table.board td{padding:5px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;
                  font-size:inherit}
   table.board tr:last-child td{border-bottom:none}
   table.board tr:hover td{background:var(--hover)}
-  /* Meme couleur que le nom : le ticker n'est pas une alerte. La police
-     monospace suffit a distinguer la colonne. */
-  .c-tick{font-family:var(--mono);color:var(--ink2);font-weight:600;width:1%}
+  /* Meme couleur que le nom : le ticker n'est pas une alerte. La graisse suffit a
+     distinguer la colonne. */
+  .c-tick{color:var(--ink2);font-weight:600;width:1%}
   .c-name{color:var(--ink2);font-weight:550;white-space:normal}
-  .c-ccy{font-family:var(--mono);color:var(--faint);width:1%}
-  .c-lvl{font-family:var(--mono);text-align:right;
+  .c-ccy{color:var(--faint);width:1%}
+  .c-lvl{text-align:right;
          font-variant-numeric:tabular-nums;width:1%}
-  .c-chg{font-family:var(--mono);text-align:right;font-weight:600;
+  .c-chg{text-align:right;font-weight:600;
          font-variant-numeric:tabular-nums;width:1%;padding-right:12px}
-  .c-date{font-family:var(--mono);color:var(--faint);
+  .c-date{color:var(--faint);
           font-variant-numeric:tabular-nums;text-align:right;width:1%}
   thead th{font-size:10px;letter-spacing:.07em;text-transform:uppercase;
            color:var(--faint);font-weight:600;text-align:left;
@@ -157,7 +162,7 @@
     .c-date{display:none}          /* la date passe en infobulle sur mobile */
   }
 
-  .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;padding:1.5px 5px;
+  .badge{font-size:9.5px;letter-spacing:.05em;padding:1.5px 5px;
          border-radius:4px;text-transform:uppercase;white-space:nowrap;font-weight:600}
   .b-stale{background:var(--warn-bg);color:var(--warn)}
   .b-susp{background:var(--neg-bg);color:var(--neg)}
@@ -189,7 +194,7 @@
   .bul{margin:0;padding-left:17px;list-style:none}
   .bul li{position:relative;margin-bottom:9px;line-height:1.6;color:var(--ink2)}
   .bul li::before{content:"▪";position:absolute;left:-15px;color:var(--faint)}
-  .srcs{margin-top:8px;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
+  .srcs{margin-top:8px;font-size:11.5px;color:var(--faint)}
   .srcs a{color:var(--link);text-decoration:none}
   .srcs a:hover{text-decoration:underline}
 
@@ -306,7 +311,9 @@
         border-radius:8px;padding:10px 14px;font-size:12.5px;margin-bottom:22px}
   .note b{color:var(--ink2);font-weight:550}
   .note .badge{vertical-align:1px}
-  .err code{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+  /* Un nom de fichier, seul endroit ou le monospace se defendait encore. Aligne sur
+     le reste malgre tout : une seule police sur la page, sans exception. */
+  .err code{font-size:12.5px;color:var(--ink);font-weight:600}
   footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
          font-size:11.5px;color:var(--faint);line-height:1.8}
   footer b{color:var(--dim)}
@@ -877,7 +884,7 @@ async function search(term){
   }
   el.innerHTML = hits.map(h => `
     <div style="margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)">
-      <div style="font-family:var(--mono);font-size:11.5px;color:var(--accent);
+      <div style="font-size:11.5px;color:var(--accent);
                   margin-bottom:6px">${h.date}</div>
       ${briefHTML(h, term)}
     </div>`).join("");
