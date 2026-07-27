@@ -5,13 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Veille marchés</title>
 <style>
+  /* ================= palette =================
+     Toute couleur de la page passe par un jeton ci-dessous. La regle vaut sans
+     exception : une teinte ecrite en dur dans une regle ne suit pas le theme, et
+     la page s'eclaircit alors a moitie — pire que de rester sombre.
+
+     Chaque jeton porte ses deux valeurs par light-dark(clair, sombre), resolues
+     selon le color-scheme effectif. Un seul point de bascule en consequence, en
+     bas de ce bloc, au lieu d'une palette dupliquee que l'on oublie de tenir a
+     jour des deux cotes.
+
+     Les teintes viennent de la charte : marine profond et indigo pour les fonds
+     sombres, lavande grisee et creme pour les fonds clairs, orange en accent.
+
+     Trois jetons echappent a la charte, et c'est deliberé : --pos, --neg et --warn
+     portent du sens, pas du style. Un signe de baisse doit se lire sans hesitation.
+     Le cramoisi de la charte sert donc de --neg en theme clair, mais l'orange de
+     l'accent ne peut pas servir de --warn : les deux se confondraient. --warn est
+     tire vers le jaune pour rester distinct de l'accent a cote duquel il tombe. */
   :root{
-    --bg:#0a0e16; --panel:#111725; --panel2:#161d2d; --line:#232c40;
-    --ink:#e7ecf5; --dim:#8794ad; --faint:#5b6780;
-    --pos:#3fbf7f; --neg:#e0555f; --warn:#e0a33f; --accent:#f26522;
+    color-scheme: light dark;
+
+    /* fonds et separateurs */
+    --bg:      light-dark(#faf8f4, #0b0a24);   /* creme tres pale / marine profond */
+    --panel:   light-dark(#ffffff, #14133a);
+    --panel2:  light-dark(#f3f1f7, #1c1b47);   /* indigo pour les encarts */
+    --line:    light-dark(#ded9e6, #2e2c5c);
+    --line2:   light-dark(#ebe7f1, #232149);   /* filets internes, plus discrets */
+    --hover:   light-dark(#f6f4f9, #1a1942);
+
+    /* texte, du plus appuye au plus effaced */
+    --ink:     light-dark(#191735, #edebf5);
+    --ink2:    light-dark(#3a3760, #ccc9e2);   /* corps de texte du brief */
+    --dim:     light-dark(#56537a, #a5a2c0);
+    --faint:   light-dark(#6a6785, #8d8aab);   /* petit texte : 4,8:1 minimum */
+
+    /* Signaux — hors charte, voir ci-dessus. Valeurs choisies au contraste mesure
+       sur les deux fonds, jamais a l'oeil : --accent en clair valait 3,82:1 sur du
+       texte de 11,5 px, sous le seuil lisible.
+       --warn est tire vers l'or plutot que vers l'ambre : a 13 degres de teinte de
+       l'orange de l'accent les deux se confondaient, on est passe a 22-27. */
+    --pos:     light-dark(#0f7550, #55c79a);
+    --neg:     light-dark(#b0002f, #f2647a);   /* cramoisi de la charte en clair */
+    --warn:    light-dark(#6d5e05, #dbc855);
+    --accent:  light-dark(#b84a00, #fa7b05);   /* orange de la charte */
+    --link:    light-dark(#403c8f, #a8a5e8);   /* indigo / lavande */
+
+    /* pastilles et blocs de message */
+    --warn-bg: light-dark(#fbf0d2, #34310f);   /* accorde a l'or de --warn */
+    --neg-bg:  light-dark(#fbdfe4, #3d1c22);
+    --info-bg: light-dark(#e7e5f6, #24234f);
+    --info-fg: light-dark(#403c8f, #a8a5e8);
+    --mute-bg: light-dark(#eae7ef, #2b2f3d);
+    --mute-fg: light-dark(#56537a, #a3b0c9);
+    --err-bg:  light-dark(#fdeef1, #2a151a);
+    --err-line:light-dark(#eec0c9, #5a2730);
+    --err-ink: light-dark(#8c0022, #f0b4ba);
+    --note-bg: light-dark(#f4f2f7, #1a1f2e);
+    --mark-bg: light-dark(#fde7c4, #3d3416);
+    --mark-ink:light-dark(#5a4300, #f0d78a);
+
     --mono:ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
   }
+  /* Le seul point de bascule. Sans attribut, le systeme decide. */
+  :root[data-theme="light"]{ color-scheme: light }
+  :root[data-theme="dark"] { color-scheme: dark  }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
        font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -32,7 +91,7 @@
          border:1px solid var(--line);border-radius:6px;padding:5px 11px;cursor:pointer}
   button:hover{border-color:var(--faint)}
   button:disabled{opacity:.5;cursor:default}
-  .meta a{color:#7fb4ea;text-decoration:none;font-size:12.5px}
+  .meta a{color:var(--link);text-decoration:none;font-size:12.5px}
   .meta a:hover{text-decoration:underline}
   .meta .k-warn{color:var(--warn);font-weight:600}
 
@@ -52,14 +111,14 @@
      change — monospace sur les colonnes numeriques pour que les chiffres
      s'alignent verticalement. */
   table.board{width:100%;border-collapse:collapse;font-size:13px}
-  table.board td{padding:5px 8px;border-bottom:1px solid #1a2132;white-space:nowrap;
+  table.board td{padding:5px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;
                  font-size:inherit}
   table.board tr:last-child td{border-bottom:none}
-  table.board tr:hover td{background:#151c2b}
+  table.board tr:hover td{background:var(--hover)}
   /* Meme couleur que le nom : le ticker n'est pas une alerte. La police
      monospace suffit a distinguer la colonne. */
-  .c-tick{font-family:var(--mono);color:#c3cde0;font-weight:600;width:1%}
-  .c-name{color:#c3cde0;font-weight:550;white-space:normal}
+  .c-tick{font-family:var(--mono);color:var(--ink2);font-weight:600;width:1%}
+  .c-name{color:var(--ink2);font-weight:550;white-space:normal}
   .c-ccy{font-family:var(--mono);color:var(--faint);width:1%}
   .c-lvl{font-family:var(--mono);text-align:right;
          font-variant-numeric:tabular-nums;width:1%}
@@ -83,10 +142,10 @@
 
   .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;padding:1.5px 5px;
          border-radius:4px;text-transform:uppercase;white-space:nowrap;font-weight:600}
-  .b-stale{background:#3a2c12;color:var(--warn)}
-  .b-susp{background:#3d1c22;color:var(--neg)}
-  .b-pct{background:#1b2c44;color:#7fb4ea}
-  .b-lag{background:#2b2f3d;color:#a3b0c9}
+  .b-stale{background:var(--warn-bg);color:var(--warn)}
+  .b-susp{background:var(--neg-bg);color:var(--neg)}
+  .b-pct{background:var(--info-bg);color:var(--info-fg)}
+  .b-lag{background:var(--mute-bg);color:var(--mute-fg)}
   .badge{margin-left:5px;vertical-align:1px}
 
   /* ---------- brief ---------- */
@@ -95,16 +154,16 @@
      Seuls les intitules de rubrique et la ligne de sources s'en distinguent. */
   .news{font-size:13.5px}
   .focus{padding-bottom:15px;border-bottom:1px solid var(--line)}
-  .focus h3{margin:0 0 6px;font-size:13.5px;color:#fff;font-weight:650}
-  .focus p{margin:0;line-height:1.6;color:#dbe3f0}
+  .focus h3{margin:0 0 6px;font-size:13.5px;color:var(--ink);font-weight:650}
+  .focus p{margin:0;line-height:1.6;color:var(--ink2)}
   .zone{margin-top:18px}
   .zone h3{margin:0 0 8px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
            color:var(--accent);font-weight:650}
   .bul{margin:0;padding-left:17px;list-style:none}
-  .bul li{position:relative;margin-bottom:9px;line-height:1.6;color:#c9d3e4}
+  .bul li{position:relative;margin-bottom:9px;line-height:1.6;color:var(--ink2)}
   .bul li::before{content:"▪";position:absolute;left:-15px;color:var(--faint)}
   .srcs{margin-top:8px;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
-  .srcs a{color:#7fb4ea;text-decoration:none}
+  .srcs a{color:var(--link);text-decoration:none}
   .srcs a:hover{text-decoration:underline}
 
   /* ---------- encart FactSet, en tete de la rubrique micro ----------
@@ -123,7 +182,7 @@
   /* Declaree apres .stale-date, donc gagnante a specificite egale : il faut deux
      classes pour que l'ambre du retard reprenne la main sur le gris. */
   .fs-as.stale-date{color:var(--warn)}
-  .fs-head a{color:#7fb4ea;text-decoration:none;margin-left:auto}
+  .fs-head a{color:var(--link);text-decoration:none;margin-left:auto}
   .fs-head a:hover{text-decoration:underline}
   /* Puces, et non colonnes : le rapport presente ses Key Metrics en phrases
      entieres introduites par un intitule, et un decoupage en libelle / chiffre /
@@ -133,29 +192,56 @@
      Un jour par ligne, l'intitule du jour a gauche. Les jours passes de la semaine
      sont estompes plutot que retires : le lecteur du jeudi veut voir que la Fed est
      derriere lui, pas la chercher. Le jour courant est marque. */
-  .cal{margin-top:4px}
-  .cal-day{display:grid;grid-template-columns:minmax(94px,auto) 1fr;gap:12px;
-           padding:6px 0;border-top:1px solid #1a2132}
-  .cal-day:first-child{border-top:none}
-  .cal-date{color:var(--dim);font-weight:600}
-  .cal-today .cal-date{color:var(--accent)}
-  .cal-past{opacity:.45}
-  .cal-items{margin:0;padding:0;list-style:none}
-  .cal-items li{margin-bottom:3px;line-height:1.55}
-  .cal-items li:last-child{margin-bottom:0}
-  .cal-h{color:var(--faint);font-variant-numeric:tabular-nums}
-  .cal-z{color:var(--dim);font-weight:600}
-  /* Attendu et precedent : la valeur qui compte est celle qui sort, pas celle
-     qu'on anticipe — les deux restent donc en retrait du libelle. Un chiffre
-     publie, lui, passe au premier plan. */
-  .cal-att{color:var(--dim)}
-  .cal-pub{color:var(--ink);font-weight:600}
+  /* Un tableau et non des paragraphes. Sur treize rendez-vous le meme jeudi, une
+     ligne courante melait heure, zone, libelle, attendu et precedent sans qu'aucun
+     ne s'aligne d'une ligne a l'autre : illisible des qu'on cherche un chiffre.
+     Colonnes alignees sur toute la semaine, comme la bande d'indicateurs en haut
+     de page — c'est la meme lecture, on parcourt une colonne du regard.
+
+     La colonne « publie » reste vide tant que le chiffre n'est pas sorti et se
+     remplit au fil de la semaine. C'est ce qui fait passer le bloc d'annonce a
+     recapitulatif sans qu'une ligne bouge. */
+  table.cal{width:100%;border-collapse:collapse;font-size:13px;margin-top:2px}
+  table.cal td{padding:5px 8px;border-bottom:1px solid var(--line2);
+               vertical-align:baseline}
+  table.cal tr:last-child td{border-bottom:none}
+  table.cal tbody tr:hover td{background:var(--hover)}
+  table.cal thead th{font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+                     color:var(--faint);font-weight:600;text-align:left;
+                     padding:0 8px 5px;border-bottom:1px solid var(--line)}
+  table.cal thead th.r{text-align:right}
+
+  /* Intitule de journee : une ligne pleine largeur, qui sert de repere sans
+     rompre l'alignement des colonnes. */
+  .k-jour td{padding-top:11px;color:var(--dim);font-weight:650;
+             border-bottom:1px solid var(--line)}
+  .k-jour:first-child td{padding-top:2px}
+  /* L'accent marque l'intitule du jour, pas ses lignes : sans les deux classes,
+     .k-today td l'emporte sur .k-ev et repeint toute la journee en orange. */
+  .k-jour.k-today td{color:var(--accent)}
+  .k-past td{opacity:.5}
+
+  .k-h{font-family:var(--mono);color:var(--faint);width:1%;white-space:nowrap;
+       font-variant-numeric:tabular-nums}
+  .k-z{font-family:var(--mono);color:var(--dim);font-weight:600;width:1%}
+  .k-ev{color:var(--ink2)}
+  .k-det{display:block;color:var(--faint);font-size:12px;margin-top:2px;
+         line-height:1.45}
+  .k-num{font-family:var(--mono);text-align:right;width:1%;white-space:nowrap;
+         font-variant-numeric:tabular-nums;color:var(--dim)}
+  /* Un chiffre sorti prime sur ce qu'on en attendait. */
+  .k-pub{color:var(--ink);font-weight:600}
+  /* Resultats d'entreprises, commentaires attribues : pas d'heure ni de chiffre,
+     donc une ligne pleine largeur plutot qu'une ligne a quatre cellules vides. */
+  .k-libre td{color:var(--dim)}
+
   @media (max-width:560px){
-    .cal-day{grid-template-columns:1fr;gap:2px}
+    table.cal{font-size:12px}
+    .k-prec{display:none}      /* le precedent passe en infobulle sur mobile */
   }
 
   .fs-list{margin:0;padding-left:17px;list-style:none}
-  .fs-list li{position:relative;margin-bottom:7px;line-height:1.6;color:#c9d3e4}
+  .fs-list li{position:relative;margin-bottom:7px;line-height:1.6;color:var(--ink2)}
   .fs-list li:last-child{margin-bottom:0}
   .fs-list li::before{content:"▪";position:absolute;left:-15px;color:var(--faint)}
   .fs-lab{color:var(--ink);font-weight:650}
@@ -165,14 +251,18 @@
     background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 9px}
   input[type=search]{min-width:220px}
 
+  /* Surlignage de recherche : en feuille de style et non en attribut style, pour
+     qu'il suive le theme comme le reste. */
+  mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:2px}
+
   .empty{color:var(--faint);font-size:13.5px;font-style:italic}
-  .err{background:#2a151a;border:1px solid #5a2730;color:#f0b4ba;
+  .err{background:var(--err-bg);border:1px solid var(--err-line);color:var(--err-ink);
        border-radius:8px;padding:13px 15px;font-size:13.5px}
-  .note{background:#1a1f2e;border:1px solid var(--line);color:var(--dim);
+  .note{background:var(--note-bg);border:1px solid var(--line);color:var(--dim);
         border-radius:8px;padding:10px 14px;font-size:12.5px;margin-bottom:22px}
-  .note b{color:#c3cde0;font-weight:550}
+  .note b{color:var(--ink2);font-weight:550}
   .note .badge{vertical-align:1px}
-  .err code{font-family:var(--mono);font-size:12.5px;color:#fff}
+  .err code{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
   footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
          font-size:11.5px;color:var(--faint);line-height:1.8}
   footer b{color:var(--dim)}
@@ -185,14 +275,25 @@
     .fs-name,.fs-lab{color:#000} .fs-list li{color:#222}
     .c-name,.focus h3,.focus p{color:#000}
     .bul li{color:#222}
-    table.board td{border-bottom-color:#ddd}
-    table.board tr:hover td{background:none}
+    table.board td,table.cal td{border-bottom-color:#ddd}
+    table.board tr:hover td,table.cal tbody tr:hover td{background:none}
+    .k-ev,.k-jour td{color:#222} .k-det,.k-num,.k-h{color:#555}
+    .k-past td{opacity:1}     /* a l'impression, tout doit rester lisible */
     .c-tick{color:#333} .c-ccy,.c-date,footer{color:#666}
     section{break-inside:avoid}
     button,.ctrl,.meta a{display:none}
     .up{color:#0a6b3d} .down{color:#a01722}
   }
 </style>
+<script>
+/* Theme applique avant le premier rendu. Ce bout de script est ici et non en fin
+   de page pour une raison precise : un choix « clair » enregistre sur un systeme
+   en sombre ferait sinon clignoter la page en sombre le temps du chargement. */
+try{
+  var m = localStorage.getItem("theme");
+  if (m === "light" || m === "dark") document.documentElement.setAttribute("data-theme", m);
+}catch(e){ /* localStorage refuse en navigation privee : on reste sur le systeme */ }
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -205,6 +306,7 @@
     <div class="meta">
       <span class="diag" id="diag"></span>
       <span id="gen"></span>
+      <button id="theme" title="Bascule entre système, clair et sombre">Thème</button>
       <button id="print">Imprimer</button>
       <button id="copy" title="Copie une instruction à coller dans Claude Code">Copier pour Claude</button>
       <a id="runlink" href="#" target="_blank" rel="noopener" hidden
@@ -445,36 +547,45 @@ function calendarHTML(cal, briefDate){
   const jour = (iso) => new Date(iso + "T00:00:00")
     .toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"});
 
-  /* Un evenement se lit heure, zone, libelle, puis ses valeurs. `actual` n'existe
-     qu'apres publication : le brief etant regenere chaque matin, un attendu de la
-     veille se retrouve remplace par le chiffre sorti, sans que la ligne bouge. */
-  const evt = (e) => {
-    if (typeof e === "string") return `<li>${e}</li>`;
-    const chiffres = [];
-    if (e.actual)   chiffres.push(`<span class="cal-pub">${e.actual}</span>`);
-    if (e.forecast) chiffres.push(`<span class="cal-att">attendu ${e.forecast}</span>`);
-    if (e.previous) chiffres.push(`<span class="cal-att">précédent ${e.previous}</span>`);
-    return `<li>`
-      + (e.time ? `<span class="cal-h">${e.time}</span> ` : "")
-      + (e.zone ? `<span class="cal-z">${e.zone}</span> ` : "")
-      + e.label
-      + (chiffres.length ? ` — ${chiffres.join(" · ")}` : "")
-      /* Les variantes d'un meme indicateur — le PCE en quatre declinaisons,
-         l'enquete du Michigan en autant — sont regroupees ici plutot que sur
-         quatre lignes. Sans ce pli, la seule journee du 31 juillet en comptait
-         vingt-deux. */
-      + (e.detail ? ` <span class="cal-att">${e.detail}</span>` : "")
-      + `</li>`;
+  /* Une ligne de tableau par rendez-vous. `actual` n'existe qu'apres publication :
+     le brief etant regenere chaque matin, la colonne se remplit d'elle-meme sans
+     que la ligne change de place.
+
+     Le champ `detail` porte les variantes regroupees d'un meme indicateur — le PCE
+     en quatre declinaisons, l'enquete du Michigan en autant. Il passe sous le
+     libelle, dans la meme cellule, pour ne pas casser l'alignement des colonnes. */
+  const evt = (e, cls) => {
+    if (typeof e === "string") e = {label: e};
+    if (!e.time && !e.forecast && !e.previous && !e.actual)
+      return `<tr class="k-libre${cls}"><td colspan="6">${e.label}</td></tr>`;
+    return `<tr class="${cls.trim()}">
+      <td class="k-h">${e.time || ""}</td>
+      <td class="k-z">${e.zone || ""}</td>
+      <td class="k-ev">${e.label}${
+        e.detail ? `<span class="k-det">${e.detail}</span>` : ""}</td>
+      <td class="k-num k-pub">${e.actual || ""}</td>
+      <td class="k-num">${e.forecast || ""}</td>
+      <td class="k-num k-prec" title="${e.previous ? "précédent " + e.previous : ""}">${
+        e.previous || ""}</td>
+    </tr>`;
   };
 
   const rows = days.map(d => {
-    const cls = d.date === today ? " cal-today"
-              : (d.date < today ? " cal-past" : "");
-    const items = d.events || d.items || [];
-    return `<div class="cal-day${cls}">
-      <span class="cal-date">${jour(d.date)}</span>
-      <ul class="cal-items">${items.map(evt).join("")}</ul>
-    </div>`;
+    const cls = d.date === today ? " k-today"
+              : (d.date < today ? " k-past" : "");
+    /* Tri par heure, ici et non dans le brief : une journee se parcourt dans
+       l'ordre ou elle se deroule, et le redacteur n'a pas a y veiller. Les entrees
+       sans heure — resultats, commentaires attribues — ferment la journee dans
+       l'ordre ou elles ont ete ecrites. */
+    const items = [...(d.events || d.items || [])]
+      .map((e, i) => [typeof e === "string" ? {label: e} : e, i])
+      .sort(([a, ia], [b, ib]) =>
+        (a.time ? 0 : 1) - (b.time ? 0 : 1)
+        || String(a.time || "").localeCompare(String(b.time || ""))
+        || ia - ib)
+      .map(([e]) => e);
+    return `<tr class="k-jour${cls}"><td colspan="6">${jour(d.date)}</td></tr>`
+      + items.map(e => evt(e, cls)).join("");
   }).join("");
 
   const src = (cal.sources || []).filter(s => s.url);
@@ -491,7 +602,11 @@ function calendarHTML(cal, briefDate){
     : "";
 
   return `<div class="zone"><h3>Le calendrier de la semaine</h3>
-    <div class="cal">${rows}</div>${srcLine}</div>`;
+    <table class="cal"><thead><tr>
+      <th>Heure</th><th>Zone</th><th>Indicateur</th>
+      <th class="r">Publié</th><th class="r">Attendu</th>
+      <th class="r k-prec">Précédent</th>
+    </tr></thead><tbody>${rows}</tbody></table>${srcLine}</div>`;
 }
 
 /* Rend un brief en chaine HTML. Separer la construction de l'ecriture dans le
@@ -503,8 +618,7 @@ function briefHTML(brief, highlight){
   const mark = (t) => {
     if (!highlight || !t) return t || "";
     const safe = highlight.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return t.replace(new RegExp("(" + safe + ")", "gi"),
-      '<mark style="background:#3d3416;color:#f0d78a">$1</mark>');
+    return t.replace(new RegExp("(" + safe + ")", "gi"), '<mark>$1</mark>');
   };
 
   /* Le focus ouvre le brief : un seul sujet, celui qui a dominé la séance. */
@@ -652,7 +766,41 @@ async function load(){
   await initBrief();
 }
 
+/* ----------------------------------------------------------------- theme ---
+   Trois etats et non deux : « systeme » suit le reglage du navigateur, les deux
+   autres l'outrepassent. Le choix est donc explicite, alors qu'un simple
+   interrupteur impose un defaut a qui n'y touche pas.
+
+   Le theme retenu est ecrit dans localStorage, donc propre au navigateur — une
+   page statique n'a nulle part ailleurs ou le mettre. En « systeme », l'attribut
+   est retire et light-dark() se resout sur prefers-color-scheme. */
+const THEMES = ["auto", "light", "dark"];
+const THEME_LABEL = {auto: "Thème : système", light: "Thème : clair", dark: "Thème : sombre"};
+
+function applyTheme(mode){
+  const root = document.documentElement;
+  if (mode === "auto") root.removeAttribute("data-theme");
+  else root.setAttribute("data-theme", mode);
+  const btn = document.getElementById("theme");
+  if (btn) btn.textContent = THEME_LABEL[mode];
+  try{ localStorage.setItem("theme", mode); }catch{ /* navigation privee */ }
+}
+
+function initTheme(){
+  let mode = "auto";
+  try{
+    const saved = localStorage.getItem("theme");
+    if (THEMES.includes(saved)) mode = saved;
+  }catch{ /* localStorage indisponible : on reste en systeme */ }
+  applyTheme(mode);
+  document.getElementById("theme").onclick = () => {
+    const actuel = document.documentElement.getAttribute("data-theme") || "auto";
+    applyTheme(THEMES[(THEMES.indexOf(actuel) + 1) % THEMES.length]);
+  };
+}
+
 (async function(){
+  initTheme();
   document.getElementById("print").onclick = () => window.print();
 
   /* Bouton de copie : l'instruction ne contient AUCUN chemin personnel — cette
