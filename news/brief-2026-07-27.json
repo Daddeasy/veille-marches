@@ -12,29 +12,24 @@
     "url": "https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_072426.pdf",
     "metrics": [
       {
-        "label": "Publications",
-        "value": "27 % du S&P 500",
-        "detail": "Parmi les sociétés ayant publié, 86 % dépassent les attentes sur le bénéfice par action et 80 % sur le chiffre d'affaires."
+        "label": "Bilan des publications",
+        "text": "Pour le T2 2026, 27 % des sociétés du S&P 500 ayant publié leurs résultats réels, 86 % d'entre elles annoncent un bénéfice par action supérieur aux attentes et 80 % un chiffre d'affaires supérieur aux attentes."
       },
       {
         "label": "Croissance des bénéfices",
-        "value": "+37,9 %",
-        "detail": "Taux combiné sur un an, résultats publiés et estimations réunis. À ce rythme, ce serait la plus forte croissance de l'indice depuis le T3 2021 (+40,3 %)."
+        "text": "Pour le T2 2026, le taux de croissance combiné des bénéfices du S&P 500 sur un an s'établit à 37,9 %. Si 37,9 % est le taux effectif du trimestre, ce sera la plus forte croissance des bénéfices publiée par l'indice depuis le T3 2021 (40,3 %)."
       },
       {
-        "label": "Révisions",
-        "value": "+23,2 % au 30 juin",
-        "detail": "Estimation de croissance des bénéfices à cette date, contre 37,9 % aujourd'hui. Neuf secteurs sont attendus en hausse par rapport au 30 juin."
+        "label": "Révisions des bénéfices",
+        "text": "Au 30 juin, le taux de croissance estimé des bénéfices du S&P 500 sur un an pour le T2 2026 était de 23,2 %. Neuf secteurs affichent aujourd'hui des bénéfices plus élevés qu'au 30 juin, sous l'effet de révisions en hausse des estimations de bénéfice par action et de surprises positives."
       },
       {
-        "label": "Prévisions des sociétés",
-        "value": "11 hausses, 9 baisses",
-        "detail": "Pour le T3 2026, onze sociétés du S&P 500 ont émis une prévision de bénéfice par action positive et neuf une prévision négative."
+        "label": "Prévisions des entreprises",
+        "text": "Pour le T3 2026, 9 sociétés du S&P 500 ont émis une prévision négative de bénéfice par action et 11 sociétés une prévision positive."
       },
       {
         "label": "Valorisation",
-        "value": "20,1 fois",
-        "detail": "Ratio cours/bénéfice à douze mois glissants du S&P 500, au-dessus de la moyenne à cinq ans (19,9) et de celle à dix ans (19,0)."
+        "text": "Le ratio cours/bénéfice à douze mois glissants du S&P 500 est de 20,1. Ce ratio est supérieur à la moyenne à cinq ans (19,9) et à la moyenne à dix ans (19,0)."
       }
     ]
   },

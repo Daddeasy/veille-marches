@@ -119,19 +119,26 @@ Structure de la clé `factset`, à la racine du brief :
   "quarter": "T2 2026",
   "url": "https://advantage.factset.com/hubfs/.../EarningsInsight_072426.pdf",
   "metrics": [
-    { "label": "Publications",
-      "value": "27 % du S&P 500",
-      "detail": "86 % de surprises positives sur le bénéfice par action, 80 % sur le chiffre d'affaires." }
+    { "label": "Bilan des publications",
+      "text": "Pour le T2 2026, 27 % des sociétés du S&P 500 ayant publié leurs résultats réels, 86 % d'entre elles annoncent un bénéfice par action supérieur aux attentes et 80 % un chiffre d'affaires supérieur aux attentes." }
   ]
 }
 ```
 
-Cinq entrées attendues dans `metrics`, dans l'ordre du document : publications
+Cinq entrées dans `metrics`, dans l'ordre du document : bilan des publications
 (*Earnings Scorecard*), croissance des bénéfices, révisions, prévisions des
-entreprises (*guidance*), valorisation. `label` est court, `value` porte le
-chiffre saillant, `detail` la phrase de contexte. La clé est optionnelle : si le
-PDF est introuvable, l'omettre plutôt que la remplir de valeurs approchées, et
-le dire dans le compte rendu au lecteur.
+entreprises (*guidance*), valorisation.
+
+**Reprendre les cinq puces telles quelles, une phrase entière par puce.** Le
+rapport présente ses Key Metrics sous cette forme, et c'est la forme utile : la
+phrase porte la comparaison en même temps que le chiffre — « 37,9 %, soit la plus
+forte croissance depuis le T3 2021 » se lit d'un trait. Ne pas découper en
+libellé, chiffre et commentaire : le site rend l'encart en puces, `label` en gras
+suivi de `text`. Traduire, convertir aux conventions françaises, ne rien
+résumer ni recalculer.
+
+La clé est optionnelle : si le PDF est introuvable, l'omettre plutôt que la
+remplir de valeurs approchées, et le dire dans le compte rendu au lecteur.
 
 Court, donc : **2 à 4 puces par rubrique**, deux à quatre phrases chacune. Pas de
 titre sur les puces — un paragraphe suivi de sa source.
