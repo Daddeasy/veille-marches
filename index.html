@@ -132,22 +132,35 @@
      numeriques etaient en monospace pour aligner les chiffres ; font-variant-numeric
      s'en charge sans changer de famille, les chiffres tabulaires ayant tous la meme
      avance. Plus aucune police monospace sur la page. */
-  table.board{width:100%;border-collapse:collapse;font-size:13px}
+  /* Largeurs declarees et non deduites du contenu. En layout automatique, chaque
+     groupe d'indicateurs se calait sur ses propres chaines les plus longues : les
+     colonnes ne tombaient pas au meme endroit d'un tableau a l'autre, et l'oeil
+     ne pouvait pas descendre une colonne de chiffres d'un seul trait. table-layout
+     fixed rend les six colonnes identiques dans les cinq groupes.
+     Seule la colonne du nom est libre : elle absorbe la place restante. */
+  table.board{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+  /* Largeurs mesurees sur le contenu le plus large, puis sur les pires cas
+     plausibles et non sur les valeurs du jour : un indice a six chiffres
+     (128 128,34 : 72 px), une variation a trois chiffres (▼100,00 % : 73 px) et
+     surtout la date portant l'avertissement de variation pluri-seances
+     (24/07/2026 ⚠ : 93 px contre 76 px sans) auraient sinon deborde des que le cas
+     se presente. Chaque largeur ajoute la gouttiere de la cellule — 16 px, 20 px
+     pour la variation qui porte 12 px a droite. */
+  .w-tick{width:70px} .w-ccy{width:50px} .w-lvl{width:88px}
+  .w-chg{width:94px}  .w-date{width:110px}
   table.board td{padding:5px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;
                  font-size:inherit}
   table.board tr:last-child td{border-bottom:none}
   table.board tr:hover td{background:var(--hover)}
   /* Meme couleur que le nom : le ticker n'est pas une alerte. La graisse suffit a
      distinguer la colonne. */
-  .c-tick{color:var(--ink2);font-weight:600;width:1%}
+  .c-tick{color:var(--ink2);font-weight:600}
   .c-name{color:var(--ink2);font-weight:550;white-space:normal}
-  .c-ccy{color:var(--faint);width:1%}
-  .c-lvl{text-align:right;
-         font-variant-numeric:tabular-nums;width:1%}
-  .c-chg{text-align:right;font-weight:600;
-         font-variant-numeric:tabular-nums;width:1%;padding-right:12px}
-  .c-date{color:var(--faint);
-          font-variant-numeric:tabular-nums;text-align:right;width:1%}
+  .c-ccy{color:var(--faint)}
+  .c-lvl{text-align:right;font-variant-numeric:tabular-nums}
+  .c-chg{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;
+         padding-right:12px}
+  .c-date{color:var(--faint);font-variant-numeric:tabular-nums;text-align:right}
   thead th{font-size:10px;letter-spacing:.07em;text-transform:uppercase;
            color:var(--faint);font-weight:600;text-align:left;
            padding:0 8px 5px;border-bottom:1px solid var(--line)}
@@ -159,7 +172,14 @@
 
   @media (max-width:560px){
     table.board{font-size:12px}
-    .c-date{display:none}          /* la date passe en infobulle sur mobile */
+    /* Retour au layout automatique en etroit, et c'est voulu. Masquer des colonnes
+       d'un tableau en layout fixe laisse le navigateur repartir la place restante
+       n'importe comment : mesure a 375 px, 81 px des 335 disponibles n'etaient
+       attribues a personne et la colonne du nom tombait a 40 px, tronquant
+       « Euro Stoxx 50 ». L'alignement inter-tableaux, lui, n'a d'interet que sur un
+       ecran large ou l'on parcourt une colonne du regard. */
+    table.board{table-layout:auto}
+    .c-date,.w-date,.c-ccy,.w-ccy{display:none}
   }
 
   .badge{font-size:9.5px;letter-spacing:.05em;padding:1.5px 5px;
@@ -252,9 +272,12 @@
   .k-jour td{padding-top:11px;color:var(--dim);font-weight:650;
              border-bottom:1px solid var(--line)}
   .k-jour:first-child td{padding-top:2px}
-  /* L'accent marque l'intitule du jour, pas ses lignes : sans les deux classes,
-     .k-today td l'emporte sur .k-ev et repeint toute la journee en orange. */
-  .k-jour.k-today td{color:var(--accent)}
+  /* Le jour courant prend la couleur de la rubrique et non l'accent global : le
+     calendrier est violet depuis qu'une teinte est attribuee a chaque famille, et
+     un lundi orange au milieu de jours gris jurait avec son propre intitule.
+     Les deux classes sont necessaires : sans elles, .k-today td l'emporte sur
+     .k-ev et repeint toute la journee. */
+  .k-jour.k-today td{color:var(--s-cal)}
   .k-past td{opacity:.5}
 
   /* Tout le calendrier dans la police du texte, chiffres compris — une seule
@@ -399,7 +422,7 @@ const GROUPS = [
   ["Actions",     ["S&P 500","Nasdaq 100","CAC 40","Euro Stoxx 50","Nikkei 225",
                    "Shanghai Comp.","KOSPI"]],
   ["Change",      ["EUR/USD"]],
-  ["Taux",        ["10Y US","10Y France"]],
+  ["Taux",        ["10Y US","10Y France","10Y Allemagne"]],
   ["Volatilité & sentiment", ["VIX","Fear & Greed crypto"]],
   ["Matières & crypto", ["Or","Brent","Bitcoin"]],
 ];
@@ -512,7 +535,12 @@ function renderBoard(data){
     el.className = hours > 36 ? "k-warn" : "";
   }
 
-  const HEAD = `<thead><tr><th>Ticker</th><th>Nom</th><th>Dev.</th>
+  /* Le colgroup porte les largeurs, une seule fois, pour les cinq tableaux de
+     groupe. Sur mobile la colonne de date disparait : display:none sur l'element
+     col est le seul endroit ou cette declaration retire vraiment une colonne. */
+  const HEAD = `<colgroup><col class="w-tick"><col><col class="w-ccy">
+      <col class="w-lvl"><col class="w-chg"><col class="w-date"></colgroup>
+    <thead><tr><th>Ticker</th><th>Nom</th><th>Dev.</th>
     <th class="r">Cours</th><th class="r">Var.</th><th class="r">Date</th></tr></thead>`;
 
   const seen = new Set();

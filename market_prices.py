@@ -22,6 +22,7 @@ import datetime as dt
 import io
 import json
 import os
+import ssl
 import statistics
 import sys
 import time
@@ -64,13 +65,35 @@ def log(msg: str) -> None:
 
 # ------------------------------------------------------------------- HTTP ---
 
+def _ssl_context() -> ssl.SSLContext | None:
+    """Magasin de certificats a utiliser, ou None pour celui du systeme.
+
+    certifi s'il est installe. Motif precis : le poste Windows sur lequel ce depot
+    est tenu n'a pas la chaine de api.statistiken.bundesbank.de dans son magasin
+    systeme et echoue en CERTIFICATE_VERIFY_FAILED, la ou un runner Ubuntu l'a.
+
+    Optionnel a dessein. Le workflow n'installe aucune dependance — c'est un choix
+    documente — donc certifi ne peut pas devenir obligatoire : sans lui on retombe
+    sur le magasin systeme, qui suffit en integration continue.
+    """
+    try:
+        import certifi
+        return ssl.create_default_context(cafile=certifi.where())
+    except Exception:                                 # noqa: BLE001
+        return None
+
+
+_SSL_CTX = _ssl_context()
+
+
 def _get(url: str, timeout: int = TIMEOUT) -> bytes:
     """GET avec reprise exponentielle. Leve la derniere exception si tout echoue."""
     last: Exception | None = None
     for attempt in range(RETRIES):
         try:
             req = urllib.request.Request(url, headers=UA)
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
+            with urllib.request.urlopen(req, timeout=timeout,
+                                        context=_SSL_CTX) as resp:
                 return resp.read()
         except Exception as exc:                      # noqa: BLE001
             last = exc
@@ -116,6 +139,7 @@ ECB_FIX = "fixing BCE 14h15 CET"
 H15 = "releve H.15, ~15h30 New York"
 EOD = "reference fin de journee"
 CNO = "fixing CNO quotidien"
+BUBA = "structure par termes Bundesbank a 10 ans"
 MONTHLY_AVG = "moyenne mensuelle"
 UTC_CLOSE = "cloture 00h UTC"
 
@@ -171,6 +195,55 @@ def ecb(key: str, basis: str = ECB_FIX):
         return _clean(out)
 
     fetch.label = f"ecb:{key.split('/')[0]}"          # type: ignore[attr-defined]
+    fetch.basis = basis                               # type: ignore[attr-defined]
+    return fetch
+
+
+def bundesbank(series_key: str, tag: str, basis: str = BUBA):
+    """Bundesbank — structure par termes des taux des emprunts federaux cotes,
+    methode de Svensson, echeance residuelle de dix ans. Serie QUOTIDIENNE,
+    publique, sans inscription : 19 669 observations au premier relevé, jusqu'au
+    jour meme.
+
+    C'est la source officielle allemande, et elle comble le trou symetrique de
+    celui du 10 ans francais — a la difference qu'elle ne demande, elle, aucune
+    cle. Eurostat ne publie pas de serie quotidienne et la BCE ne descend pas au
+    niveau pays : sa courbe est un agregat zone euro.
+
+    Precaution a ne pas perdre de vue : ce n'est PAS le rendement de l'emprunt de
+    reference, le Bund dit « on the run », mais un point de courbe ajustee.
+    L'ecart est reel et mesure — au 24/07/2026 la serie donne 3,24 % la ou la
+    presse citait 3,18 % sur l'emprunt phare. D'ou le `basis` explicite, que le
+    site affiche en infobulle et que le brief doit nommer plutot que de laisser
+    croire a une divergence de donnees.
+
+    Format : un CSV dont l'en-tete tient sur cinq lignes de metadonnees, puis une
+    ligne par jour calendaire. Les jours sans cotation portent un point.
+    """
+    def fetch() -> Series:
+        raw = _get("https://api.statistiken.bundesbank.de/rest/download/BBSIS/"
+                   f"{series_key}?format=csv&lang=en").decode("utf-8", "replace")
+        out: Series = []
+        for line in raw.splitlines():
+            champs = line.split(",")
+            if len(champs) < 2:
+                continue
+            jour = champs[0].strip().strip('"﻿')
+            # Filtre par la forme de la date : ecarte les cinq lignes d'en-tete
+            # sans avoir a les compter, ce qui casserait si la Bundesbank en
+            # ajoutait une.
+            if len(jour) != 10 or jour[4] != "-" or jour[7] != "-":
+                continue
+            try:
+                date, valeur = dt.date.fromisoformat(jour), float(champs[1])
+            except ValueError:
+                continue                              # « . » les jours sans cotation
+            out.append((date, valeur))
+        if not out:
+            raise ValueError("bundesbank : aucune observation")
+        return _clean(out)
+
+    fetch.label = f"bundesbank:{tag}"                 # type: ignore[attr-defined]
     fetch.basis = basis                               # type: ignore[attr-defined]
     return fetch
 
@@ -644,6 +717,28 @@ INSTRUMENTS = [
       ticker="FR10Y", ccy="%",
       note="CNBC en quotidien ; BdF TEC 10 si cle ; sinon FRED mensuel"),
 
+    # Pendant allemand du 10 ans francais, meme convention et meme cascade.
+    #
+    # Deux conventions coexistent sur cette echeance et elles ne se rejoignent pas.
+    # Releve au 24/07/2026 : l'emprunt de reference cotait 3,17 % chez Bloomberg et
+    # 3,183 % dans la presse, la courbe ajustee de la Bundesbank donnait 3,24 %, et
+    # CNBC 3,127 %. Trois chiffres pour une meme seance.
+    #
+    # CNBC en primaire malgre l'ecart de 4 a 5 pb avec Bloomberg : c'est la
+    # convention de l'emprunt phare, celle que cite la presse, et la meme source que
+    # le 10 ans francais — deux instruments compares dans le brief doivent au moins
+    # partager leur mode de calcul, sinon l'ecart France-Allemagne ne veut rien dire.
+    # La Bundesbank derriere, comme filet officiel si l'endpoint CNBC disparait : le
+    # `basis` bascule alors tout seul et le site affiche la nature reelle.
+    #
+    # xcheck_tol relevee a 6 % : les deux sources divergent de 3,6 % par
+    # construction, et une alerte qui se declenche chaque jour n'est plus une alerte.
+    I("10Y Allemagne", "EU", "yield",
+      [cnbc("DE10Y-DE"),
+       bundesbank("D.I.ZST.ZI.EUR.S1311.B.A604.R10XX.R.A.A._Z._Z.A", "DE10Y")],
+      ticker="DE10Y", ccy="%", xcheck_tol=6.0,
+      note="emprunt de reference via CNBC ; courbe Bundesbank en repli"),
+
     # --- Matieres premieres / crypto, en dollars --------------------------
     # --- Volatilite -------------------------------------------------------
     # Meilleur cas de recoupement du lot : FRED et Yahoo publient tous deux la
@@ -685,7 +780,13 @@ def prev_business_day(today: dt.date) -> dt.date:
     return d
 
 
-def load_stored_series(path: str) -> dict[str, Series]:
+def _base_source(source: str) -> str:
+    """Racine d'un libelle de source : « yahoo:^FCHI+meta » et « yahoo:^FCHI »
+    designent la meme serie, releve du champ meta ou de la barre quotidienne."""
+    return (source or "").split("+")[0]
+
+
+def load_stored_series(path: str) -> dict[str, list[tuple[dt.date, float, str]]]:
     """Points deja releves, lus depuis series.csv, par instrument.
 
     Sert a combler les trous des sources. Cas qui a impose ce chargement : les
@@ -697,11 +798,12 @@ def load_stored_series(path: str) -> dict[str, Series]:
     """
     if not os.path.exists(path):
         return {}
-    out: dict[str, Series] = {}
+    out: dict[str, list[tuple[dt.date, float, str]]] = {}
     with open(path, newline="", encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
             try:
-                point = (dt.date.fromisoformat(row["date"]), float(row["value"]))
+                point = (dt.date.fromisoformat(row["date"]), float(row["value"]),
+                         row.get("source", ""))
             except (KeyError, TypeError, ValueError):
                 continue                              # ligne abimee : on l'ignore
             out.setdefault(row["instrument"], []).append(point)
@@ -1003,8 +1105,16 @@ def fetch_instrument(inst: Instrument, stored: Series | None = None) -> dict:
     # Historique d'abord, coupe ensuite. L'ordre importe : couper une serie a
     # laquelle il manque la seance cible la ramene a l'avant-veille, alors que la
     # valeur est deja dans series.csv.
+    # L'archive ne complete la serie que sur les points ecrits par LA MEME source.
+    # Sans ce filtre, un point laisse par une source de repli ecrase la primaire tout
+    # en gardant son etiquette : le 10 ans allemand affichait 3,240 — la courbe
+    # ajustee de la Bundesbank — sous le libelle cnbc:DE10Y-DE, qui cote l'emprunt de
+    # reference a 3,127. Deux conventions melangees et une etiquette qui mentait.
     if stored:
-        primary_series = merge_stored(stored, primary_series)
+        racine = _base_source(primary["source"])
+        memes = [(d, v) for d, v, src in stored if _base_source(src) == racine]
+        if memes:
+            primary_series = merge_stored(memes, primary_series)
     # Coupe avant tout calcul : niveau, variation, bornes 52 semaines et
     # percentile doivent tous porter sur la meme seance close.
     primary_series, dropped = clamp_to_session(primary_series, target)
@@ -1068,39 +1178,51 @@ def add_eur_view(markets: dict) -> None:
 # ------------------------------------------------------------- persistance ---
 
 def write_series_csv(path: str, date_label: str, markets: dict) -> int:
-    """Serie cumulee append-only, clef (date, instrument).
+    """Serie cumulee append-only, clef (date, instrument, source).
 
-    Point important : la clef est la date de cloture PROPRE a l'instrument,
-    pas la date d'execution du job. Sinon le run du lundi matin ecrit des
-    donnees de vendredi dans une ligne datee lundi, et la serie est decalee
-    pour toujours.
+    Point important : la date de la clef est la date de cloture PROPRE a
+    l'instrument, pas la date d'execution du job. Sinon le run du lundi matin
+    ecrit des donnees de vendredi dans une ligne datee lundi, et la serie est
+    decalee pour toujours.
+
+    La source entre dans la clef, et ce n'est pas cosmetique : deux conventions
+    peuvent coexister sur une meme echeance. Le 10 ans allemand en donne le cas —
+    3,127 % sur l'emprunt de reference chez CNBC contre 3,240 % sur la courbe
+    ajustee de la Bundesbank, le meme jour. Sans la source dans la clef, le
+    premier releve archive bloquait le second pour toujours, et la relecture ne
+    pouvait plus distinguer les deux.
 
     C'est aussi, gratuitement, ton export CSV cumule : ouvrable dans Excel.
     """
-    rows: dict[tuple[str, str], tuple[str, str, str, str]] = {}
+    rows: dict[tuple[str, str, str], tuple[str, str, str, str]] = {}
     if os.path.exists(path):
         with open(path, newline="", encoding="utf-8") as fh:
             for row in csv.DictReader(fh):
-                key = (row["date"], row["instrument"])
-                rows[key] = (row["date"], row["instrument"],
-                             row["value"], row.get("source", ""))
+                src_row = row.get("source", "")
+                rows[(row["date"], row["instrument"], src_row)] = (
+                    row["date"], row["instrument"], row["value"], src_row)
 
     added = 0
     for label, entry in markets.items():
         if "level" not in entry or "date" not in entry:
             continue
+        # Source normalisee a la racine : « yahoo:^FCHI » et « yahoo:^FCHI+meta »
+        # designent la meme serie, et les archiver separement creait deux lignes
+        # jumelles pour une seule cloture. Le fait que la valeur vienne du champ
+        # meta est deja porte par `used_meta` dans latest.json.
+        src_label = _base_source(entry.get("source", ""))
         # Toute la queue de serie, et non le seul dernier point : c'est ce qui
         # permet a une variation quotidienne de survivre a une source qui ne
         # publie qu'une cotation courante. Append-only, donc les points deja
         # archives ne sont pas touches.
         for date_pt, valeur in entry.get("_recent") or []:
-            cle = (date_pt, label)
+            cle = (date_pt, label, src_label)
             if cle in rows:
                 continue
             added += 1
-            rows[cle] = (date_pt, label, f"{valeur:.6f}", entry.get("source", ""))
+            rows[cle] = (date_pt, label, f"{valeur:.6f}", src_label)
 
-        key = (entry["date"], label)
+        key = (entry["date"], label, src_label)
         # Vraiment append-only, comme l'annonce le titre : une ligne deja ecrite
         # n'est plus touchee. Elle l'etait auparavant, et un lancement en seance
         # remplacait alors la cloture archivee de l'or, 4070,80 au 24/07, par la
@@ -1109,8 +1231,7 @@ def write_series_csv(path: str, date_label: str, markets: dict) -> int:
         if key in rows:
             continue
         added += 1
-        rows[key] = (entry["date"], label, f"{entry['level']:.6f}",
-                     entry.get("source", ""))
+        rows[key] = (entry["date"], label, f"{entry['level']:.6f}", src_label)
 
     with open(path, "w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)

@@ -22,7 +22,7 @@ GROUPS = {
     "Actions": ["S&P 500", "Nasdaq 100", "CAC 40", "Euro Stoxx 50", "Nikkei 225",
                 "Shanghai Comp.", "KOSPI"],
     "Change": ["EUR/USD"],
-    "Taux": ["10Y US", "10Y France"],
+    "Taux": ["10Y US", "10Y France", "10Y Allemagne"],
     "Volatilité & sentiment": ["VIX", "Fear & Greed crypto"],
     "Matières & crypto": ["Or", "Brent", "Bitcoin"],
 }
@@ -153,13 +153,19 @@ def main() -> int:
         import csv as _csv
         with open(csv_path, newline="", encoding="utf-8") as fh:
             rows = list(_csv.DictReader(fh))
-        keys = {(r["date"], r["instrument"]) for r in rows}
+        # La clef de series.csv inclut la source. Deux conventions peuvent en effet
+        # coexister sur une meme echeance : au 24/07/2026 le 10 ans allemand vaut
+        # 3,127 % sur l'emprunt de reference chez CNBC et 3,240 % sur la courbe
+        # ajustee de la Bundesbank. Verifier l'unicite sur (date, instrument) seul
+        # signalait ces paires legitimes comme des doublons.
+        keys = {(r["date"], r["instrument"], r.get("source", "")) for r in rows}
+        presence = {(r["date"], r["instrument"]) for r in rows}
         for label, e in markets.items():
-            if "date" in e and (e["date"], label) not in keys:
+            if "date" in e and (e["date"], label) not in presence:
                 fail(f"series.csv : ligne manquante pour {label} au {e['date']}")
         dupes = len(rows) - len(keys)
         if dupes:
-            fail(f"series.csv : {dupes} doublons (date, instrument)")
+            fail(f"series.csv : {dupes} doublons (date, instrument, source)")
     else:
         warn("series.csv absent")
 

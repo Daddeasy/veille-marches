@@ -1,7 +1,7 @@
 {
   "date": "2026-07-24",
   "target_date": "2026-07-24",
-  "generated_at": "2026-07-27T16:39:37+00:00",
+  "generated_at": "2026-07-27T16:58:11+00:00",
   "eurusd": 1.1377,
   "markets": {
     "S&P 500": {
@@ -24,9 +24,6 @@
       "hi52": 7609.78,
       "lo52": 6238.01,
       "pctile_1y": 7.7,
-      "ignored_after_session": [
-        "2026-07-27"
-      ],
       "source": "fred:SP500",
       "basis": "cloture de seance",
       "age_days": 3,
@@ -58,9 +55,6 @@
       "hi52": 30660.6,
       "lo52": 22763.31,
       "pctile_1y": 71.2,
-      "ignored_after_session": [
-        "2026-07-27"
-      ],
       "source": "fred:NASDAQ100",
       "basis": "cloture de seance",
       "age_days": 3,
@@ -288,14 +282,8 @@
       "unit": "bp",
       "dec": 3,
       "note": "CNBC en quotidien ; BdF TEC 10 si cle ; sinon FRED mensuel",
-      "change": 30.0,
-      "pct": null,
-      "change_from": "2026-06-01",
-      "change_days": 53,
-      "w1": 30.0,
-      "m1": 30.0,
       "hi52": 3.98,
-      "lo52": 3.68,
+      "lo52": 3.98,
       "ignored_after_session": [
         "2026-07-27"
       ],
@@ -307,6 +295,35 @@
       "age_days": 3,
       "crosscheck": {
         "comparable": false
+      },
+      "target_date": "2026-07-24",
+      "on_target": true
+    },
+    "10Y Allemagne": {
+      "level": 3.1274,
+      "date": "2026-07-24",
+      "ticker": "DE10Y",
+      "ccy": "%",
+      "zone": "EU",
+      "kind": "yield",
+      "unit": "bp",
+      "dec": 3,
+      "note": "emprunt de reference via CNBC ; courbe Bundesbank en repli",
+      "hi52": 3.1274,
+      "lo52": 3.1274,
+      "ignored_after_session": [
+        "2026-07-27"
+      ],
+      "source": "cnbc:DE10Y-DE",
+      "basis": "cloture de seance",
+      "age_days": 3,
+      "crosscheck": {
+        "comparable": true,
+        "source": "bundesbank:DE10Y",
+        "value": 3.24,
+        "divergence_pct": 3.6,
+        "tolerance_pct": 6.0,
+        "ok": true
       },
       "target_date": "2026-07-24",
       "on_target": true
@@ -330,7 +347,7 @@
       "ytd": 3.63,
       "hi52": 31.05,
       "lo52": 13.47,
-      "pctile_1y": 10.6,
+      "pctile_1y": 11.0,
       "ignored_after_session": [
         "2026-07-27"
       ],
@@ -424,7 +441,7 @@
       "ytd": 59.0468,
       "hi52": 118.35,
       "lo52": 58.92,
-      "pctile_1y": 84.0,
+      "pctile_1y": 84.4,
       "ignored_after_session": [
         "2026-07-27"
       ],
@@ -483,12 +500,13 @@
     }
   },
   "diagnostics": {
-    "ok": 15,
+    "ok": 16,
     "errors": [],
     "stale": [],
     "suspect": [],
     "target_date": "2026-07-24",
     "aligned": [
+      "10Y Allemagne",
       "10Y France",
       "10Y US",
       "Bitcoin",
@@ -508,6 +526,12 @@
     "off_target": [],
     "not_applicable": [],
     "ignored_after_session": [
+      [
+        "10Y Allemagne",
+        [
+          "2026-07-27"
+        ]
+      ],
       [
         "10Y France",
         [
@@ -567,12 +591,6 @@
         ]
       ],
       [
-        "Nasdaq 100",
-        [
-          "2026-07-27"
-        ]
-      ],
-      [
         "Nikkei 225",
         [
           "2026-07-27"
@@ -580,12 +598,6 @@
       ],
       [
         "Or",
-        [
-          "2026-07-27"
-        ]
-      ],
-      [
-        "S&P 500",
         [
           "2026-07-27"
         ]
