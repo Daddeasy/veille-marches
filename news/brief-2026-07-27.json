@@ -1,0 +1,155 @@
+{
+  "date": "2026-07-27",
+  "session": "2026-07-24",
+  "generated_at": "2026-07-27T09:56:30Z",
+  "focus": {
+    "title": "Suspension des frappes américaines en Iran, le pétrole et les taux refluent",
+    "body": "Après treize nuits consécutives de frappes américaines contre l'Iran, Washington a suspendu sa campagne : aucune attaque n'a été signalée samedi ni dimanche, et le président américain a déclaré vouloir laisser de la place à la diplomatie. Une source iranienne citée par Boursorama indique que Téhéran cessera ses attaques tant que les États-Unis feront de même. Les cours de clôture du brief restent ceux de la séance du vendredi 24 juillet : le Brent y termine à 96,78 dollars, en baisse de 3,88 %, et le 10 ans américain à 4,679 %, en repli de 2,4 pb. Ce lundi en séance, la presse donne le contrat de septembre sur le Brent en baisse de 7,4 % à 89,73 dollars vers 11 h, le Bund en retrait de 5 pb à 3,16 % et l'OAT de 6 pb à 3,92 %. S'ouvre par ailleurs la semaine la plus chargée de la saison des résultats américains, avec 177 composantes du S&P 500 et les décisions de la Réserve fédérale, de la Banque d'Angleterre et de la Banque du Japon."
+  },
+  "factset": {
+    "as_of": "2026-07-24",
+    "quarter": "T2 2026",
+    "url": "https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_072426.pdf",
+    "metrics": [
+      {
+        "label": "Publications",
+        "value": "27 % du S&P 500",
+        "detail": "Parmi les sociétés ayant publié, 86 % dépassent les attentes sur le bénéfice par action et 80 % sur le chiffre d'affaires."
+      },
+      {
+        "label": "Croissance des bénéfices",
+        "value": "+37,9 %",
+        "detail": "Taux combiné sur un an, résultats publiés et estimations réunis. À ce rythme, ce serait la plus forte croissance de l'indice depuis le T3 2021 (+40,3 %)."
+      },
+      {
+        "label": "Révisions",
+        "value": "+23,2 % au 30 juin",
+        "detail": "Estimation de croissance des bénéfices à cette date, contre 37,9 % aujourd'hui. Neuf secteurs sont attendus en hausse par rapport au 30 juin."
+      },
+      {
+        "label": "Prévisions des sociétés",
+        "value": "11 hausses, 9 baisses",
+        "detail": "Pour le T3 2026, onze sociétés du S&P 500 ont émis une prévision de bénéfice par action positive et neuf une prévision négative."
+      },
+      {
+        "label": "Valorisation",
+        "value": "20,1 fois",
+        "detail": "Ratio cours/bénéfice à douze mois glissants du S&P 500, au-dessus de la moyenne à cinq ans (19,9) et de celle à dix ans (19,0)."
+      }
+    ]
+  },
+  "sections": {
+    "macro": [
+      {
+        "text": "L'indice Ifo du climat des affaires en Allemagne ressort à 86,6 en juillet, contre 85,7 attendu par les économistes et 85,7 en juin après révision. Selon ABC Bourse, les rendements de la zone euro ont malgré tout reculé, le repli des cours du pétrole l'emportant sur cette amélioration plus forte que prévu.",
+        "source": "ABC Bourse",
+        "url": "https://www.abcbourse.com/marches/les-taux-en-europe-et-aux-etats-unis-reculent-dans-le-sillage-du-petrole_700370",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Trois banques centrales se prononcent cette semaine : la Réserve fédérale à l'issue d'une réunion de deux jours entamée mardi, la Banque d'Angleterre jeudi et la Banque du Japon vendredi. Un statu quo est attendu sur les taux américains ; Boursorama donne le marché à une chance sur trois pour une hausse.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "L'inflation mesurée par l'indice des dépenses de consommation des ménages américains et la première estimation du produit intérieur brut du deuxième trimestre sont publiées jeudi, cette dernière attendue à 2,3 %.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/du-vert-en-europe-pour-entamer-la-semaine-la-plus-intense-de-l-annee-70c8bf878c6a0bf4e69afb093aaee844",
+        "published": "2026-07-27"
+      }
+    ],
+    "geo": [
+      {
+        "text": "Washington a suspendu sa campagne de frappes contre l'Iran après treize nuits consécutives : aucune attaque américaine n'a été signalée samedi ni dimanche, et aucune alerte n'a été relevée dans le Golfe. Le président américain a déclaré vouloir laisser de la place à la diplomatie, tandis qu'une source iranienne indique que Téhéran mettra fin à ses attaques lorsque les États-Unis feront de même.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "L'accalmie n'est pas générale : les Houthis du Yémen ont attaqué des installations pétrolières saoudiennes en mer Rouge.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Le Brent a terminé la séance du 24 juillet à 96,78 dollars, en baisse de 3,88 %. Ce lundi vers 11 h, ABC Bourse donne le contrat de septembre en repli de 7,4 % à 89,73 dollars, qu'il rattache à la pause des frappes américaines depuis vendredi soir.",
+        "source": "ABC Bourse",
+        "url": "https://www.abcbourse.com/marches/les-taux-en-europe-et-aux-etats-unis-reculent-dans-le-sillage-du-petrole_700370",
+        "published": "2026-07-27"
+      }
+    ],
+    "micro": [
+      {
+        "text": "AstraZeneca a dépassé les prévisions de bénéfice du deuxième trimestre et confirmé ses objectifs pour 2026, portée par la demande pour ses traitements. Vodafone relève ses prévisions à la suite de son accord avec Safaricom et s'attend à atteindre la fourchette haute de la nouvelle fourchette.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-22badda5c815d16b55a6c94f0e78e39c",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Eutelsat et SES recevront respectivement 443 millions d'euros et 5,6 milliards de dollars, soit 4,91 milliards d'euros, au titre des paiements incitatifs du plan de la commission fédérale des communications américaine pour la transition du spectre de la bande C supérieure.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/eutelsat-et-ses-vont-recevoir-443-millions-d-euros-et-5-6-milliards-de-dollars-pour-la-transition-du-spectre-de-la-bande-c-superieure-aux-usa-3d78779ff1ef2322aaf0d40cab63d41a",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Argenx rachète Forte Biosciences pour près de 2,2 milliards de dollars, opération motivée par l'ajout du médicament expérimental FB102. TF1 publie un chiffre d'affaires du deuxième trimestre au-dessus des attentes et confirme ses objectifs annuels.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-22badda5c815d16b55a6c94f0e78e39c",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "La semaine mobilise 177 composantes du S&P 500 : Meta et Microsoft publient mercredi, Amazon et Apple jeudi.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/du-vert-en-europe-pour-entamer-la-semaine-la-plus-intense-de-l-annee-70c8bf878c6a0bf4e69afb093aaee844",
+        "published": "2026-07-27"
+      }
+    ],
+    "actions": [
+      {
+        "text": "Aux États-Unis, la séance du 24 juillet laisse le S&P 500 à 7 411,98 (+0,05 %) et le Nasdaq 100 à 28 128,34 (−1,15 %). Avant l'ouverture de ce lundi, Boursorama donne les contrats à terme sur le S&P 500 en hausse de 0,8 % et sur le Nasdaq de 1,3 %.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "En Europe, le CAC 40 a clôturé le 24 juillet à 8 372,28 (+0,88 %) et l'Euro Stoxx 50 à 6 280,94 (+1,14 %). Ce lundi à l'ouverture, Boursorama attendait le CAC 40 en hausse de 0,75 %, le Dax de 1,09 %, le Stoxx 600 de 0,67 % et le FTSE 100 de 0,29 %.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "En Asie, la séance du 24 juillet s'était soldée par un recul du Nikkei 225 à 64 611,15 (−2,73 %), du KOSPI à 6 690,62 (−5,72 %) et du Shanghai Composite à 3 814,20 (−1,61 %). Ce lundi, Boursorama donne le Nikkei en hausse de 0,4 %, le KOSPI de 0,6 % et l'indice MSCI Asie-Pacifique hors Japon de 0,3 %.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Sur les autres actifs, le règlement du 24 juillet donne l'or à 4 070,80 dollars (+0,60 %) et le Brent à 96,78 dollars (−3,88 %) ; l'euro s'établissait à 1,1377 dollar au fixing de la Banque centrale européenne. Le bitcoin ressort à 64 505,40 dollars à la clôture du 26 juillet (+0,30 %) et l'indice Fear & Greed crypto à 26, en zone de peur, à la même date. Ce lundi, la presse donne l'or en hausse de 1,4 % à 4 110 dollars et l'euro à 1,1406 dollar.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
+        "published": "2026-07-27"
+      }
+    ],
+    "obligations": [
+      {
+        "text": "Le rendement du 10 ans américain a terminé la séance du 24 juillet à 4,679 %, en baisse de 2,4 pb, contre 4,703 % la veille. Ce lundi vers 11 h, ABC Bourse le donne à 4,64 %, en repli de 5 pb, dans le sillage du pétrole.",
+        "source": "ABC Bourse",
+        "url": "https://www.abcbourse.com/marches/les-taux-en-europe-et-aux-etats-unis-reculent-dans-le-sillage-du-petrole_700370",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Le 10 ans français a clôturé le 24 juillet à 3,980 %, en hausse de 1,23 pb. Ce lundi matin, ABC Bourse donne l'OAT en baisse de 6 pb à 3,92 %, le Bund allemand de 5 pb à 3,16 % et le 10 ans italien de 7 pb à 3,93 %, soit un écart de 76 pb entre la France et l'Allemagne sur ces relevés.",
+        "source": "ABC Bourse",
+        "url": "https://www.abcbourse.com/marches/les-taux-en-europe-et-aux-etats-unis-reculent-dans-le-sillage-du-petrole_700370",
+        "published": "2026-07-27"
+      },
+      {
+        "text": "Boursorama relevait plus tôt dans la matinée le 10 ans américain à 4,6345 %, en baisse de 4,4 pb, et le 2 ans à 4,2944 %, en repli de 3,7 pb.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
+        "published": "2026-07-27"
+      }
+    ]
+  }
+}
