@@ -228,7 +228,11 @@
      La colonne « publie » reste vide tant que le chiffre n'est pas sorti et se
      remplit au fil de la semaine. C'est ce qui fait passer le bloc d'annonce a
      recapitulatif sans qu'une ligne bouge. */
-  table.cal{width:100%;border-collapse:collapse;font-size:13px;margin-top:2px}
+  /* Aucune taille propre : le tableau herite du corps de texte du brief, 13,5 px.
+     Il etait a 13 px, taille reprise de la bande d'indicateurs — mais celle-ci vit
+     hors du brief, alors que le calendrier en est une rubrique et doit se lire
+     dans la meme foulee que les puces qui le precedent. */
+  table.cal{width:100%;border-collapse:collapse;margin-top:2px}
   table.cal td{padding:5px 8px;border-bottom:1px solid var(--line2);
                vertical-align:baseline}
   table.cal tr:last-child td{border-bottom:none}
@@ -248,10 +252,13 @@
   .k-jour.k-today td{color:var(--accent)}
   .k-past td{opacity:.5}
 
-  .k-h{font-family:var(--mono);color:var(--faint);width:1%;white-space:nowrap;
+  /* Tout le calendrier dans la police du texte, chiffres compris — une seule
+     famille et une seule taille du premier au dernier caractere. Le monospace y
+     servait l'alignement des colonnes ; tabular-nums le tient aussi bien, les
+     chiffres de la police systeme ayant tous la meme avance. */
+  .k-h{color:var(--faint);width:1%;white-space:nowrap;
        font-variant-numeric:tabular-nums}
-  .k-z{font-family:var(--mono);color:var(--dim);font-weight:600;width:1%;
-       white-space:nowrap}
+  .k-z{color:var(--dim);font-weight:600;width:1%;white-space:nowrap}
   .k-flag{width:16px;height:11px;vertical-align:-1px;margin-right:5px;
           border-radius:1px}
   .k-ev{color:var(--ink2)}
@@ -259,7 +266,7 @@
      retrait. Le principe vaut deja pour la bande d'indicateurs — une seule taille
      de police, la famille et la teinte suffisent a hierarchiser. */
   .k-det{display:block;color:var(--faint);margin-top:2px;line-height:1.45}
-  .k-num{font-family:var(--mono);text-align:right;width:1%;white-space:nowrap;
+  .k-num{text-align:right;width:1%;white-space:nowrap;
          font-variant-numeric:tabular-nums;color:var(--dim)}
   /* Deux classes, encore : .k-num est declaree apres .up et .down et l'emporterait
      sinon a specificite egale. Le troisieme cas de cette feuille. */
@@ -274,7 +281,6 @@
   .k-libre td{color:var(--dim)}
 
   @media (max-width:560px){
-    table.cal{font-size:12px}
     .k-prec{display:none}      /* le precedent passe en infobulle sur mobile */
   }
 
