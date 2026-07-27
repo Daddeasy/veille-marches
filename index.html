@@ -56,6 +56,18 @@
     --accent:  light-dark(#b84a00, #fa7b05);   /* orange de la charte */
     --link:    light-dark(#403c8f, #a8a5e8);   /* indigo / lavande */
 
+    /* Une couleur par rubrique, pour que l'oeil retrouve une famille sans lire son
+       intitule. Teintes reparties sur la roue de la charte et non prises au hasard :
+       les six sont a 33 degres au moins l'une de l'autre, sinon macro et obligataire
+       se lisaient comme la meme famille. Toutes verifiees a 4,5:1 minimum sur le
+       panneau, dans les deux themes — ce sont des titres de 11,5 px. */
+    --s-macro:  light-dark(#3b3a8c, #9b98e8);   /* indigo */
+    --s-geo:    light-dark(#a8102f, #ff8fa0);   /* cramoisi et rose de la charte */
+    --s-micro:  light-dark(#2f6b52, #8fc9ae);   /* sauge */
+    --s-actions:light-dark(#b84a00, #fa7b05);   /* orange */
+    --s-oblig:  light-dark(#175f70, #7fc6d8);   /* bleu ardoise */
+    --s-cal:    light-dark(#76409e, #c9a3e8);   /* lavande */
+
     /* pastilles et blocs de message */
     --warn-bg: light-dark(#fbf0d2, #34310f);   /* accorde a l'or de --warn */
     --neg-bg:  light-dark(#fbdfe4, #3d1c22);
@@ -164,6 +176,16 @@
   .zone{margin-top:18px}
   .zone h3{margin:0 0 8px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
            color:var(--accent);font-weight:650}
+  .z-macro       h3{color:var(--s-macro)}
+  .z-geo         h3{color:var(--s-geo)}
+  .z-micro       h3{color:var(--s-micro)}
+  .z-actions     h3{color:var(--s-actions)}
+  .z-obligations h3{color:var(--s-oblig)}
+  .z-calendrier  h3{color:var(--s-cal)}
+  /* Un filet de la couleur de la rubrique sous son intitule : la teinte se lit
+     mieux sur un trait plein que sur six lettres capitales fines. */
+  .zone h3::after{content:"";display:block;width:26px;height:2px;margin-top:5px;
+                  background:currentColor;border-radius:1px;opacity:.75}
   .bul{margin:0;padding-left:17px;list-style:none}
   .bul li{position:relative;margin-bottom:9px;line-height:1.6;color:var(--ink2)}
   .bul li::before{content:"▪";position:absolute;left:-15px;color:var(--faint)}
@@ -228,7 +250,10 @@
 
   .k-h{font-family:var(--mono);color:var(--faint);width:1%;white-space:nowrap;
        font-variant-numeric:tabular-nums}
-  .k-z{font-family:var(--mono);color:var(--dim);font-weight:600;width:1%}
+  .k-z{font-family:var(--mono);color:var(--dim);font-weight:600;width:1%;
+       white-space:nowrap}
+  .k-flag{width:16px;height:11px;vertical-align:-1px;margin-right:5px;
+          border-radius:1px}
   .k-ev{color:var(--ink2)}
   /* Meme taille que le reste du tableau : seule la couleur met la precision en
      retrait. Le principe vaut deja pour la bande d'indicateurs — une seule taille
@@ -545,6 +570,71 @@ function factsetHTML(fs, briefDate){
     </div>${rows}</div>`;
 }
 
+/* ---------------------------------------------------------------- drapeaux ---
+   En SVG et non en emoji : les paires d'indicateurs regionaux (🇫🇷) ne sont pas
+   rendues comme drapeaux sous Windows, faute de glyphes dans la police systeme —
+   elles s'affichent en deux lettres. Un emoji aurait donc marche sur le telephone
+   et pas sur le poste ou ce depot est tenu.
+
+   Dessins volontairement grossiers : a seize pixels de large, une reproduction
+   fidele ne se lit pas mieux qu'une silhouette de couleurs justes. Le contour
+   reprend --line, sans quoi le drapeau japonais disparait sur fond clair. */
+const FLAGS = (() => {
+  const cadre = '<rect width="16" height="11" fill="none" stroke="var(--line)"' +
+                ' stroke-width="1"/>';
+  const svg = (inner) => '<svg class="k-flag" viewBox="0 0 16 11" role="img" ' +
+                         'aria-hidden="true">' + inner + cadre + '</svg>';
+  const bandesH = (couleurs) => couleurs.map((c, i) =>
+    `<rect y="${(11 / couleurs.length * i).toFixed(2)}" width="16" ` +
+    `height="${(11 / couleurs.length).toFixed(2)}" fill="${c}"/>`).join("");
+
+  /* Douze etoiles de l'Union : douze points sur un cercle, chacun reduit a un
+     disque. A cette taille une etoile a cinq branches devient un pate. */
+  const etoilesUE = Array.from({length: 12}, (_, i) => {
+    const a = (i * 30 - 90) * Math.PI / 180;
+    return `<circle cx="${(8 + 3 * Math.cos(a)).toFixed(2)}" ` +
+           `cy="${(5.5 + 3 * Math.sin(a)).toFixed(2)}" r=".55" fill="#FFCC00"/>`;
+  }).join("");
+
+  /* Treize bandes reduites a sept rouges sur fond blanc, plus le canton. */
+  const bandesUS = Array.from({length: 7}, (_, i) =>
+    `<rect y="${(i * 11 / 6.5).toFixed(2)}" width="16" height=".85" fill="#B31942"/>`).join("");
+
+  return {
+    US: svg('<rect width="16" height="11" fill="#fff"/>' + bandesUS +
+            '<rect width="7" height="5.9" fill="#0A3161"/>' +
+            '<circle cx="2" cy="1.6" r=".45" fill="#fff"/>' +
+            '<circle cx="4.4" cy="1.6" r=".45" fill="#fff"/>' +
+            '<circle cx="3.2" cy="3" r=".45" fill="#fff"/>' +
+            '<circle cx="2" cy="4.4" r=".45" fill="#fff"/>' +
+            '<circle cx="4.4" cy="4.4" r=".45" fill="#fff"/>'),
+    EU: svg('<rect width="16" height="11" fill="#003399"/>' + etoilesUE),
+    FR: svg('<rect width="16" height="11" fill="#fff"/>' +
+            '<rect width="5.33" height="11" fill="#002395"/>' +
+            '<rect x="10.67" width="5.33" height="11" fill="#ED2939"/>'),
+    DE: svg(bandesH(['#000000', '#DD0000', '#FFCE00'])),
+    UK: svg('<rect width="16" height="11" fill="#012169"/>' +
+            '<path d="M0 0L16 11M16 0L0 11" stroke="#fff" stroke-width="2.4"/>' +
+            '<path d="M0 0L16 11M16 0L0 11" stroke="#C8102E" stroke-width="1.1"/>' +
+            '<path d="M8 0V11M0 5.5H16" stroke="#fff" stroke-width="3.6"/>' +
+            '<path d="M8 0V11M0 5.5H16" stroke="#C8102E" stroke-width="2.1"/>'),
+    CN: svg('<rect width="16" height="11" fill="#DE2910"/>' +
+            '<circle cx="3.4" cy="3" r="1.35" fill="#FFDE00"/>' +
+            '<circle cx="6.2" cy="1.5" r=".5" fill="#FFDE00"/>' +
+            '<circle cx="7.4" cy="3.1" r=".5" fill="#FFDE00"/>' +
+            '<circle cx="6.9" cy="5" r=".5" fill="#FFDE00"/>' +
+            '<circle cx="5.3" cy="6.1" r=".5" fill="#FFDE00"/>'),
+    JP: svg('<rect width="16" height="11" fill="#fff"/>' +
+            '<circle cx="8" cy="5.5" r="3.2" fill="#BC002D"/>'),
+    IN: svg(bandesH(['#FF9933', '#FFFFFF', '#138808']) +
+            '<circle cx="8" cy="5.5" r="1.5" fill="none" stroke="#000080" ' +
+            'stroke-width=".55"/>'),
+  };
+})();
+
+const ZONE_NOM = {US: "États-Unis", EU: "zone euro", FR: "France", DE: "Allemagne",
+                  UK: "Royaume-Uni", CN: "Chine", JP: "Japon", IN: "Inde"};
+
 /* Calendrier prospectif de la semaine. Le reste du brief regarde derriere lui —
    une seance close, des faits acquis. Ce bloc regarde devant : ce qui tombe cette
    semaine et quel jour. C'est la seule partie du brief ou une date future est
@@ -591,7 +681,8 @@ function calendarHTML(cal, briefDate){
     }
     return `<tr class="${cls.trim()}">
       <td class="k-h">${e.time || ""}</td>
-      <td class="k-z">${e.zone || ""}</td>
+      <td class="k-z" title="${ZONE_NOM[e.zone] || ""}">${
+        (FLAGS[e.zone] || "") + (e.zone || "")}</td>
       <td class="k-ev">${e.label}${
         e.detail ? `<span class="k-det">${e.detail}</span>` : ""}</td>
       <td class="k-num k-pub${ecart}" title="${bulle}">${e.actual || ""}</td>
@@ -632,7 +723,7 @@ function calendarHTML(cal, briefDate){
           s.source || "source"} ↗</a>`).join(" · ") + `</div>`
     : "";
 
-  return `<div class="zone"><h3>Le calendrier de la semaine</h3>
+  return `<div class="zone z-calendrier"><h3>Le calendrier de la semaine</h3>
     <table class="cal"><thead><tr>
       <th>Heure</th><th>Zone</th><th>Indicateur</th>
       <th class="r">Publié</th><th class="r">Attendu</th>
@@ -683,7 +774,7 @@ function briefHTML(brief, highlight){
             m.unv ? " ⚠" : ""} ↗</a>`).join(" · ") + `</div>`
       : "";
 
-    html += `<div class="zone"><h3>${title}</h3>${encart}`
+    html += `<div class="zone z-${key}"><h3>${title}</h3>${encart}`
       + (items.length
           ? `<ul class="bul">`
             + items.map(it => `<li>${mark(it.text)}</li>`).join("")
