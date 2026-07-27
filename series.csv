@@ -19,6 +19,7 @@ date,instrument,value,source
 2026-07-23,VIX,18.700000,fred:VIXCLS
 2026-07-24,10Y France,3.980000,cnbc:FR10Y-FR
 2026-07-24,10Y US,4.679000,fred:DGS10+yahoo:^TNX
+2026-07-24,Bitcoin,64087.800000,kraken:XBTUSD
 2026-07-24,Brent,96.780000,yahoo:BZ=F
 2026-07-24,CAC 40,8372.280000,yahoo:^FCHI+meta
 2026-07-24,CSI 300,4649.191900,yahoo:000300.SS+yahoo:399300.SZ
@@ -26,6 +27,7 @@ date,instrument,value,source
 2026-07-24,EUR/USD,1.137700,ecb:EXR
 2026-07-24,Euro Stoxx 50,6280.940000,yahoo:^STOXX50E+meta
 2026-07-24,FTSE 100,10736.230000,yahoo:^FTSE+meta
+2026-07-24,Fear & Greed crypto,28.000000,alternative.me:fng
 2026-07-24,KOSPI,6690.620000,yahoo:^KS11+meta
 2026-07-24,Nasdaq 100,28128.340000,fred:NASDAQ100
 2026-07-24,Nikkei 225,64611.150000,yahoo:^N225+meta

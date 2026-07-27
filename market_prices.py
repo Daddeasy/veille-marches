@@ -685,6 +685,81 @@ def prev_business_day(today: dt.date) -> dt.date:
     return d
 
 
+def load_stored_series(path: str) -> dict[str, Series]:
+    """Points deja releves, lus depuis series.csv, par instrument.
+
+    Sert a combler les trous des sources. Cas qui a impose ce chargement : les
+    barres quotidiennes de Yahoo n'ont aucun point au 24/07 — elles sautent du 23
+    au 27 — pour le CAC, le S&P et le Nikkei a la fois. Cette cloture n'a jamais
+    existe que dans meta.regularMarketPrice, champ qui ne la porte que jusqu'a
+    l'ouverture suivante. Passe ce moment, la valeur est introuvable a la source
+    alors qu'elle est deja dans series.csv, releve le samedi.
+    """
+    if not os.path.exists(path):
+        return {}
+    out: dict[str, Series] = {}
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            try:
+                point = (dt.date.fromisoformat(row["date"]), float(row["value"]))
+            except (KeyError, TypeError, ValueError):
+                continue                              # ligne abimee : on l'ignore
+            out.setdefault(row["instrument"], []).append(point)
+    for label in out:
+        out[label].sort()
+    return out
+
+
+def merge_stored(stored: Series, fresh: Series) -> Series:
+    """Complete la serie fraiche par les points deja releves.
+
+    **Le stocke prime a date egale**, et c'est contre-intuitif : on prefere
+    d'ordinaire la donnee la plus recente. Mesure faite en inversant la regle, elle
+    condamne exactement ce que ce module cherche a preserver. Pour le 24/07,
+    l'archive portait l'or a 4070,80 et le 10 ans francais a 3,980 — les cloturés
+    captees le samedi, quand meta.regularMarketPrice les publiait encore. Relancé
+    le lundi, le frais ne propose plus pour cette meme date que la barre
+    quotidienne, 4067,60, et un releve CNBC a 3,9158. Faire primer le frais
+    remplacait donc une cloture par une valeur de moindre qualite, et le brief
+    citait 4 070,80 quand la bande d'indicateurs affichait 4 067,60.
+
+    Une cloture archivee a ete captee au plus pres de l'evenement : elle fait foi.
+    Le frais n'apporte que les dates absentes. Le prix de cette regle est qu'une
+    revision de source sur une seance passee n'est pas reprise — cas rare sur des
+    cloturés quotidiennes, et les bornes de plausibilite continuent de s'appliquer
+    a la valeur finale.
+    """
+    points = dict(fresh)
+    points.update(dict(stored))
+    return sorted(points.items())
+
+
+def clamp_to_session(series: Series, target: dt.date) -> tuple[Series, list[str]]:
+    """Coupe la serie a la seance cible, et rend les dates ecartees.
+
+    Sans cette coupe, le fichier depend de l'heure a laquelle le script tourne.
+    Cas reel : lance un lundi a 13h57 UTC, vingt-sept minutes apres l'ouverture de
+    New York et l'Europe cotant encore, il a ecrit le S&P 500 a 7452,48 date du
+    27/07 et le Brent a 90,47 — des relevés en seance, etiquetes « cloture de
+    seance », a cote d'un target_date au 24/07. Le CAC etait intraday, le Nikkei
+    une vraie cloture du lundi : un melange qu'aucun lecteur ne peut demeler.
+
+    Couper plutot que refuser d'ecrire : un lancement manuel en pleine seance
+    reproduit alors exactement le fichier du matin, au lieu de ne rien faire ou,
+    pire, de publier un panache. La collecte de 5h UTC, elle, ne perd rien — a
+    cette heure toutes les places citees sont fermees.
+
+    S'applique aussi aux actifs cotant en continu. Le bitcoin et l'indice Fear &
+    Greed sont ainsi cales sur la seance actions : un brief qui cite la cloture de
+    vendredi ne doit pas donner le bitcoin de dimanche soir dans la meme phrase.
+    """
+    kept = [(d, v) for d, v in series if d <= target]
+    dropped = [d.isoformat() for d, _ in series if d > target]
+    # Une serie entierement posterieure a la cible ne devrait pas exister ; si
+    # cela arrive, mieux vaut la valeur brute qu'un instrument en erreur.
+    return (kept or series), dropped
+
+
 def check_alignment(entry: dict, inst: Instrument, target: dt.date,
                     today: dt.date) -> None:
     """Compare la date de l'instrument a la date cible attendue.
@@ -698,9 +773,11 @@ def check_alignment(entry: dict, inst: Instrument, target: dt.date,
     droit d'ecrire "hier" que sur les instruments alignes, et doit dater
     explicitement les autres.
     """
-    # Le bitcoin cote le week-end : sa veille est la journee calendaire
-    # precedente, pas la derniere seance ouvree.
-    own_target = (today - dt.timedelta(days=1)) if inst.traded_247 else target
+    # Une seule cible pour tout le monde, y compris les actifs cotant en continu.
+    # Ils avaient auparavant la leur — la journee calendaire precedente —, ce qui
+    # datait le bitcoin du dimanche quand les actions etaient au vendredi. Deux
+    # dates dans la meme bande d'indicateurs, et un brief oblige de s'en expliquer.
+    own_target = target
     entry["target_date"] = own_target.isoformat()
 
     if inst.freq == "monthly":
@@ -709,8 +786,12 @@ def check_alignment(entry: dict, inst: Instrument, target: dt.date,
         return
 
     own = dt.date.fromisoformat(entry["date"])
-    entry["on_target"] = own >= own_target
-    if not entry["on_target"]:
+    # Egalite stricte, et non `>=`. C'est ce comparateur qui laissait passer le
+    # relevé du 27/07 comme « aligne » sur une cible au 24/07 : plus recent n'est
+    # pas aligne, c'est une autre seance. Le diagnostic annoncait « 15 sur la
+    # seance » alors qu'aucun des quinze n'etait a la date cible.
+    entry["on_target"] = (own == own_target)
+    if own < own_target:
         entry["lag_days"] = (own_target - own).days
 
 
@@ -882,7 +963,7 @@ def check_crosscheck(entry: dict, others: list[tuple[str, Series]],
 
 # ------------------------------------------------------------- collecte -----
 
-def fetch_instrument(inst: Instrument) -> dict:
+def fetch_instrument(inst: Instrument, stored: Series | None = None) -> dict:
     """Essaie les sources dans l'ordre. La premiere qui repond fait foi ;
     les suivantes servent au recoupement. Ne leve jamais."""
     primary: dict | None = None
@@ -917,7 +998,20 @@ def fetch_instrument(inst: Instrument) -> dict:
         return {"error": " | ".join(failures) or "aucune source disponible",
                 "zone": inst.zone, "kind": inst.kind}
 
+    today = dt.date.today()
+    target = prev_business_day(today)
+    # Historique d'abord, coupe ensuite. L'ordre importe : couper une serie a
+    # laquelle il manque la seance cible la ramene a l'avant-veille, alors que la
+    # valeur est deja dans series.csv.
+    if stored:
+        primary_series = merge_stored(stored, primary_series)
+    # Coupe avant tout calcul : niveau, variation, bornes 52 semaines et
+    # percentile doivent tous porter sur la meme seance close.
+    primary_series, dropped = clamp_to_session(primary_series, target)
+
     entry = compute(inst, primary_series)
+    if dropped:
+        entry["ignored_after_session"] = dropped
     entry["source"] = primary["source"]
     # Nature de la valeur portee par la source qui a effectivement repondu,
     # pas par l'instrument : un repli peut changer la nature (le Brent passe
@@ -938,11 +1032,10 @@ def fetch_instrument(inst: Instrument) -> dict:
     if failures:
         entry["fallback_notes"] = failures
 
-    today = dt.date.today()
     check_freshness(entry, inst, today)
     check_plausibility(entry, inst)
     check_crosscheck(entry, others, inst.xcheck_tol)
-    check_alignment(entry, inst, prev_business_day(today), today)
+    check_alignment(entry, inst, target, today)
     return entry
 
 
@@ -991,8 +1084,14 @@ def write_series_csv(path: str, date_label: str, markets: dict) -> int:
         if "level" not in entry or "date" not in entry:
             continue
         key = (entry["date"], label)
-        if key not in rows:
-            added += 1
+        # Vraiment append-only, comme l'annonce le titre : une ligne deja ecrite
+        # n'est plus touchee. Elle l'etait auparavant, et un lancement en seance
+        # remplacait alors la cloture archivee de l'or, 4070,80 au 24/07, par la
+        # barre quotidienne a 4067,60. L'archive perdait en qualite a chaque
+        # relance, sans que rien ne le signale.
+        if key in rows:
+            continue
+        added += 1
         rows[key] = (entry["date"], label, f"{entry['level']:.6f}",
                      entry.get("source", ""))
 
@@ -1053,6 +1152,17 @@ def render_console(payload: dict) -> None:
     log(f"{DIM}Date cible (derniere seance close) : {diag['target_date']} — "
         f"{len(diag['aligned'])} alignes, {len(diag['off_target'])} en retard, "
         f"{len(diag['not_applicable'])} sans objet{RESET}")
+
+    # Lance marches ouverts : le dire franchement. Les valeurs ecrites sont celles
+    # de la seance close, mais l'operateur doit savoir que sa collecte de midi n'a
+    # rien apporte de plus que celle du matin.
+    ecartes = diag.get("ignored_after_session") or []
+    if ecartes:
+        log(f"{YELLOW}Lancement en seance : {len(ecartes)} instrument(s) avaient "
+            f"des points posterieurs au {diag['target_date']}, ecartes pour ne pas "
+            f"prendre un relevé intraday pour une cloture.{RESET}")
+        for label, dates in ecartes:
+            log(f"{DIM}  {label:<24} {', '.join(dates)}{RESET}")
     for label, date, lag in diag["off_target"]:
         log(f"  {YELLOW}retard{RESET}  {label}: {date} ({lag}j) — "
             f"{DIM}ne pas ecrire \"hier\" dans le brief{RESET}")
@@ -1076,8 +1186,11 @@ def main() -> int:
     # Les resultats sont recuperes dans le desordre puis reordonnes selon
     # INSTRUMENTS : l'affichage et le JSON gardent un ordre stable, ce qui evite
     # un diff git bruyant a chaque execution.
+    stored = load_stored_series(os.path.join(ROOT, "series.csv"))
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        futures = {pool.submit(fetch_instrument, inst): inst for inst in INSTRUMENTS}
+        futures = {pool.submit(fetch_instrument, inst, stored.get(inst.label)): inst
+                   for inst in INSTRUMENTS}
         gathered: dict[str, dict] = {}
         for future in concurrent.futures.as_completed(futures):
             inst = futures[future]
@@ -1127,6 +1240,12 @@ def main() -> int:
         "not_applicable": sorted(k for k, v in markets.items()
                                  if v.get("on_target") is None
                                  and "error" not in v),
+        # Points ecartes parce que posterieurs a la seance cible. Non vide veut
+        # dire que le script a tourne marches ouverts : la valeur retenue est la
+        # bonne, mais il faut pouvoir le constater plutot que le deviner.
+        "ignored_after_session": sorted(
+            (k, v["ignored_after_session"]) for k, v in markets.items()
+            if v.get("ignored_after_session")),
     }
 
     payload = {
