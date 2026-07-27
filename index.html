@@ -129,6 +129,31 @@
      entieres introduites par un intitule, et un decoupage en libelle / chiffre /
      contexte cassait ces phrases sans rien gagner en lisibilite. Meme forme que
      les puces du brief, a l'intitule en gras pres. */
+  /* ---------- calendrier prospectif ----------
+     Un jour par ligne, l'intitule du jour a gauche. Les jours passes de la semaine
+     sont estompes plutot que retires : le lecteur du jeudi veut voir que la Fed est
+     derriere lui, pas la chercher. Le jour courant est marque. */
+  .cal{margin-top:4px}
+  .cal-day{display:grid;grid-template-columns:minmax(94px,auto) 1fr;gap:12px;
+           padding:6px 0;border-top:1px solid #1a2132}
+  .cal-day:first-child{border-top:none}
+  .cal-date{color:var(--dim);font-weight:600}
+  .cal-today .cal-date{color:var(--accent)}
+  .cal-past{opacity:.45}
+  .cal-items{margin:0;padding:0;list-style:none}
+  .cal-items li{margin-bottom:3px;line-height:1.55}
+  .cal-items li:last-child{margin-bottom:0}
+  .cal-h{color:var(--faint);font-variant-numeric:tabular-nums}
+  .cal-z{color:var(--dim);font-weight:600}
+  /* Attendu et precedent : la valeur qui compte est celle qui sort, pas celle
+     qu'on anticipe — les deux restent donc en retrait du libelle. Un chiffre
+     publie, lui, passe au premier plan. */
+  .cal-att{color:var(--dim)}
+  .cal-pub{color:var(--ink);font-weight:600}
+  @media (max-width:560px){
+    .cal-day{grid-template-columns:1fr;gap:2px}
+  }
+
   .fs-list{margin:0;padding-left:17px;list-style:none}
   .fs-list li{position:relative;margin-bottom:7px;line-height:1.6;color:#c9d3e4}
   .fs-list li:last-child{margin-bottom:0}
@@ -408,6 +433,62 @@ function factsetHTML(fs, briefDate){
     </div>${rows}</div>`;
 }
 
+/* Calendrier prospectif de la semaine. Le reste du brief regarde derriere lui —
+   une seance close, des faits acquis. Ce bloc regarde devant : ce qui tombe cette
+   semaine et quel jour. C'est la seule partie du brief ou une date future est
+   legitime, et rien n'y est chiffre autrement qu'en attendu de consensus, toujours
+   attribue. */
+function calendarHTML(cal, briefDate){
+  const days = (cal && cal.days) || [];
+  if (!days.length) return "";
+  const today = briefDate || "";
+  const jour = (iso) => new Date(iso + "T00:00:00")
+    .toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"});
+
+  /* Un evenement se lit heure, zone, libelle, puis ses valeurs. `actual` n'existe
+     qu'apres publication : le brief etant regenere chaque matin, un attendu de la
+     veille se retrouve remplace par le chiffre sorti, sans que la ligne bouge. */
+  const evt = (e) => {
+    if (typeof e === "string") return `<li>${e}</li>`;
+    const chiffres = [];
+    if (e.actual)   chiffres.push(`<span class="cal-pub">${e.actual}</span>`);
+    if (e.forecast) chiffres.push(`<span class="cal-att">attendu ${e.forecast}</span>`);
+    if (e.previous) chiffres.push(`<span class="cal-att">précédent ${e.previous}</span>`);
+    return `<li>`
+      + (e.time ? `<span class="cal-h">${e.time}</span> ` : "")
+      + (e.zone ? `<span class="cal-z">${e.zone}</span> ` : "")
+      + e.label
+      + (chiffres.length ? ` — ${chiffres.join(" · ")}` : "")
+      + `</li>`;
+  };
+
+  const rows = days.map(d => {
+    const cls = d.date === today ? " cal-today"
+              : (d.date < today ? " cal-past" : "");
+    const items = d.events || d.items || [];
+    return `<div class="cal-day${cls}">
+      <span class="cal-date">${jour(d.date)}</span>
+      <ul class="cal-items">${items.map(evt).join("")}</ul>
+    </div>`;
+  }).join("");
+
+  const src = (cal.sources || []).filter(s => s.url);
+  /* Une page de calendrier officiel est permanente : elle n'a pas de date de
+     publication, et la signaler « non vérifiable » la ferait passer pour douteuse
+     alors qu'elle fait autorité. */
+  const srcLine = src.length
+    ? `<div class="srcs">Sources : ` + src.map(s =>
+        `<a href="${s.url}" target="_blank" rel="noopener" title="${
+          s.kind === "reference" ? "calendrier officiel, page permanente"
+          : s.published ? "publié le " + frDate(s.published)
+                        : "date de publication non vérifiable"}">${
+          s.source || "source"} ↗</a>`).join(" · ") + `</div>`
+    : "";
+
+  return `<div class="zone"><h3>Le calendrier de la semaine</h3>
+    <div class="cal">${rows}</div>${srcLine}</div>`;
+}
+
 /* Rend un brief en chaine HTML. Separer la construction de l'ecriture dans le
    DOM permet a la recherche de concatener plusieurs briefs sans manipulation
    d'elements temporaires. */
@@ -460,6 +541,8 @@ function briefHTML(brief, highlight){
           : "")
       + `${srcLine}</div>`;
   }
+  /* Ferme le brief : tout ce qui precede est acquis, ce qui suit est attendu. */
+  if (!highlight) html += calendarHTML(brief.calendar, brief.date);
   return html || `<span class="empty">Brief vide.</span>`;
 }
 

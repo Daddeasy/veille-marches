@@ -1,10 +1,10 @@
 {
   "date": "2026-07-27",
   "session": "2026-07-24",
-  "generated_at": "2026-07-27T09:56:30Z",
+  "generated_at": "2026-07-27T10:21:31Z",
   "focus": {
     "title": "Suspension des frappes américaines en Iran, le pétrole et les taux refluent",
-    "body": "Après treize nuits consécutives de frappes américaines contre l'Iran, Washington a suspendu sa campagne : aucune attaque n'a été signalée samedi ni dimanche, et le président américain a déclaré vouloir laisser de la place à la diplomatie. Une source iranienne citée par Boursorama indique que Téhéran cessera ses attaques tant que les États-Unis feront de même. Les cours de clôture du brief restent ceux de la séance du vendredi 24 juillet : le Brent y termine à 96,78 dollars, en baisse de 3,88 %, et le 10 ans américain à 4,679 %, en repli de 2,4 pb. Ce lundi en séance, la presse donne le contrat de septembre sur le Brent en baisse de 7,4 % à 89,73 dollars vers 11 h, le Bund en retrait de 5 pb à 3,16 % et l'OAT de 6 pb à 3,92 %. S'ouvre par ailleurs la semaine la plus chargée de la saison des résultats américains, avec 177 composantes du S&P 500 et les décisions de la Réserve fédérale, de la Banque d'Angleterre et de la Banque du Japon."
+    "body": "Après treize nuits consécutives de frappes américaines contre l'Iran, Washington a suspendu sa campagne vendredi soir. Selon l'ambassadeur des États-Unis auprès des Nations unies, s'exprimant sur une chaîne de télévision américaine dimanche, le président américain a interrompu les attaques pour laisser du champ à la diplomatie ; le New York Times, cité par CNBC, rapporte de source administrative que le projet d'intensifier les frappes a été écarté pour l'heure, sur fond de préoccupations quant à l'état des stocks d'intercepteurs antimissiles. Une source iranienne de haut rang citée par Reuters a indiqué dimanche que Téhéran cesserait ses attaques tant que les États-Unis s'abstiendraient. Les cours de clôture de ce brief restent ceux de la séance du vendredi 24 juillet : le Brent y termine à 96,78 dollars, en baisse de 3,88 %, et le 10 ans américain à 4,679 %, en repli de 2,4 pb. Ce lundi en séance, CNBC donne le contrat de septembre sur le Brent en baisse de 7,3 % à 89,73 dollars à 4 h 45 heure de New York. S'ouvre par ailleurs la semaine la plus chargée de la saison des résultats américains, avec 177 composantes du S&P 500 et les décisions de la Réserve fédérale, de la Banque d'Angleterre et de la Banque du Japon."
   },
   "factset": {
     "as_of": "2026-07-24",
@@ -33,6 +33,92 @@
       }
     ]
   },
+  "calendar": {
+    "week_of": "2026-07-27",
+    "note": "Événements classés trois étoiles par le calendrier économique d'Investing.com, horaires de Paris. Attendus de consensus du même calendrier.",
+    "days": [
+      {
+        "date": "2026-07-27",
+        "events": [
+          { "time": "14:30", "zone": "US", "label": "Commandes de biens durables de juin, sur un mois", "forecast": "+1,6 %", "previous": "−4,5 %" },
+          { "label": "Résultats : AstraZeneca, Vodafone, TF1 ; LVMH après la clôture" },
+          { "label": "Allemagne : indice Ifo du climat des affaires de juillet", "actual": "86,6", "forecast": "85,7", "previous": "85,7" }
+        ]
+      },
+      {
+        "date": "2026-07-28",
+        "events": [
+          { "time": "16:00", "zone": "US", "label": "Confiance des consommateurs du Conference Board, juillet", "forecast": "92,1", "previous": "91,2" },
+          { "label": "États-Unis : premier jour de la réunion de la Réserve fédérale, tenue les 28 et 29 juillet selon son calendrier officiel" }
+        ]
+      },
+      {
+        "date": "2026-07-29",
+        "events": [
+          { "time": "16:30", "zone": "US", "label": "Stocks hebdomadaires de pétrole brut", "previous": "+2,010 millions de barils" },
+          { "time": "20:00", "zone": "US", "label": "Décision de taux de la Réserve fédérale, puis communiqué", "forecast": "3,75 %", "previous": "3,75 %" },
+          { "time": "20:30", "zone": "US", "label": "Conférence de presse du comité de politique monétaire" },
+          { "label": "Une chance sur trois est donnée à une hausse de 25 pb, selon l'outil FedWatch du CME Group cité par CNBC" },
+          { "label": "Résultats : Meta et Microsoft après la clôture américaine" }
+        ]
+      },
+      {
+        "date": "2026-07-30",
+        "events": [
+          { "time": "10:00", "zone": "DE", "label": "Produit intérieur brut du deuxième trimestre, sur un trimestre", "forecast": "+0,1 %", "previous": "+0,3 %" },
+          { "time": "13:00", "zone": "UK", "label": "Décision de taux de la Banque d'Angleterre, juillet", "forecast": "3,75 %", "previous": "3,75 %" },
+          { "time": "14:00", "zone": "DE", "label": "Indice des prix à la consommation de juillet, sur un mois", "forecast": "+0,7 %", "previous": "−0,3 %" },
+          { "time": "14:30", "zone": "US", "label": "Produit intérieur brut du deuxième trimestre, estimation avancée, sur un trimestre", "forecast": "+2,3 %", "previous": "+2,1 %" },
+          { "time": "14:30", "zone": "US", "label": "Indice des prix des dépenses de consommation hors énergie et alimentation, juin, sur un mois", "forecast": "+0,1 %", "previous": "+0,3 %" },
+          { "time": "14:30", "zone": "US", "label": "Le même indice sur un an", "previous": "+3,4 %" },
+          { "time": "14:30", "zone": "US", "label": "Demandes hebdomadaires d'allocations chômage", "forecast": "206 000", "previous": "187 000" },
+          { "label": "Résultats : Amazon et Apple" }
+        ]
+      },
+      {
+        "date": "2026-07-31",
+        "events": [
+          { "time": "03:30", "zone": "CN", "label": "Indice des directeurs d'achats manufacturier de juillet", "forecast": "49,9", "previous": "50,3" },
+          { "time": "05:00", "zone": "JP", "label": "Décision de taux de la Banque du Japon", "forecast": "1,00 %", "previous": "1,00 %" },
+          { "time": "11:00", "zone": "EU", "label": "Indice des prix à la consommation de juillet, sur un an", "forecast": "+2,9 %", "previous": "+2,8 %" },
+          { "time": "15:45", "zone": "US", "label": "Indice des directeurs d'achats de Chicago, juillet", "previous": "56,7" },
+          { "label": "Prochain FactSet Earnings Insight, arrêté au 31 juillet" }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "source": "Investing.com",
+        "url": "https://www.investing.com/economic-calendar/",
+        "kind": "reference"
+      },
+      {
+        "source": "Réserve fédérale",
+        "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+        "kind": "reference"
+      },
+      {
+        "source": "Bureau of Economic Analysis",
+        "url": "https://www.bea.gov/news/schedule",
+        "kind": "reference"
+      },
+      {
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/27/dollar-pulls-back-as-us-iran-attacks-pause-oil-drops.html",
+        "published": "2026-07-27"
+      },
+      {
+        "source": "ABC Bourse",
+        "url": "https://www.abcbourse.com/marches/les-taux-en-europe-et-aux-etats-unis-reculent-dans-le-sillage-du-petrole_700370",
+        "published": "2026-07-27"
+      },
+      {
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/agenda-zonebourse-des-resultats-de-societes-semaine-du-27-au-31-juillet-2026-8d01460ed23ed8c4ba026e6fcf062c3b",
+        "published": "2026-07-24"
+      }
+    ]
+  },
   "sections": {
     "macro": [
       {
@@ -42,10 +128,18 @@
         "published": "2026-07-27"
       },
       {
-        "text": "Trois banques centrales se prononcent cette semaine : la Réserve fédérale à l'issue d'une réunion de deux jours entamée mardi, la Banque d'Angleterre jeudi et la Banque du Japon vendredi. Un statu quo est attendu sur les taux américains ; Boursorama donne le marché à une chance sur trois pour une hausse.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
-        "published": "2026-07-27"
+        "text": "La Réserve fédérale se réunit les 28 et 29 juillet. Les contrats à terme sur les fonds fédéraux donnent une chance sur trois à une hausse de 25 pb mercredi, contre une probabilité de 16 % une semaine plus tôt, selon l'outil FedWatch du CME Group cité par CNBC. Le brief de vendredi rappelait que le marché attendait un statu quo.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/27/dollar-pulls-back-as-us-iran-attacks-pause-oil-drops.html",
+        "published": "2026-07-27",
+        "updated": "2026-07-27"
+      },
+      {
+        "text": "La Banque d'Angleterre jeudi et la Banque du Japon vendredi sont largement attendues sans changement de taux. Le yen évoluant près de ses plus bas de quarante ans face au dollar, la Banque du Japon devrait, selon CNBC, laisser la porte ouverte à de nouvelles hausses sans se prononcer sur leur rythme.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/27/dollar-pulls-back-as-us-iran-attacks-pause-oil-drops.html",
+        "published": "2026-07-27",
+        "updated": "2026-07-27"
       },
       {
         "text": "L'inflation mesurée par l'indice des dépenses de consommation des ménages américains et la première estimation du produit intérieur brut du deuxième trimestre sont publiées jeudi, cette dernière attendue à 2,3 %.",
@@ -56,41 +150,51 @@
     ],
     "geo": [
       {
-        "text": "Washington a suspendu sa campagne de frappes contre l'Iran après treize nuits consécutives : aucune attaque américaine n'a été signalée samedi ni dimanche, et aucune alerte n'a été relevée dans le Golfe. Le président américain a déclaré vouloir laisser de la place à la diplomatie, tandis qu'une source iranienne indique que Téhéran mettra fin à ses attaques lorsque les États-Unis feront de même.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
-        "published": "2026-07-27"
+        "text": "Le commandement central américain a déclaré samedi soir que son blocus naval contre l'Iran restait pleinement en vigueur : au 25 juillet, douze navires commerciaux tentant de le franchir ont été détournés, deux mis hors d'état de naviguer et deux arraisonnés. La marine des gardiens de la révolution iraniens affirme de son côté avoir établi une autorité complète sur le détroit d'Ormuz et avoir contraint six navires à jeter l'ancre en vingt-quatre heures.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/26/ukraine-strikes-iranian-vessels-tehran-accuses-kyiv-of-hostile-act.html",
+        "published": "2026-07-26",
+        "updated": "2026-07-26"
       },
       {
-        "text": "L'accalmie n'est pas générale : les Houthis du Yémen ont attaqué des installations pétrolières saoudiennes en mer Rouge.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
-        "published": "2026-07-27"
+        "text": "L'Iran a convoqué dimanche un diplomate ukrainien à Téhéran pour protester contre une attaque sur un navire commercial iranien en mer Caspienne, qui a fait un mort et plusieurs blessés parmi l'équipage selon Téhéran. Le président ukrainien avait indiqué samedi que ses forces avaient frappé en mer Caspienne des navires servant au transport de fret militaire impliquant l'Iran, ainsi qu'un bâtiment de guerre.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/26/ukraine-strikes-iranian-vessels-tehran-accuses-kyiv-of-hostile-act.html",
+        "published": "2026-07-26",
+        "updated": "2026-07-26"
       },
       {
-        "text": "Le Brent a terminé la séance du 24 juillet à 96,78 dollars, en baisse de 3,88 %. Ce lundi vers 11 h, ABC Bourse donne le contrat de septembre en repli de 7,4 % à 89,73 dollars, qu'il rattache à la pause des frappes américaines depuis vendredi soir.",
-        "source": "ABC Bourse",
-        "url": "https://www.abcbourse.com/marches/les-taux-en-europe-et-aux-etats-unis-reculent-dans-le-sillage-du-petrole_700370",
-        "published": "2026-07-27"
+        "text": "L'armée saoudienne a frappé des cibles houthies au Yémen après les attaques du groupe contre le trafic maritime en mer Rouge, et la défense aérienne saoudienne aurait intercepté samedi deux missiles balistiques tirés du Yémen. CNBC rattache ces deux séries de faits, avec les frappes ukrainiennes en mer Caspienne, à un élargissement du conflit au Moyen-Orient.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/26/ukraine-strikes-iranian-vessels-tehran-accuses-kyiv-of-hostile-act.html",
+        "published": "2026-07-26",
+        "updated": "2026-07-26"
+      },
+      {
+        "text": "Le Brent a terminé la séance du 24 juillet à 96,78 dollars, en baisse de 3,88 %. Ce lundi à 4 h 45 heure de New York, CNBC donne le contrat de septembre en repli de 7,3 % à 89,73 dollars et le brut léger américain de même échéance à 83,47 dollars, en baisse de 6,5 %. Selon Reuters, l'effort du Pakistan pour relancer les discussions entre Washington et Téhéran est soutenu par la Chine.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/27/oil-price-wti-brent-slide-as-iran-reportedly-may-halt-attacks.html",
+        "published": "2026-07-26",
+        "updated": "2026-07-27"
       }
     ],
     "micro": [
       {
-        "text": "AstraZeneca a dépassé les prévisions de bénéfice du deuxième trimestre et confirmé ses objectifs pour 2026, portée par la demande pour ses traitements. Vodafone relève ses prévisions à la suite de son accord avec Safaricom et s'attend à atteindre la fourchette haute de la nouvelle fourchette.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-22badda5c815d16b55a6c94f0e78e39c",
+        "text": "AstraZeneca publie un bénéfice par action hors éléments exceptionnels en hausse de 21 % à 2,63 dollars, au-dessus des 2,48 dollars attendus par les analystes interrogés par Bloomberg, pour un chiffre d'affaires de 15,4 milliards de dollars en progression de 6 % sur un an. Le groupe confirme ses prévisions annuelles, portées par une croissance à deux chiffres de son portefeuille en oncologie ; son traitement oral contre le cancer le plus vendu a rapporté 1,9 milliard de dollars sur le trimestre. Le titre a gagné jusqu'à 2 % à Londres.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-27/astrazeneca-s-cancer-medicines-spur-profit-growth",
         "published": "2026-07-27"
       },
       {
-        "text": "Eutelsat et SES recevront respectivement 443 millions d'euros et 5,6 milliards de dollars, soit 4,91 milliards d'euros, au titre des paiements incitatifs du plan de la commission fédérale des communications américaine pour la transition du spectre de la bande C supérieure.",
+        "text": "Vodafone relève ses prévisions à la suite de son accord avec Safaricom et s'attend à atteindre la fourchette haute de la nouvelle fourchette. Eutelsat et SES recevront respectivement 443 millions d'euros et 5,6 milliards de dollars, soit 4,91 milliards d'euros, au titre des paiements incitatifs du plan de la commission fédérale des communications américaine pour la transition du spectre de la bande C supérieure.",
         "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/eutelsat-et-ses-vont-recevoir-443-millions-d-euros-et-5-6-milliards-de-dollars-pour-la-transition-du-spectre-de-la-bande-c-superieure-aux-usa-3d78779ff1ef2322aaf0d40cab63d41a",
+        "url": "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-22badda5c815d16b55a6c94f0e78e39c",
         "published": "2026-07-27"
       },
       {
         "text": "Argenx rachète Forte Biosciences pour près de 2,2 milliards de dollars, opération motivée par l'ajout du médicament expérimental FB102. TF1 publie un chiffre d'affaires du deuxième trimestre au-dessus des attentes et confirme ses objectifs annuels.",
         "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-22badda5c815d16b55a6c94f0e78e39c",
+        "url": "https://www.boursorama.com/bourse/actualites/eutelsat-et-ses-vont-recevoir-443-millions-d-euros-et-5-6-milliards-de-dollars-pour-la-transition-du-spectre-de-la-bande-c-superieure-aux-usa-3d78779ff1ef2322aaf0d40cab63d41a",
         "published": "2026-07-27"
       },
       {
@@ -102,10 +206,10 @@
     ],
     "actions": [
       {
-        "text": "Aux États-Unis, la séance du 24 juillet laisse le S&P 500 à 7 411,98 (+0,05 %) et le Nasdaq 100 à 28 128,34 (−1,15 %). Avant l'ouverture de ce lundi, Boursorama donne les contrats à terme sur le S&P 500 en hausse de 0,8 % et sur le Nasdaq de 1,3 %.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/les-actions-et-les-obligations-rebondissent-alors-que-la-chute-des-cours-du-petrole-apporte-un-soulagement-face-a-l-inflation-df9e7213345f54d334be7152d44e2e8b",
-        "published": "2026-07-27"
+        "text": "Aux États-Unis, la séance du 24 juillet laisse le S&P 500 à 7 411,98 (+0,05 %) et le Nasdaq 100 à 28 128,34 (−1,15 %). Selon Bloomberg, le pétrole a reculé tandis que les obligations, les actions et l'or progressaient, les États-Unis et l'Iran s'abstenant de nouvelles frappes. Avant l'ouverture de ce lundi, Boursorama donnait les contrats à terme sur le S&P 500 en hausse de 0,8 % et sur le Nasdaq de 1,3 %.",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2026-07-26/oil-tumbles-as-us-and-iran-pause-military-strikes-markets-wrap",
+        "published": "2026-07-26"
       },
       {
         "text": "En Europe, le CAC 40 a clôturé le 24 juillet à 8 372,28 (+0,88 %) et l'Euro Stoxx 50 à 6 280,94 (+1,14 %). Ce lundi à l'ouverture, Boursorama attendait le CAC 40 en hausse de 0,75 %, le Dax de 1,09 %, le Stoxx 600 de 0,67 % et le FTSE 100 de 0,29 %.",
@@ -120,10 +224,11 @@
         "published": "2026-07-27"
       },
       {
-        "text": "Sur les autres actifs, le règlement du 24 juillet donne l'or à 4 070,80 dollars (+0,60 %) et le Brent à 96,78 dollars (−3,88 %) ; l'euro s'établissait à 1,1377 dollar au fixing de la Banque centrale européenne. Le bitcoin ressort à 64 505,40 dollars à la clôture du 26 juillet (+0,30 %) et l'indice Fear & Greed crypto à 26, en zone de peur, à la même date. Ce lundi, la presse donne l'or en hausse de 1,4 % à 4 110 dollars et l'euro à 1,1406 dollar.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
-        "published": "2026-07-27"
+        "text": "Sur le change et les autres actifs, le règlement du 24 juillet donne l'or à 4 070,80 dollars (+0,60 %) et l'euro s'établissait à 1,1377 dollar au fixing de la Banque centrale européenne. Ce lundi, CNBC donne l'euro à 1,1404 dollar (+0,3 %), le dollar en baisse de 0,2 % face au yen à 163,53, la livre à 1,333 dollar et l'indice dollar stable à 101,27. Le bitcoin ressort à 64 505,40 dollars à la clôture du 26 juillet (+0,30 %) et l'indice Fear & Greed crypto à 26, en zone de peur, à la même date : ces deux séries cotant en continu, leur date ne coïncide pas avec la séance actions du 24 juillet.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/27/dollar-pulls-back-as-us-iran-attacks-pause-oil-drops.html",
+        "published": "2026-07-27",
+        "updated": "2026-07-27"
       }
     ],
     "obligations": [
@@ -140,10 +245,11 @@
         "published": "2026-07-27"
       },
       {
-        "text": "Boursorama relevait plus tôt dans la matinée le 10 ans américain à 4,6345 %, en baisse de 4,4 pb, et le 2 ans à 4,2944 %, en repli de 3,7 pb.",
-        "source": "Boursorama",
-        "url": "https://www.boursorama.com/bourse/actualites/l-europe-vue-en-hausse-rassuree-par-le-moyen-orient-eb7d7ab488d603f1aca30c4572040adb",
-        "published": "2026-07-27"
+        "text": "Un stratégiste taux d'HSBC cité par CNBC estime que la hausse des cours du pétrole a nourri l'idée que la Réserve fédérale pourrait devoir maintenir une politique restrictive plus longtemps, tout en relevant que les anticipations d'inflation sont restées relativement contenues malgré la flambée de l'énergie.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/27/oil-price-wti-brent-slide-as-iran-reportedly-may-halt-attacks.html",
+        "published": "2026-07-26",
+        "updated": "2026-07-27"
       }
     ]
   }

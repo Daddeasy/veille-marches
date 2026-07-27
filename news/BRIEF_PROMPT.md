@@ -140,6 +140,85 @@ résumer ni recalculer.
 La clé est optionnelle : si le PDF est introuvable, l'omettre plutôt que la
 remplir de valeurs approchées, et le dire dans le compte rendu au lecteur.
 
+### Le calendrier de la semaine, en clôture du brief
+
+Le brief regarde derrière lui — une séance close, des faits acquis. Le dernier
+bloc regarde devant : **ce qui tombe cette semaine, et quel jour**. C'est la
+seule partie du brief où une date future est légitime.
+
+#### Ce qui entre, et le filtre des trois étoiles
+
+Source retenue : le **calendrier économique d'Investing.com**, restreint aux
+événements qu'il classe **trois étoiles**. Le filtre n'est pas cosmétique — la
+semaine du 27 juillet 2026 comptait 338 lignes, dont 17 à trois étoiles. Sans
+lui, le bloc est illisible.
+
+Cela déroge à la règle générale sur `investing.com`, qui n'autorise le site que
+comme source d'article. La dérogation est **une décision explicite du
+propriétaire du dépôt**, prise en connaissance de la restriction : les CGU et le
+caractère sous licence des données valent pour les cotations, et l'agenda est
+extrait manuellement à raison d'une lecture par jour. Les dates des grands
+rendez-vous sont par ailleurs **recoupées sur les calendriers officiels** —
+`federalreserve.gov` pour le FOMC, `bea.gov` pour le PIB et les revenus des
+ménages. C'est ce recoupement qui fait foi en cas de divergence.
+
+S'y ajoutent, hors filtre étoiles : les **résultats d'entreprises de premier
+rang** et la publication du prochain *Earnings Insight*. N'y entrent pas les
+commentaires, les objectifs de cours, ni rien qui n'ait de date.
+
+#### La semaine entière, complétée jour après jour
+
+Le calendrier couvre la **semaine entière, du lundi au vendredi**, et non les
+seuls jours à venir. Les jours passés ne sont pas retirés : le site les estompe
+et marque le jour courant. Un lecteur du jeudi veut voir que la réunion de la
+Réserve fédérale est derrière lui, pas la chercher.
+
+Le brief étant régénéré chaque matin, **le champ `actual` se remplit à mesure que
+les chiffres sortent**. Un attendu de la veille se retrouve doublé du chiffre
+publié sans que la ligne bouge, et le site met le publié au premier plan,
+l'attendu en retrait. C'est ce qui donne au bloc sa valeur au fil de la semaine :
+lundi il annonce, vendredi il récapitule.
+
+**Une prévision n'est admise qu'attribuée**, comme partout ailleurs. `forecast`
+porte le consensus du calendrier ; toute autre anticipation va dans un `label`
+avec son détenteur nommé — « une chance sur trois donnée à une hausse de 25 pb
+selon l'outil FedWatch du CME Group ».
+
+```json
+"calendar": {
+  "week_of": "2026-07-27",
+  "note": "Événements classés trois étoiles par le calendrier économique d'Investing.com, horaires de Paris.",
+  "days": [
+    { "date": "2026-07-30",
+      "events": [
+        { "time": "14:30", "zone": "US",
+          "label": "Produit intérieur brut du deuxième trimestre, estimation avancée, sur un trimestre",
+          "forecast": "+2,3 %", "previous": "+2,1 %" },
+        { "label": "Résultats : Amazon et Apple" }
+      ] }
+  ],
+  "sources": [
+    { "source": "Réserve fédérale", "url": "https://...", "kind": "reference" },
+    { "source": "CNBC", "url": "https://...", "published": "2026-07-27" }
+  ]
+}
+```
+
+`time` en heure de Paris, `zone` en code court, `label` en français et sans
+abréviation anglaise. `actual` est absent tant que le chiffre n'est pas sorti.
+Une entrée sans `time` est un repère de la journée — des résultats, un
+commentaire attribué.
+
+`sources` **passe le même contrôle de date que les puces** :
+`brief_check.py` les vérifie sous la rubrique `calendrier`. Un agenda adossé à un
+article de la semaine précédente annoncerait des événements déjà passés.
+
+`kind: "reference"` distingue les **pages permanentes** — un calendrier officiel
+n'est pas un article, il ne porte aucune date de publication. Le contrôle de
+fenêtre est alors sans objet, et le site les signale comme telles au lieu de les
+marquer « date non vérifiable », ce qui ferait passer une source faisant autorité
+pour douteuse.
+
 Court, donc : **2 à 4 puces par rubrique**, deux à quatre phrases chacune. Pas de
 titre sur les puces — un paragraphe suivi de sa source.
 

@@ -145,10 +145,30 @@ def main() -> int:
     unverified_undeclared: list[str] = []
     mismatch: list[str] = []
 
-    for section, items in brief.get("sections", {}).items():
+    # Le calendrier porte ses propres sources, hors de `sections`. Elles passent
+    # le meme controle de date : un agenda de la semaine adosse a un article de
+    # la semaine derniere annoncerait des evenements deja passes.
+    checked = dict(brief.get("sections", {}))
+    cal_sources = (brief.get("calendar") or {}).get("sources") or []
+    if cal_sources:
+        checked["calendrier"] = cal_sources
+
+    for section, items in checked.items():
         for item in items:
             url = item.get("url", "")
             declared = item.get("published")
+
+            # Une page de calendrier officiel — le calendrier du FOMC, la grille
+            # de publication du BEA — n'est pas un article : elle est permanente
+            # et ne porte aucune date de publication. Exiger date_unverified la
+            # ferait afficher comme douteuse, alors qu'elle fait autorite. Le
+            # champ kind vaut alors "reference" et le controle de fenetre est sans
+            # objet alors que la source, elle, reste nommee et cliquable.
+            if item.get("kind") == "reference":
+                print(f"{section:<12}{item['source'][:20]:<22}"
+                      f"{'—':<12}{'—':<12}REFERENCE (page permanente)")
+                continue
+
             found = real_date(url)
 
             if found is None:
