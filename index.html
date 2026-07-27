@@ -107,6 +107,32 @@
   .srcs a{color:#7fb4ea;text-decoration:none}
   .srcs a:hover{text-decoration:underline}
 
+  /* ---------- encart FactSet, en tete de la rubrique micro ----------
+     Publication hebdomadaire du vendredi, reprise a l'identique toute la semaine :
+     le fond decale du panneau signale au premier regard que ce bloc ne porte pas
+     sur la seance, et la date « au JJ/MM/AAAA » dit de quel jour il parle. */
+  .fs{background:var(--panel2);border:1px solid var(--line);border-radius:7px;
+      padding:10px 12px;margin-bottom:11px}
+  .fs-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:6px}
+  .fs-name{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+           color:#c3cde0;font-weight:650}
+  .fs-as{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  .fs-q{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;font-weight:600;
+        padding:1.5px 5px;border-radius:4px;background:#1b2c44;color:#7fb4ea}
+  .fs-head a{font-family:var(--mono);font-size:11.5px;color:#7fb4ea;
+             text-decoration:none;margin-left:auto}
+  .fs-head a:hover{text-decoration:underline}
+  .fs-row{display:grid;grid-template-columns:minmax(115px,1fr) minmax(88px,auto) 3fr;
+          gap:10px;padding:4px 0;border-top:1px solid #1a2132;align-items:baseline}
+  .fs-lab{color:var(--dim);font-size:12.5px}
+  .fs-val{font-family:var(--mono);font-weight:600;color:var(--ink);
+          font-variant-numeric:tabular-nums;text-align:right}
+  .fs-det{color:#c9d3e4;font-size:12.5px;line-height:1.5}
+  @media (max-width:560px){
+    .fs-row{grid-template-columns:1fr auto;row-gap:2px}
+    .fs-det{grid-column:1/-1}
+  }
+
   .ctrl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
   input[type=search],select{font:inherit;font-size:13.5px;color:var(--ink);
     background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 9px}
@@ -128,6 +154,8 @@
   @media print{
     body{background:#fff;color:#000}
     .news{border-color:#bbb;background:#fff;break-inside:avoid}
+    .fs{background:#fff;border-color:#ccc;break-inside:avoid}
+    .fs-name,.fs-val{color:#000} .fs-det{color:#222}
     .c-name,.focus h3,.focus p{color:#000}
     .bul li{color:#222}
     table.board td{border-bottom-color:#ddd}
@@ -350,6 +378,33 @@ const SECTIONS = {
 let briefCache = {};   // date -> brief
 let briefIndex = [];
 
+/* Encart FactSet Earnings Insight, en tete de la rubrique micro. Le document est
+   hebdomadaire — publie le vendredi — donc repris a l'identique pendant toute la
+   semaine suivante. D'ou la date « au JJ/MM/AAAA » affichee en clair : sans elle,
+   un lecteur du jeudi prendrait pour frais des chiffres vieux de six jours. Elle
+   passe en ambre au-dela de huit jours, comme les dates perimees du tableau : a
+   ce stade le vendredi suivant est passe et le PDF n'a pas ete releve. */
+function factsetHTML(fs, briefDate){
+  if (!fs || !fs.as_of || !(fs.metrics || []).length) return "";
+  const age = briefDate
+    ? (new Date(briefDate + "T00:00:00") - new Date(fs.as_of + "T00:00:00")) / 864e5
+    : 0;
+  const late = age > 8 ? ' class="stale-date"' : "";
+  const rows = fs.metrics.map(m => `<div class="fs-row">
+      <span class="fs-lab">${m.label}</span>
+      <span class="fs-val">${m.value}</span>
+      <span class="fs-det">${m.detail || ""}</span>
+    </div>`).join("");
+  return `<div class="fs">
+    <div class="fs-head">
+      <span class="fs-name">FactSet Earnings Insight</span>
+      <span class="fs-as"${late} title="publication hebdomadaire du vendredi">au ${frDate(fs.as_of)}</span>
+      ${fs.quarter ? `<span class="fs-q">${fs.quarter}</span>` : ""}
+      ${fs.url ? `<a href="${fs.url}" target="_blank" rel="noopener"
+                     title="Key Metrics, page 1 du rapport">PDF ↗</a>` : ""}
+    </div>${rows}</div>`;
+}
+
 /* Rend un brief en chaine HTML. Separer la construction de l'ecriture dans le
    DOM permet a la recherche de concatener plusieurs briefs sans manipulation
    d'elements temporaires. */
@@ -375,7 +430,11 @@ function briefHTML(brief, highlight){
      suivi de sa source cliquable. */
   for (const [key, title] of Object.entries(SECTIONS)){
     const items = (brief.sections && brief.sections[key]) || [];
-    if (!items.length) continue;
+    /* L'encart FactSet ouvre la rubrique micro. Rendu ici et non dans la
+       recherche : celle-ci ne garde que les puces contenant le terme cherche,
+       un encart de saison de resultats y serait hors sujet. */
+    const encart = key === "micro" ? factsetHTML(brief.factset, brief.date) : "";
+    if (!items.length && !encart) continue;
     /* Les liens sont regroupes sous la rubrique plutot qu'accroches a chaque
        puce : le texte reste lisible d'un trait, et les sources sont dedoublonnees. */
     const seenSrc = new Map();
@@ -390,9 +449,13 @@ function briefHTML(brief, highlight){
             m.unv ? " ⚠" : ""} ↗</a>`).join(" · ") + `</div>`
       : "";
 
-    html += `<div class="zone"><h3>${title}</h3><ul class="bul">`
-      + items.map(it => `<li>${mark(it.text)}</li>`).join("")
-      + `</ul>${srcLine}</div>`;
+    html += `<div class="zone"><h3>${title}</h3>${encart}`
+      + (items.length
+          ? `<ul class="bul">`
+            + items.map(it => `<li>${mark(it.text)}</li>`).join("")
+            + `</ul>`
+          : "")
+      + `${srcLine}</div>`;
   }
   return html || `<span class="empty">Brief vide.</span>`;
 }

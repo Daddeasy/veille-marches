@@ -68,6 +68,71 @@ récapitulatif de semaine, pas de performance depuis le début de l'année, pas 
 « graphique de la semaine », pas de tableau de performances — la bande
 d'indicateurs en haut du site joue déjà ce rôle, en plus compact.
 
+### Encart FactSet Earnings Insight, dans la rubrique `micro`
+
+Seule exception au « une seule séance » : la rubrique micro ouvre sur un encart
+reprenant les **Key Metrics** de *FactSet Earnings Insight*, le point
+hebdomadaire sur la saison de résultats du S&P 500. Il donne à la rubrique le
+seul chiffre qu'une séance ne fournit pas — où en est la saison dans son
+ensemble : taux de surprise, croissance des bénéfices, révisions, valorisation.
+
+C'est un document **hebdomadaire, publié le vendredi**. Il est donc repris à
+l'identique pendant toute la semaine qui suit, et **sa date doit être affichée**
+sous la forme « au JJ/MM/AAAA ». Sans cette date, un lecteur du jeudi croirait
+lire des chiffres de la veille alors qu'ils ont six jours.
+
+**Retrouver le fichier de la semaine.** L'URL est déterministe :
+
+```
+https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_MMJJAA.pdf
+```
+
+où `MMJJAA` est la date du **vendredi le plus récent**, au format américain
+mois-jour-année sur deux chiffres chacun : le 24 juillet 2026 donne
+`EarningsInsight_072426.pdf`, le 31 juillet donnera `EarningsInsight_073126.pdf`.
+Vérifier par une requête `HEAD` : le fichier du vendredi n'est en ligne qu'en
+cours de journée américaine. Sur un 404, reculer d'une semaine et corriger
+`as_of` en conséquence — jamais afficher la date demandée si c'est le fichier de
+la semaine précédente qui a répondu.
+
+**Lire le PDF.** Aucune extraction de texte n'est disponible par défaut sur le
+poste ; `py -m pip install --user pypdf` puis
+`PdfReader(chemin).pages[0].extract_text()` suffit, les Key Metrics tiennent
+entièrement sur la page 1.
+
+**Ne rien recopier d'autre que les métriques.** Le pied de page 1 porte le nom
+de l'analyste signataire et deux adresses e-mail. `privacy_check.py` les
+refuserait, et à juste titre : le dépôt est public.
+
+Les chiffres de l'encart **ne viennent pas de `latest.json`** — c'est la seconde
+exception admise à la règle sur les chiffres, au même titre qu'une statistique
+macro. Elle tient parce qu'ils sont attribués et datés : la source est nommée,
+le lien pointe sur le PDF, et `as_of` dit de quel jour ils parlent. Les
+reproduire tels quels, sans arrondi ni recalcul, aux conventions françaises près
+(virgule décimale, espace avant le pourcent).
+
+Structure de la clé `factset`, à la racine du brief :
+
+```json
+"factset": {
+  "as_of": "2026-07-24",
+  "quarter": "T2 2026",
+  "url": "https://advantage.factset.com/hubfs/.../EarningsInsight_072426.pdf",
+  "metrics": [
+    { "label": "Publications",
+      "value": "27 % du S&P 500",
+      "detail": "86 % de surprises positives sur le bénéfice par action, 80 % sur le chiffre d'affaires." }
+  ]
+}
+```
+
+Cinq entrées attendues dans `metrics`, dans l'ordre du document : publications
+(*Earnings Scorecard*), croissance des bénéfices, révisions, prévisions des
+entreprises (*guidance*), valorisation. `label` est court, `value` porte le
+chiffre saillant, `detail` la phrase de contexte. La clé est optionnelle : si le
+PDF est introuvable, l'omettre plutôt que la remplir de valeurs approchées, et
+le dire dans le compte rendu au lecteur.
+
 Court, donc : **2 à 4 puces par rubrique**, deux à quatre phrases chacune. Pas de
 titre sur les puces — un paragraphe suivi de sa source.
 
@@ -82,6 +147,8 @@ titre sur les puces — un paragraphe suivi de sa source.
     "title": "Titre court du sujet dominant",
     "body": "Un paragraphe de trois à cinq phrases."
   },
+  "factset": { "as_of": "2026-07-24", "quarter": "T2 2026",
+               "url": "https://...", "metrics": [] },
   "sections": {
     "macro": [
       { "text": "Un paragraphe factuel.",

@@ -73,6 +73,48 @@ def real_date(url: str) -> str | None:
     return None
 
 
+def check_factset(brief: dict) -> list[str]:
+    """Coherence de l'encart FactSet Earnings Insight.
+
+    Le document est hebdomadaire et repris a l'identique toute la semaine : rien
+    dans le texte ne signale qu'il vieillit. Trois verifications suffisent a
+    l'empecher de deriver — as_of anterieure au brief, nom du PDF cite conforme a
+    as_of, et age inferieur a huit jours, delai au-dela duquel le vendredi suivant
+    est passe sans qu'on ait releve le nouveau fichier.
+    """
+    fs = brief.get("factset")
+    if not fs:
+        print("factset : encart absent de ce brief.")
+        return []
+
+    problems: list[str] = []
+    as_of = fs.get("as_of")
+    try:
+        d = dt.date.fromisoformat(as_of)
+    except (TypeError, ValueError):
+        print(f"factset : as_of illisible ({as_of!r})")
+        return ["factset / as_of absente ou illisible"]
+
+    age = (dt.date.fromisoformat(brief["date"]) - d).days
+    # Nom de fichier FactSet : EarningsInsight_MMJJAA.pdf, date americaine.
+    expected = d.strftime("%m%d%y")
+    in_url = re.search(r"EarningsInsight_(\d{6})\.pdf", fs.get("url", "") or "")
+
+    print(f"factset : as_of {as_of} ({age} j), {len(fs.get('metrics') or [])} metriques")
+    if age < 0:
+        problems.append(f"factset / as_of {as_of} posterieure au brief")
+    if age > 8:
+        problems.append(f"factset / as_of {as_of} vieille de {age} j, relever le PDF du vendredi")
+    if not fs.get("metrics"):
+        problems.append("factset / aucune metrique")
+    if in_url and in_url.group(1) != expected:
+        problems.append(f"factset / le PDF cite est celui du {in_url.group(1)}, "
+                        f"as_of annonce {expected}")
+    elif not in_url:
+        problems.append("factset / url absente ou hors motif EarningsInsight_MMJJAA.pdf")
+    return problems
+
+
 def main() -> int:
     news = os.path.join(ROOT, "news")
     if len(sys.argv) > 1:
@@ -142,6 +184,12 @@ def main() -> int:
                   f"{str(declared or '—'):<12}{str(found or '—'):<12}{verdict}")
 
     print()
+    factset_problems = check_factset(brief)
+    print()
+    if factset_problems:
+        print(f"{len(factset_problems)} probleme(s) sur l'encart FactSet :")
+        for x in factset_problems:
+            print(f"  {x}")
     if out_of_window:
         print(f"{len(out_of_window)} article(s) HORS FENETRE, a retirer du brief :")
         for x in out_of_window:
@@ -156,7 +204,7 @@ def main() -> int:
         for x in unverified_undeclared:
             print(f"  {x}")
 
-    if out_of_window or mismatch or unverified_undeclared:
+    if out_of_window or mismatch or unverified_undeclared or factset_problems:
         return 1
     print("Toutes les dates d'article sont coherentes.")
     return 0
