@@ -459,6 +459,11 @@ function calendarHTML(cal, briefDate){
       + (e.zone ? `<span class="cal-z">${e.zone}</span> ` : "")
       + e.label
       + (chiffres.length ? ` — ${chiffres.join(" · ")}` : "")
+      /* Les variantes d'un meme indicateur — le PCE en quatre declinaisons,
+         l'enquete du Michigan en autant — sont regroupees ici plutot que sur
+         quatre lignes. Sans ce pli, la seule journee du 31 juillet en comptait
+         vingt-deux. */
+      + (e.detail ? ` <span class="cal-att">${e.detail}</span>` : "")
       + `</li>`;
   };
 

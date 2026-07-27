@@ -146,12 +146,35 @@ Le brief regarde derrière lui — une séance close, des faits acquis. Le derni
 bloc regarde devant : **ce qui tombe cette semaine, et quel jour**. C'est la
 seule partie du brief où une date future est légitime.
 
-#### Ce qui entre, et le filtre des trois étoiles
+#### Ce qui entre : deux filtres, l'importance et la zone
 
-Source retenue : le **calendrier économique d'Investing.com**, restreint aux
-événements qu'il classe **trois étoiles**. Le filtre n'est pas cosmétique — la
-semaine du 27 juillet 2026 comptait 338 lignes, dont 17 à trois étoiles. Sans
-lui, le bloc est illisible.
+Source retenue : le **calendrier économique d'Investing.com**. Deux filtres s'y
+appliquent, et il faut les deux — la semaine du 27 juillet 2026 comptait 338
+lignes.
+
+1. **Importance** : les événements classés **deux ou trois étoiles**. En dessous,
+   c'est du remplissage.
+2. **Zone** : États-Unis, zone euro, France, Allemagne, Royaume-Uni, Chine, Inde,
+   Japon. Pas la planète entière.
+
+Mesures faites sur cette semaine-là, qui expliquent le réglage : les trois
+étoiles seules donnaient 17 lignes, mais laissaient la France et l'Allemagne
+quasi invisibles — aucune de leurs publications majeures n'y figure. Ouvrir aux
+deux étoiles sur toutes ces zones donnait 57 lignes, dont 22 le seul 31 juillet.
+D'où le troisième réglage, ci-dessous.
+
+**Écarter le bruit récurrent**, quelle que soit l'étoile : adjudications de bons
+du Trésor, GDPNow d'Atlanta republié chaque jour, stocks hebdomadaires de l'API,
+indices de prix immobiliers, inscriptions à Pôle emploi. Ce sont les lignes qui
+gonflent le compte sans rien apprendre.
+
+**Regrouper les variantes d'un même indicateur sur une seule ligne.** C'est le
+réglage qui fait la différence : le PCE américain paraît en quatre déclinaisons
+— sur un mois, sur un an, hors énergie et alimentation, trimestriel —, l'enquête
+du Michigan en quatre, la Banque du Japon en quatre lignes entre décision,
+communiqué, rapport et conférence de presse. Une ligne par indicateur, le chiffre
+principal dans `forecast` et `previous`, le reste dans `detail`. Le compte tombe
+alors à une trentaine de lignes sur la semaine.
 
 Cela déroge à la règle générale sur `investing.com`, qui n'autorise le site que
 comme source d'article. La dérogation est **une décision explicite du

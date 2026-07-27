@@ -35,27 +35,29 @@
   },
   "calendar": {
     "week_of": "2026-07-27",
-    "note": "Événements classés trois étoiles par le calendrier économique d'Investing.com, horaires de Paris. Attendus de consensus du même calendrier.",
+    "note": "Événements classés deux et trois étoiles par le calendrier économique d'Investing.com, restreints aux États-Unis, à la zone euro, à la France, à l'Allemagne, au Royaume-Uni, à la Chine, à l'Inde et au Japon. Horaires de Paris, attendus de consensus du même calendrier. Les variantes d'un même indicateur sont regroupées sur une ligne.",
     "days": [
       {
         "date": "2026-07-27",
         "events": [
-          { "time": "14:30", "zone": "US", "label": "Commandes de biens durables de juin, sur un mois", "forecast": "+1,6 %", "previous": "−4,5 %" },
-          { "label": "Résultats : AstraZeneca, Vodafone, TF1 ; LVMH après la clôture" },
-          { "label": "Allemagne : indice Ifo du climat des affaires de juillet", "actual": "86,6", "forecast": "85,7", "previous": "85,7" }
+          { "time": "10:00", "zone": "DE", "label": "Enquête Ifo de juillet : climat des affaires", "actual": "86,6", "forecast": "86,1", "previous": "85,7", "detail": "Anticipations à 86,7 contre 84,3, situation courante à 86,5 contre 87,0." },
+          { "time": "14:30", "zone": "US", "label": "Commandes de biens durables de juin, sur un mois", "forecast": "+1,6 %", "previous": "−4,5 %", "detail": "Hors défense et transport, attendues à +0,9 % contre +1,3 %." },
+          { "label": "Résultats : AstraZeneca, Vodafone, TF1 ; LVMH après la clôture" }
         ]
       },
       {
         "date": "2026-07-28",
         "events": [
+          { "time": "07:00", "zone": "JP", "label": "Inflation sous-jacente calculée par la Banque du Japon, sur un an", "previous": "+2,7 %" },
+          { "time": "14:30", "zone": "US", "label": "Balance des échanges de biens de juin", "forecast": "−98,00 milliards de dollars", "previous": "−105,89 milliards de dollars" },
           { "time": "16:00", "zone": "US", "label": "Confiance des consommateurs du Conference Board, juillet", "forecast": "92,1", "previous": "91,2" },
+          { "time": "12:00", "label": "Réunion de l'Organisation des pays exportateurs de pétrole" },
           { "label": "États-Unis : premier jour de la réunion de la Réserve fédérale, tenue les 28 et 29 juillet selon son calendrier officiel" }
         ]
       },
       {
         "date": "2026-07-29",
         "events": [
-          { "time": "16:30", "zone": "US", "label": "Stocks hebdomadaires de pétrole brut", "previous": "+2,010 millions de barils" },
           { "time": "20:00", "zone": "US", "label": "Décision de taux de la Réserve fédérale, puis communiqué", "forecast": "3,75 %", "previous": "3,75 %" },
           { "time": "20:30", "zone": "US", "label": "Conférence de presse du comité de politique monétaire" },
           { "label": "Une chance sur trois est donnée à une hausse de 25 pb, selon l'outil FedWatch du CME Group cité par CNBC" },
@@ -65,23 +67,35 @@
       {
         "date": "2026-07-30",
         "events": [
-          { "time": "10:00", "zone": "DE", "label": "Produit intérieur brut du deuxième trimestre, sur un trimestre", "forecast": "+0,1 %", "previous": "+0,3 %" },
-          { "time": "13:00", "zone": "UK", "label": "Décision de taux de la Banque d'Angleterre, juillet", "forecast": "3,75 %", "previous": "3,75 %" },
-          { "time": "14:00", "zone": "DE", "label": "Indice des prix à la consommation de juillet, sur un mois", "forecast": "+0,7 %", "previous": "−0,3 %" },
-          { "time": "14:30", "zone": "US", "label": "Produit intérieur brut du deuxième trimestre, estimation avancée, sur un trimestre", "forecast": "+2,3 %", "previous": "+2,1 %" },
-          { "time": "14:30", "zone": "US", "label": "Indice des prix des dépenses de consommation hors énergie et alimentation, juin, sur un mois", "forecast": "+0,1 %", "previous": "+0,3 %" },
-          { "time": "14:30", "zone": "US", "label": "Le même indice sur un an", "previous": "+3,4 %" },
-          { "time": "14:30", "zone": "US", "label": "Demandes hebdomadaires d'allocations chômage", "forecast": "206 000", "previous": "187 000" },
+          { "time": "07:30", "zone": "FR", "label": "Produit intérieur brut du deuxième trimestre, sur un trimestre", "forecast": "+0,2 %", "previous": "−0,1 %", "detail": "Précédent de +0,9 % sur un an." },
+          { "time": "07:30", "zone": "FR", "label": "Dépenses de consommation des ménages de juin, sur un mois", "forecast": "−0,1 %", "previous": "+0,5 %" },
+          { "time": "10:00", "zone": "DE", "label": "Produit intérieur brut du deuxième trimestre, sur un trimestre", "forecast": "+0,1 %", "previous": "+0,3 %", "detail": "Précédent de +0,4 % sur un an." },
+          { "time": "11:00", "zone": "EU", "label": "Produit intérieur brut de la zone euro, deuxième trimestre, sur un trimestre", "forecast": "+0,2 %", "previous": "−0,2 %", "detail": "Précédent de +0,3 % sur un an." },
+          { "time": "11:00", "zone": "EU", "label": "Taux de chômage de la zone euro, juin", "forecast": "6,2 %", "previous": "6,2 %" },
+          { "time": "13:00", "zone": "UK", "label": "Décision de taux de la Banque d'Angleterre, juillet", "forecast": "3,75 %", "previous": "3,75 %", "detail": "Répartition des voix précédente : sept pour le statu quo, deux pour une hausse, aucune pour une baisse. Compte rendu de la réunion publié en même temps." },
+          { "time": "14:00", "zone": "DE", "label": "Indice des prix à la consommation de juillet, sur un mois", "forecast": "+0,7 %", "previous": "−0,3 %", "detail": "Précédent de +2,3 % sur un an." },
+          { "time": "15:15", "zone": "UK", "label": "Intervention du gouverneur de la Banque d'Angleterre" },
+          { "time": "14:30", "zone": "US", "label": "Produit intérieur brut du deuxième trimestre, estimation avancée, sur un trimestre", "forecast": "+2,3 %", "previous": "+2,1 %", "detail": "Indice des prix du produit intérieur brut attendu à +3,7 % contre +3,6 %." },
+          { "time": "14:30", "zone": "US", "label": "Prix des dépenses de consommation de juin, hors énergie et alimentation, sur un mois", "forecast": "+0,1 %", "previous": "+0,3 %", "detail": "Précédent de +3,4 % sur un an. Ensemble de l'indice : précédents de +0,4 % sur un mois et +4,1 % sur un an." },
+          { "time": "14:30", "zone": "US", "label": "Dépenses des ménages de juin, sur un mois", "forecast": "+0,4 %", "previous": "+0,7 %" },
+          { "time": "14:30", "zone": "US", "label": "Nouvelles demandes hebdomadaires d'allocations chômage", "forecast": "206 000", "previous": "187 000", "detail": "Demandes en cours : précédent de 1 796 000." },
           { "label": "Résultats : Amazon et Apple" }
         ]
       },
       {
         "date": "2026-07-31",
         "events": [
-          { "time": "03:30", "zone": "CN", "label": "Indice des directeurs d'achats manufacturier de juillet", "forecast": "49,9", "previous": "50,3" },
-          { "time": "05:00", "zone": "JP", "label": "Décision de taux de la Banque du Japon", "forecast": "1,00 %", "previous": "1,00 %" },
-          { "time": "11:00", "zone": "EU", "label": "Indice des prix à la consommation de juillet, sur un an", "forecast": "+2,9 %", "previous": "+2,8 %" },
+          { "time": "01:30", "zone": "JP", "label": "Inflation sous-jacente de Tokyo, juillet, sur un an", "forecast": "+1,8 %", "previous": "+1,6 %" },
+          { "time": "01:50", "zone": "JP", "label": "Production industrielle de juin, sur un mois", "forecast": "+0,7 %", "previous": "+0,1 %" },
+          { "time": "03:30", "zone": "CN", "label": "Indice des directeurs d'achats manufacturier de juillet", "forecast": "49,9", "previous": "50,3", "detail": "Non manufacturier attendu à 50,0 contre 50,2, composite précédent à 50,6." },
+          { "time": "05:00", "zone": "JP", "label": "Décision de taux de la Banque du Japon, communiqué et rapport de perspectives", "forecast": "1,00 %", "previous": "1,00 %", "detail": "Conférence de presse à 8 h 30." },
+          { "time": "08:45", "zone": "FR", "label": "Indice des prix à la consommation de juillet, sur un mois", "forecast": "+0,3 %", "previous": "−0,3 %", "detail": "Indice harmonisé : précédent de −0,3 %." },
+          { "time": "09:55", "zone": "DE", "label": "Variation du chômage de juillet", "forecast": "+5 000", "previous": "−1 000", "detail": "Taux de chômage : précédent de 6,3 %." },
+          { "time": "11:00", "zone": "EU", "label": "Indice des prix à la consommation de la zone euro, juillet, sur un an", "forecast": "+2,9 %", "previous": "+2,8 %", "detail": "Sous-jacent attendu à +2,4 % contre +2,4 %, ensemble de l'indice précédent à −0,1 % sur un mois." },
+          { "time": "14:30", "zone": "US", "label": "Indice du coût de l'emploi, deuxième trimestre", "forecast": "+0,8 %", "previous": "+0,9 %" },
           { "time": "15:45", "zone": "US", "label": "Indice des directeurs d'achats de Chicago, juillet", "previous": "56,7" },
+          { "time": "13:15", "zone": "UK", "label": "Intervention d'un membre du comité de politique monétaire de la Banque d'Angleterre" },
+          { "time": "16:00", "zone": "US", "label": "Enquête de confiance de l'université du Michigan, juillet", "forecast": "54,4", "previous": "54,4", "detail": "Anticipations à 54,0, anticipations d'inflation à un an de 4,2 % et à cinq ans de 3,3 %." },
           { "label": "Prochain FactSet Earnings Insight, arrêté au 31 juillet" }
         ]
       }
