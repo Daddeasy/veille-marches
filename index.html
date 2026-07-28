@@ -299,6 +299,11 @@
   /* Deux classes, encore : .k-num est declaree apres .up et .down et l'emporterait
      sinon a specificite egale. Le troisieme cas de cette feuille. */
   .k-num.up{color:var(--pos)} .k-num.down{color:var(--neg)}
+  /* Colonnes propres au tableau des publications de resultats. Le creneau —
+     avant l'ouverture, apres la cloture — est en retrait : c'est un qualificatif,
+     pas une donnee que l'on parcourt du regard. */
+  .k-det-inline{color:var(--dim)}
+  .w-sym{width:64px} .w-when{width:180px} .w-eps{width:104px}
   /* Un chiffre sorti prime sur ce qu'on en attendait. Les deux variantes portent
      deux classes : .k-pub est declaree apres .up et .down et l'emporterait sinon
      a specificite egale, comme cela s'est deja produit sur la date de l'encart. */
@@ -679,6 +684,30 @@ const FLAGS = (() => {
 const ZONE_NOM = {US: "États-Unis", EU: "zone euro", FR: "France", DE: "Allemagne",
                   UK: "Royaume-Uni", CN: "Chine", JP: "Japon", IN: "Inde"};
 
+/* ------------------------------------------------- comparaison de chiffres ---
+   Deux blocs s'en servent, le calendrier et les publications de resultats : un
+   seul jeu de fonctions, sinon les deux copies divergent.
+
+   Convention reprise du calendrier d'Investing : vert au-dessus de la reference,
+   rouge en dessous. A lire « au-dessus », NON « bonne nouvelle » — une inflation
+   au-dessus des attentes ressort verte. D'ou l'infobulle, qui nomme la comparaison
+   au lieu de la juger : le brief ne commente pas, ces tableaux non plus. */
+const nombreFr = (s) => {
+  if (typeof s !== "string") return null;
+  const n = Number(s.replace(/[\s  ]/g, "")   // espaces, insecables comprises
+                     .replace(/−/g, "-")             // signe moins typographique
+                     .replace(/[%$]/g, "").replace(/,/g, "."));
+  return Number.isFinite(n) ? n : null;
+};
+
+const sens = (valeur, reference, contre, egal) => {
+  const a = nombreFr(valeur), b = nombreFr(reference);
+  if (a === null || b === null) return {cls: "", tip: ""};
+  if (a > b) return {cls: " up",   tip: `au-dessus ${contre}`};
+  if (a < b) return {cls: " down", tip: `en dessous ${contre}`};
+  return {cls: "", tip: egal};
+};
+
 /* Calendrier prospectif de la semaine. Le reste du brief regarde derriere lui —
    une seance close, des faits acquis. Ce bloc regarde devant : ce qui tombe cette
    semaine et quel jour. C'est la seule partie du brief ou une date future est
@@ -703,14 +732,6 @@ function calendarHTML(cal, briefDate){
      « bonne nouvelle » — une inflation au-dessus des attentes ressort verte. D'ou
      l'infobulle, qui nomme la comparaison au lieu de la juger : le brief ne
      commente pas, ce tableau non plus. */
-  const nombreFr = (s) => {
-    if (typeof s !== "string") return null;
-    const n = Number(s.replace(/[\s  ]/g, "")   // espaces, insecables comprises
-                       .replace(/−/g, "-")           // signe moins typographique
-                       .replace(/%/g, "").replace(/,/g, "."));
-    return Number.isFinite(n) ? n : null;
-  };
-
   const evt = (e, cls) => {
     if (typeof e === "string") e = {label: e};
     if (!e.time && !e.forecast && !e.previous && !e.actual)
@@ -722,13 +743,6 @@ function calendarHTML(cal, briefDate){
        pas — un attendu a +0,2 % apres un precedent a −0,1 % annonce un retournement
        avant meme la publication.
        Le precedent, lui, reste neutre : il n'a rien contre quoi se comparer ici. */
-    const sens = (valeur, reference, contre, egal) => {
-      const a = nombreFr(valeur), b = nombreFr(reference);
-      if (a === null || b === null) return {cls: "", tip: ""};
-      if (a > b) return {cls: " up",   tip: `au-dessus ${contre}`};
-      if (a < b) return {cls: " down", tip: `en dessous ${contre}`};
-      return {cls: "", tip: egal};
-    };
     const p = sens(e.actual, e.forecast, "du consensus", "conforme au consensus");
     const c = sens(e.forecast, e.previous, "du précédent relevé",
                    "inchangé par rapport au précédent relevé");
@@ -785,6 +799,83 @@ function calendarHTML(cal, briefDate){
     </tr></thead><tbody>${rows}</tbody></table>${srcLine}</div>`;
 }
 
+/* Publications de resultats, dans la rubrique micro. Ce que la rubrique n'avait
+   pas : qui publie, quel jour, et avant l'ouverture ou apres la cloture. La
+   distinction est celle qui compte — un resultat tombe apres la cloture de New
+   York se lit sur la seance du lendemain, pas sur celle du jour.
+
+   Meme tableau que le calendrier, aux memes classes : c'est la meme lecture, il n'y
+   avait pas de raison d'inventer un troisieme style. Le BPA attendu est compare a
+   celui de l'an dernier, avec la convention de couleur du calendrier. */
+function earningsHTML(e, briefDate){
+  const days = (e && e.days) || [];
+  if (!days.length) return "";
+  const today = briefDate || "";
+  const jour = (iso) => new Date(iso + "T00:00:00")
+    .toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"});
+
+  const rows = days.map(d => {
+    const cls = d.date === today ? " k-today"
+              : (d.date < today ? " k-past" : "");
+    return `<tr class="k-jour${cls}"><td colspan="5">${jour(d.date)}</td></tr>`
+      + (d.companies || []).map(c => {
+          const s = sens(c.eps_forecast, c.eps_last_year,
+                         "du bénéfice par action de l'an dernier",
+                         "au niveau de l'an dernier");
+          return `<tr class="${cls.trim()}">
+            <td class="k-z">${c.symbol || ""}</td>
+            <td class="k-ev">${c.name}</td>
+            <td class="k-ev k-det-inline">${c.when || ""}</td>
+            <td class="k-num${s.cls}" title="${s.tip}">${c.eps_forecast || ""}</td>
+            <td class="k-num k-prec" title="${
+              c.eps_last_year ? "an dernier " + c.eps_last_year : ""}">${
+              c.eps_last_year || ""}</td>
+          </tr>`;
+        }).join("");
+  }).join("");
+
+  const src = e.url
+    ? `<div class="srcs">Source : <a href="${e.url}" target="_blank"
+         rel="noopener" title="calendrier permanent, sans date de publication"
+         >${e.source || "source"} ↗</a>${
+         e.note ? ` <span class="k-det">${e.note}</span>` : ""}</div>`
+    : "";
+
+  return `<table class="cal">
+    <colgroup><col class="w-sym"><col><col class="w-when">
+      <col class="w-eps"><col class="w-eps k-prec"></colgroup>
+    <thead><tr><th>Ticker</th><th>Société</th><th>Publication</th>
+      <th class="r">BPA attendu</th><th class="r k-prec">An dernier</th></tr></thead>
+    <tbody>${rows}</tbody></table>${src}`
+    + moversHTML(e.movers);
+}
+
+/* Plus forts mouvements du jour sur les grandes valeurs. Ce que les publications
+   seules ne montrent pas : une valeur qui bouge sur autre chose qu'un resultat.
+
+   Le flux ne porte PAS la raison du mouvement, et le bloc ne l'invente pas — il
+   affiche des faits de cotation, comme la bande d'indicateurs. L'explication, quand
+   elle existe, est du ressort des puces de la rubrique, attribuee a sa source. */
+function moversHTML(mv){
+  if (!mv || !((mv.up || []).length + (mv.down || []).length)) return "";
+  const ligne = (c) => `<tr>
+    <td class="k-z">${c.symbol || ""}</td>
+    <td class="k-ev">${c.name}</td>
+    <td class="k-ev k-det-inline">${c.sector || ""}</td>
+    <td class="k-num ${nombreFr(c.pct) > 0 ? "up" : "down"}">${c.pct}</td>
+    <td class="k-num k-prec">${c.cap || ""}</td>
+  </tr>`;
+  const groupe = (titre, lot) => !lot || !lot.length ? "" :
+    `<tr class="k-jour"><td colspan="5">${titre}</td></tr>` + lot.map(ligne).join("");
+  return `<table class="cal">
+    <colgroup><col class="w-sym"><col><col class="w-when">
+      <col class="w-eps"><col class="w-eps k-prec"></colgroup>
+    <thead><tr><th>Ticker</th><th>Société</th><th>Secteur</th>
+      <th class="r">Variation</th><th class="r k-prec">Capitalisation</th></tr></thead>
+    <tbody>${groupe("Plus fortes hausses", mv.up)}
+      ${groupe("Plus fortes baisses", mv.down)}</tbody></table>`;
+}
+
 /* Rend un brief en chaine HTML. Separer la construction de l'ecriture dans le
    DOM permet a la recherche de concatener plusieurs briefs sans manipulation
    d'elements temporaires. */
@@ -812,7 +903,10 @@ function briefHTML(brief, highlight){
     /* L'encart FactSet ouvre la rubrique micro. Rendu ici et non dans la
        recherche : celle-ci ne garde que les puces contenant le terme cherche,
        un encart de saison de resultats y serait hors sujet. */
-    const encart = key === "micro" ? factsetHTML(brief.factset, brief.date) : "";
+    const encart = key === "micro"
+      ? factsetHTML(brief.factset, brief.date)
+        + earningsHTML(brief.earnings, brief.date)
+      : "";
     if (!items.length && !encart) continue;
     /* Les liens sont regroupes sous la rubrique plutot qu'accroches a chaque
        puce : le texte reste lisible d'un trait, et les sources sont dedoublonnees. */

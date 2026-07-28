@@ -391,7 +391,15 @@
         "published": "2026-07-27"
       },
       {
-        "text": "LVMH a publié lundi après la clôture un bénéfice net et une marge stables au premier semestre, pour un chiffre d'affaires du deuxième trimestre en hausse de 3 % à taux de change constants, à 19,5 milliards d'euros. Selon CNBC, la demande américaine est restée solide quand les ventes et les dépenses ont ralenti en Europe et en Chine, l'horlogerie-joaillerie constituant le segment le plus dynamique. Boursorama attendait le titre en repli de 2 % avant l'ouverture.",
+        "text": "Le rapport financier semestriel publié par LVMH donne un chiffre d'affaires de 38 644 millions d'euros au 30 juin, contre 39 810 millions un an plus tôt, soit −3 % en publié et +2 % en organique, l'effet de change ayant coûté 5 points. Le résultat opérationnel courant ressort à 8 691 millions contre 9 012 millions, et le résultat net part du groupe est stable à 5 698 millions contre 5 697 millions. Par activité en organique, l'horlogerie-joaillerie mène à +9 %, devant les vins et spiritueux et la distribution sélective à +5 %, la mode et la maroquinerie reculant de 1 %. Les États-Unis représentent 25 % des ventes et l'Asie hors Japon 29 %.",
+        "source": "LVMH",
+        "url": "https://lvmh-com.cdn.prismic.io/lvmh-com/CmJbUDA5Jzsdufho_LVMH_2026Firsthalffinancialreport.pdf",
+        "published": "2026-07-27",
+        "date_unverified": true,
+        "note_source": "rapport financier semestriel de la société, arrêté au 30 juin 2026"
+      },
+      {
+        "text": "Selon CNBC, la demande américaine est restée solide quand les ventes et les dépenses ont ralenti en Europe et en Chine, l'horlogerie-joaillerie constituant le segment le plus dynamique. Boursorama attendait le titre en repli de 2 % avant l'ouverture.",
         "source": "CNBC",
         "url": "https://www.cnbc.com/2026/07/28/daily-open-ai-boom-chip-selloff-sk-hynix.html",
         "published": "2026-07-28"
@@ -449,5 +457,428 @@
         "published": "2026-07-28"
       }
     ]
+  },
+  "earnings": {
+    "as_of": "2026-07-28",
+    "source": "Nasdaq",
+    "url": "https://www.nasdaq.com/market-activity/earnings",
+    "note": "Sociétés cotées aux États-Unis dont la capitalisation dépasse 50 milliards de dollars, huit au plus par jour, les plus grandes d'abord. Le calendrier du Nasdaq ne couvre pas les cotations européennes : pour celles-ci, l'agenda de presse reste la source.",
+    "days": [
+      {
+        "date": "2026-07-27",
+        "companies": [
+          {
+            "name": "AstraZeneca",
+            "symbol": "AZN",
+            "when": "horaire non communiqué",
+            "eps_forecast": "2,50 $",
+            "eps_last_year": null,
+            "cap": "262 Md$"
+          },
+          {
+            "name": "Welltower",
+            "symbol": "WELL",
+            "when": "horaire non communiqué",
+            "eps_forecast": "1,55 $",
+            "eps_last_year": null,
+            "cap": "175 Md$"
+          },
+          {
+            "name": "Cadence Design Systems",
+            "symbol": "CDNS",
+            "when": "horaire non communiqué",
+            "eps_forecast": "1,62 $",
+            "eps_last_year": null,
+            "cap": "93 Md$"
+          },
+          {
+            "name": "Nucor",
+            "symbol": "NUE",
+            "when": "horaire non communiqué",
+            "eps_forecast": "4,57 $",
+            "eps_last_year": null,
+            "cap": "56 Md$"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-28",
+        "companies": [
+          {
+            "name": "Visa",
+            "symbol": "V",
+            "when": "après la clôture",
+            "eps_forecast": "3,23 $",
+            "eps_last_year": "2,98 $",
+            "cap": "674 Md$"
+          },
+          {
+            "name": "Coca-Cola",
+            "symbol": "KO",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,92 $",
+            "eps_last_year": "0,87 $",
+            "cap": "354 Md$"
+          },
+          {
+            "name": "KLA",
+            "symbol": "KLAC",
+            "when": "après la clôture",
+            "eps_forecast": "1 $",
+            "eps_last_year": "0,94 $",
+            "cap": "275 Md$"
+          },
+          {
+            "name": "Seagate Technology Holdings",
+            "symbol": "STX",
+            "when": "après la clôture",
+            "eps_forecast": "4,89 $",
+            "eps_last_year": "2,34 $",
+            "cap": "191 Md$"
+          },
+          {
+            "name": "Boeing",
+            "symbol": "BA",
+            "when": "avant l'ouverture",
+            "eps_forecast": "−0,34 $",
+            "eps_last_year": "−1,24 $",
+            "cap": "165 Md$"
+          },
+          {
+            "name": "S&P Global",
+            "symbol": "SPGI",
+            "when": "avant l'ouverture",
+            "eps_forecast": "4,49 $",
+            "eps_last_year": "4,43 $",
+            "cap": "126 Md$"
+          },
+          {
+            "name": "Corning Incorporated",
+            "symbol": "GLW",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,76 $",
+            "eps_last_year": "0,60 $",
+            "cap": "126 Md$"
+          },
+          {
+            "name": "GSK",
+            "symbol": "GSK",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,27 $",
+            "eps_last_year": "1,23 $",
+            "cap": "104 Md$"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-29",
+        "companies": [
+          {
+            "name": "Microsoft",
+            "symbol": "MSFT",
+            "when": "après la clôture",
+            "eps_forecast": "4,21 $",
+            "eps_last_year": "3,65 $",
+            "cap": "2890 Md$"
+          },
+          {
+            "name": "Meta Platforms",
+            "symbol": "META",
+            "when": "après la clôture",
+            "eps_forecast": "7,13 $",
+            "eps_last_year": "7,14 $",
+            "cap": "1507 Md$"
+          },
+          {
+            "name": "Lam Research",
+            "symbol": "LRCX",
+            "when": "après la clôture",
+            "eps_forecast": "1,69 $",
+            "eps_last_year": "1,33 $",
+            "cap": "365 Md$"
+          },
+          {
+            "name": "HSBC Holdings",
+            "symbol": "HSBC",
+            "when": "horaire non communiqué",
+            "eps_forecast": "2,24 $",
+            "eps_last_year": "1,95 $",
+            "cap": "356 Md$"
+          },
+          {
+            "name": "Procter & Gamble",
+            "symbol": "PG",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,41 $",
+            "eps_last_year": "1,48 $",
+            "cap": "346 Md$"
+          },
+          {
+            "name": "Arm Holdings",
+            "symbol": "ARM",
+            "when": "après la clôture",
+            "eps_forecast": "0,18 $",
+            "eps_last_year": "0,16 $",
+            "cap": "283 Md$"
+          },
+          {
+            "name": "Amphenol",
+            "symbol": "APH",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,19 $",
+            "eps_last_year": "0,81 $",
+            "cap": "184 Md$"
+          },
+          {
+            "name": "QUALCOMM Incorporated",
+            "symbol": "QCOM",
+            "when": "après la clôture",
+            "eps_forecast": "1,54 $",
+            "eps_last_year": "2,29 $",
+            "cap": "179 Md$"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-30",
+        "companies": [
+          {
+            "name": "Apple",
+            "symbol": "AAPL",
+            "when": "après la clôture",
+            "eps_forecast": "1,88 $",
+            "eps_last_year": "1,57 $",
+            "cap": "4891 Md$"
+          },
+          {
+            "name": "Amazon.com",
+            "symbol": "AMZN",
+            "when": "après la clôture",
+            "eps_forecast": "1,81 $",
+            "eps_last_year": "1,68 $",
+            "cap": "2497 Md$"
+          },
+          {
+            "name": "Mastercard Incorporated",
+            "symbol": "MA",
+            "when": "avant l'ouverture",
+            "eps_forecast": "4,77 $",
+            "eps_last_year": "4,15 $",
+            "cap": "477 Md$"
+          },
+          {
+            "name": "Shell",
+            "symbol": "SHEL",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,02 $",
+            "eps_last_year": "1,42 $",
+            "cap": "251 Md$"
+          },
+          {
+            "name": "Anheuser-Busch Inbev SA",
+            "symbol": "BUD",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,09 $",
+            "eps_last_year": "0,98 $",
+            "cap": "161 Md$"
+          },
+          {
+            "name": "Mizuho Financial",
+            "symbol": "MFG",
+            "when": "horaire non communiqué",
+            "eps_forecast": "0,17 $",
+            "eps_last_year": "0,15 $",
+            "cap": "132 Md$"
+          },
+          {
+            "name": "Bristol-Myers Squibb",
+            "symbol": "BMY",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,59 $",
+            "eps_last_year": "1,46 $",
+            "cap": "127 Md$"
+          },
+          {
+            "name": "Stryker",
+            "symbol": "SYK",
+            "when": "après la clôture",
+            "eps_forecast": "3,46 $",
+            "eps_last_year": "3,13 $",
+            "cap": "127 Md$"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-31",
+        "companies": [
+          {
+            "name": "ExxonMobil Holdings",
+            "symbol": "XOM",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,87 $",
+            "eps_last_year": "1,64 $",
+            "cap": "642 Md$"
+          },
+          {
+            "name": "AbbVie",
+            "symbol": "ABBV",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,66 $",
+            "eps_last_year": "2,97 $",
+            "cap": "454 Md$"
+          },
+          {
+            "name": "Chevron",
+            "symbol": "CVX",
+            "when": "avant l'ouverture",
+            "eps_forecast": "5,81 $",
+            "eps_last_year": "1,77 $",
+            "cap": "378 Md$"
+          },
+          {
+            "name": "Linde",
+            "symbol": "LIN",
+            "when": "avant l'ouverture",
+            "eps_forecast": "4,49 $",
+            "eps_last_year": "4,09 $",
+            "cap": "235 Md$"
+          },
+          {
+            "name": "Sumitomo Mitsui Financial",
+            "symbol": "SMFG",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,44 $",
+            "eps_last_year": "0,40 $",
+            "cap": "168 Md$"
+          },
+          {
+            "name": "UBS AG",
+            "symbol": "UBS",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,90 $",
+            "eps_last_year": "0,72 $",
+            "cap": "163 Md$"
+          },
+          {
+            "name": "Eaton",
+            "symbol": "ETN",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,08 $",
+            "eps_last_year": "2,95 $",
+            "cap": "155 Md$"
+          },
+          {
+            "name": "Enbridge",
+            "symbol": "ENB",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,43 $",
+            "eps_last_year": "0,47 $",
+            "cap": "121 Md$"
+          }
+        ]
+      }
+    ],
+    "movers": {
+      "up": [
+        {
+          "name": "Shopify Inc. Subordinate Voting Shares",
+          "symbol": "SHOP",
+          "pct": "+11,54 %",
+          "last": "$126.88",
+          "sector": "Technology",
+          "cap": "164 Md$"
+        },
+        {
+          "name": "Palantir Technologies",
+          "symbol": "PLTR",
+          "pct": "+7,00 %",
+          "last": "$131.53",
+          "sector": "Technology",
+          "cap": "315 Md$"
+        },
+        {
+          "name": "SAP  SE ADS",
+          "symbol": "SAP",
+          "pct": "+6,88 %",
+          "last": "$171.01",
+          "sector": "Technology",
+          "cap": "210 Md$"
+        },
+        {
+          "name": "ServiceNow",
+          "symbol": "NOW",
+          "pct": "+6,86 %",
+          "last": "$105.56",
+          "sector": "Technology",
+          "cap": "109 Md$"
+        },
+        {
+          "name": "Sony Group Corporation American Depositary Shares",
+          "symbol": "SONY",
+          "pct": "+6,24 %",
+          "last": "$22.29",
+          "sector": "Consumer Staples",
+          "cap": "132 Md$"
+        },
+        {
+          "name": "Salesforce",
+          "symbol": "CRM",
+          "pct": "+6,07 %",
+          "last": "$173.60",
+          "sector": "Technology",
+          "cap": "142 Md$"
+        }
+      ],
+      "down": [
+        {
+          "name": "Sandisk",
+          "symbol": "SNDK",
+          "pct": "−11,02 %",
+          "last": "$1278.23",
+          "sector": "Technology",
+          "cap": "189 Md$"
+        },
+        {
+          "name": "SK hynix Inc. American Depositary Shares",
+          "symbol": "SKHY",
+          "pct": "−7,47 %",
+          "last": "$143.02",
+          "sector": "Technology",
+          "cap": "1042 Md$"
+        },
+        {
+          "name": "ASML Holding N.V. New York Registry Shares",
+          "symbol": "ASML",
+          "pct": "−5,79 %",
+          "last": "$1655.26",
+          "sector": "Technology",
+          "cap": "638 Md$"
+        },
+        {
+          "name": "Advanced Micro Devices",
+          "symbol": "AMD",
+          "pct": "−5,17 %",
+          "last": "$494.95",
+          "sector": "Technology",
+          "cap": "807 Md$"
+        },
+        {
+          "name": "NVIDIA",
+          "symbol": "NVDA",
+          "pct": "−4,99 %",
+          "last": "$196.51",
+          "sector": "Technology",
+          "cap": "4756 Md$"
+        },
+        {
+          "name": "Lam Research",
+          "symbol": "LRCX",
+          "pct": "−4,46 %",
+          "last": "$291.61",
+          "sector": "Technology",
+          "cap": "365 Md$"
+        }
+      ]
+    }
   }
 }
