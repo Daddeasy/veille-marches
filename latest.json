@@ -1,11 +1,11 @@
 {
   "date": "2026-07-27",
   "target_date": "2026-07-27",
-  "generated_at": "2026-07-28T12:19:09+00:00",
+  "generated_at": "2026-07-28T15:21:19+00:00",
   "eurusd": 1.1389,
   "markets": {
     "S&P 500": {
-      "level": 7452.48,
+      "level": 7413.18,
       "date": "2026-07-27",
       "ticker": "SPX",
       "ccy": "USD",
@@ -13,30 +13,35 @@
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 0.5964,
-      "pct": 0.5964,
-      "change_from": "2026-07-23",
-      "change_days": 4,
-      "w1": 0.1236,
-      "m1": 1.3389,
-      "m3": 3.8831,
-      "ytd": 8.8668,
-      "hi52": 7609.7798,
-      "lo52": 6238.0098,
-      "pctile_1y": 62.6,
-      "source": "yahoo:^GSPC",
+      "change": 0.0162,
+      "pct": 0.0162,
+      "change_from": "2026-07-24",
+      "change_days": 3,
+      "w1": -0.4044,
+      "m1": 0.8045,
+      "m3": 3.3353,
+      "ytd": 8.2927,
+      "hi52": 7609.78,
+      "lo52": 6238.01,
+      "pctile_1y": 4.4,
+      "source": "fred:SP500",
       "basis": "cloture de seance",
-      "fallback_notes": [
-        "fred:SP500: TimeoutError"
-      ],
       "age_days": 1,
+      "crosscheck": {
+        "comparable": true,
+        "source": "yahoo:^GSPC",
+        "value": 7413.180176,
+        "divergence_pct": 0.0,
+        "tolerance_pct": 2.0,
+        "ok": true
+      },
       "target_date": "2026-07-27",
       "on_target": true,
-      "eur_level": 6543.577136,
-      "eur_pct": 0.4909
+      "eur_level": 6509.070155,
+      "eur_pct": -0.0893
     },
     "Nasdaq 100": {
-      "level": 28245.8848,
+      "level": 28039.21,
       "date": "2026-07-27",
       "ticker": "NDX",
       "ccy": "USD",
@@ -44,27 +49,32 @@
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": -0.7342,
-      "pct": -0.7342,
-      "change_from": "2026-07-23",
-      "change_days": 4,
-      "w1": -1.2528,
-      "m1": -2.9959,
-      "m3": 3.4433,
-      "ytd": 11.8656,
-      "hi52": 30660.5996,
-      "lo52": 22763.3105,
-      "pctile_1y": 53.5,
-      "source": "yahoo:^NDX",
+      "change": -0.3169,
+      "pct": -0.3169,
+      "change_from": "2026-07-24",
+      "change_days": 3,
+      "w1": -1.9753,
+      "m1": -3.7057,
+      "m3": 2.6864,
+      "ytd": 11.047,
+      "hi52": 30660.6,
+      "lo52": 22763.31,
+      "pctile_1y": 24.1,
+      "source": "fred:NASDAQ100",
       "basis": "cloture de seance",
-      "fallback_notes": [
-        "fred:NASDAQ100: TimeoutError"
-      ],
       "age_days": 1,
+      "crosscheck": {
+        "comparable": true,
+        "source": "yahoo:^NDX",
+        "value": 28039.210938,
+        "divergence_pct": 0.0,
+        "tolerance_pct": 2.0,
+        "ok": true
+      },
       "target_date": "2026-07-27",
       "on_target": true,
-      "eur_level": 24801.022741,
-      "eur_pct": -0.8397
+      "eur_level": 24619.553956,
+      "eur_pct": -0.4224
     },
     "CAC 40": {
       "level": 8446.21,
@@ -147,7 +157,7 @@
       "ignored_after_session": [
         "2026-07-28"
       ],
-      "source": "yahoo:^N225",
+      "source": "yahoo:^N225+meta",
       "basis": "cloture de seance",
       "age_days": 1,
       "target_date": "2026-07-27",
@@ -205,7 +215,7 @@
       "ignored_after_session": [
         "2026-07-28"
       ],
-      "source": "yahoo:^KS11",
+      "source": "yahoo:^KS11+meta",
       "basis": "cloture de seance",
       "age_days": 1,
       "target_date": "2026-07-27",
@@ -231,6 +241,9 @@
       "hi52": 1.1974,
       "lo52": 1.134,
       "pctile_1y": 29.0,
+      "ignored_after_session": [
+        "2026-07-28"
+      ],
       "source": "ecb:EXR",
       "basis": "fixing BCE 14h15 CET",
       "age_days": 1,
@@ -259,7 +272,10 @@
       "ytd": 48.4,
       "hi52": 4.71,
       "lo52": 3.953,
-      "pctile_1y": 59.9,
+      "pctile_1y": 59.6,
+      "ignored_after_session": [
+        "2026-07-28"
+      ],
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
       "age_days": 1,
@@ -288,10 +304,12 @@
       "source": "cnbc:FR10Y-FR",
       "basis": "cloture de seance",
       "fallback_notes": [
-        "webstat:FRMOYTEC10: ValueError",
-        "fred:IRLTLT01FRM156N: TimeoutError"
+        "webstat:FRMOYTEC10: ValueError"
       ],
       "age_days": 1,
+      "crosscheck": {
+        "comparable": false
+      },
       "target_date": "2026-07-27",
       "on_target": true
     },
@@ -347,7 +365,7 @@
       "ytd": 3.0,
       "hi52": 31.05,
       "lo52": 13.47,
-      "pctile_1y": 45.5,
+      "pctile_1y": 46.1,
       "ignored_after_session": [
         "2026-07-28"
       ],
@@ -445,10 +463,10 @@
       ],
       "source": "yahoo:BZ=F",
       "basis": "reglement du contrat a terme",
-      "fallback_notes": [
-        "fred:DCOILBRENTEU: TimeoutError"
-      ],
       "age_days": 1,
+      "crosscheck": {
+        "comparable": false
+      },
       "target_date": "2026-07-27",
       "on_target": true,
       "eur_level": 79.436298,
@@ -542,6 +560,12 @@
         ]
       ],
       [
+        "10Y US",
+        [
+          "2026-07-28"
+        ]
+      ],
+      [
         "Bitcoin",
         [
           "2026-07-28"
@@ -555,6 +579,12 @@
       ],
       [
         "CAC 40",
+        [
+          "2026-07-28"
+        ]
+      ],
+      [
+        "EUR/USD",
         [
           "2026-07-28"
         ]

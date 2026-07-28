@@ -207,6 +207,15 @@ def cmd_start(force: bool) -> int:
     log(f"{DIM}  date {brief['date']} · seance {brief['session']}"
         f" · fenetre d'actualite depuis la publication du brief du "
         f"{dates[0] if dates else '—'}{RESET}")
+    # Les deux collecteurs de la rubrique micro, et le radar de presse. Lances ici
+    # pour qu'une seule commande rassemble tout le mecanique : sans eux il fallait
+    # trois appels de plus, et c'est le nombre d'allers-retours qui allongeait le
+    # travail, pas la duree de chacun.
+    log()
+    run(["py", "earnings.py"], "publications de resultats et mouvements")
+    log()
+    run(["py", "news_radar.py"], "titres parus depuis le brief precedent")
+
     log()
     log(f"{BOLD}A faire a la main{RESET}")
     for a in alertes:
