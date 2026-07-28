@@ -140,6 +140,33 @@ résumer ni recalculer.
 La clé est optionnelle : si le PDF est introuvable, l'omettre plutôt que la
 remplir de valeurs approchées, et le dire dans le compte rendu au lecteur.
 
+### Ce que les scripts apportent à la rubrique micro
+
+`refresh.py start` remplit trois blocs sans intervention :
+
+- **les publications à venir**, du jour au vendredi, avec le créneau — avant
+  l'ouverture ou après la clôture — et le bénéfice par action attendu. Source :
+  le calendrier du Nasdaq, donc **sociétés cotées aux États-Unis seulement**.
+- **les plus forts mouvements** sur les valeurs de plus de 100 milliards de
+  dollars. Le flux ne porte pas la *raison* du mouvement : elle se cherche dans
+  la presse, et une ligne sans explication attribuée ne va pas dans une puce.
+- **le radar de presse** (`news_radar.py`), les titres parus depuis le
+  `generated_at` du brief précédent. Un titre n'est pas une source : lire
+  l'article, puis citer l'article.
+
+**Décision prise le 28/07/2026 : ne pas aller chercher le rapport officiel
+société par société.** L'essai a été concluant sur LVMH — le rapport financier
+semestriel est lisible et donne de meilleurs chiffres que la presse — mais il
+n'est pas généralisable à coût raisonnable. Chaque site de relations investisseurs
+a sa propre arborescence, et celui de LVMH renvoie un code 200 avec du HTML sur
+**n'importe quelle** adresse : une URL inventée passe pour valide, ce qui rend
+toute construction d'adresse dangereuse. Il faudrait une recette par société.
+
+**La presse suffit donc pour les résultats.** Si un rapport officiel se présente
+sans effort de recherche, le citer reste préférable — il porte les chiffres
+exacts. Ne pas le chercher pour autant, et ne jamais y recopier de nom de
+dirigeant : ces documents en sont remplis, et le dépôt est public.
+
 ### Le calendrier de la semaine, en clôture du brief
 
 Le brief regarde derrière lui — une séance close, des faits acquis. Le dernier
