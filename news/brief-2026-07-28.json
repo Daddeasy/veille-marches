@@ -379,30 +379,32 @@
     ],
     "micro": [
       {
-        "text": "Nvidia discuterait avec OpenAI d'une garantie pouvant atteindre 250 milliards de dollars, qui permettrait à cette dernière de lever la dette de location et de construction d'un campus de centres de données de dix gigawatts dans le comté de Pike, en Ohio. La garantie ne couvrirait pas les puces elles-mêmes, objet de discussions distinctes pouvant aller jusqu'à 350 milliards de dollars. Le projet est chiffré à plus de 500 milliards de dollars au total et les discussions restent susceptibles d'évoluer.",
+        "text": "Nvidia discuterait avec OpenAI d'une garantie pouvant atteindre 250 milliards de dollars, qui permettrait à cette dernière de lever la dette de location et de construction d'un campus de centres de données de dix gigawatts dans le comté de Pike, en Ohio. La garantie ne couvrirait pas les puces elles-mêmes, objet de discussions distinctes pouvant aller jusqu'à 350 milliards de dollars. Le projet est chiffré à plus de 500 milliards de dollars au total et les discussions restent susceptibles d'évoluer. Bloomberg rattache le mouvement de vente sur les fabricants de puces à la crainte d'un financement circulaire de l'intelligence artificielle, au vu des 750 milliards de dollars d'accords annoncés par le groupe.",
         "source": "CNBC",
         "url": "https://www.cnbc.com/2026/07/27/nvidia-and-openai-in-talks-for-up-to-250-billion-dollar-ai-backstop.html",
         "published": "2026-07-27"
       },
       {
-        "text": "Bloomberg rattache le mouvement de vente sur les fabricants de puces à la crainte d'un financement circulaire de l'intelligence artificielle, au vu des 750 milliards de dollars d'accords annoncés par Nvidia.",
-        "source": "Bloomberg",
-        "url": "https://www.bloomberg.com/news/articles/2026-07-27/nvidia-s-750-billion-deals-revive-fear-of-ai-circular-financing",
-        "published": "2026-07-27"
+        "text": "ASML a sa propre cause, distincte du financement de l'intelligence artificielle : le titre a cédé jusqu'à 8 % lundi après la publication d'un rapport selon lequel une entreprise chinoise soutenue par l'État a commencé à produire en série des machines de lithographie à ultraviolets profonds par immersion. Le néerlandais domine ce marché depuis vingt ans et réalise environ 20 % de son chiffre d'affaires en Chine. Bank of America juge que la menace est surestimée et que les investisseurs réagissent avec excès ; les analystes de SemiAnalysis, cités par CNBC, relèvent que la montée en cadence de la production de ces machines est la difficulté la plus sous-estimée.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/28/china-chipmaking-duv-tool-asml-explained.html",
+        "published": "2026-07-28"
       },
       {
-        "text": "Le rapport financier semestriel publié par LVMH donne un chiffre d'affaires de 38 644 millions d'euros au 30 juin, contre 39 810 millions un an plus tôt, soit −3 % en publié et +2 % en organique, l'effet de change ayant coûté 5 points. Le résultat opérationnel courant ressort à 8 691 millions contre 9 012 millions, et le résultat net part du groupe est stable à 5 698 millions contre 5 697 millions. Par activité en organique, l'horlogerie-joaillerie mène à +9 %, devant les vins et spiritueux et la distribution sélective à +5 %, la mode et la maroquinerie reculant de 1 %. Les États-Unis représentent 25 % des ventes et l'Asie hors Japon 29 %.",
+        "text": "Les six plus fortes baisses parmi les valeurs de plus de 100 milliards de dollars sont toutes des semi-conducteurs sur la séance du 27 juillet : Sandisk cède 11,02 %, SK hynix 7,47 %, ASML 5,79 %, Advanced Micro Devices 5,17 %, Nvidia 4,99 % et Lam Research 4,46 %. Les six plus fortes hausses sont toutes du logiciel ou des services : Shopify gagne 11,54 %, Palantir 7,00 %, SAP 6,88 %, ServiceNow 6,86 %, Sony 6,24 % et Salesforce 6,07 %.",
+        "source": "Nasdaq",
+        "url": "https://www.nasdaq.com/market-activity/stocks/screener",
+        "published": "2026-07-28",
+        "date_unverified": true,
+        "note_source": "relevé de cotation, capitalisations supérieures à 100 milliards de dollars"
+      },
+      {
+        "text": "Le rapport financier semestriel publié par LVMH donne un chiffre d'affaires de 38 644 millions d'euros au 30 juin, contre 39 810 millions un an plus tôt, soit −3 % en publié et +2 % en organique, l'effet de change ayant coûté 5 points. Le résultat opérationnel courant ressort à 8 691 millions contre 9 012 millions, et le résultat net part du groupe est stable à 5 698 millions contre 5 697 millions. Par activité en organique, l'horlogerie-joaillerie mène à +9 %, devant les vins et spiritueux et la distribution sélective à +5 %, la mode et la maroquinerie reculant de 1 %. Les États-Unis représentent 25 % des ventes et l'Asie hors Japon 29 %. CNBC relève que la demande américaine est restée solide quand les ventes ont ralenti en Europe et en Chine ; Boursorama attendait le titre en repli de 2 % avant l'ouverture.",
         "source": "LVMH",
         "url": "https://lvmh-com.cdn.prismic.io/lvmh-com/CmJbUDA5Jzsdufho_LVMH_2026Firsthalffinancialreport.pdf",
         "published": "2026-07-27",
         "date_unverified": true,
         "note_source": "rapport financier semestriel de la société, arrêté au 30 juin 2026"
-      },
-      {
-        "text": "Selon CNBC, la demande américaine est restée solide quand les ventes et les dépenses ont ralenti en Europe et en Chine, l'horlogerie-joaillerie constituant le segment le plus dynamique. Boursorama attendait le titre en repli de 2 % avant l'ouverture.",
-        "source": "CNBC",
-        "url": "https://www.cnbc.com/2026/07/28/daily-open-ai-boom-chip-selloff-sk-hynix.html",
-        "published": "2026-07-28"
       },
       {
         "text": "Safran relève ses perspectives pour 2026 après un premier semestre en forte hausse, porté par la demande de pièces de rechange pour moteurs d'avions civils. Orange relève ses objectifs annuels, en citant la consolidation de MasOrange. Le résultat d'exploitation semestriel d'Air Liquide ressort globalement en ligne avec les attentes, avec une nette accélération au deuxième trimestre.",
