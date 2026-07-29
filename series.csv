@@ -222,5 +222,7 @@ date,instrument,value,source
 2026-07-28,EUR/USD,1.136700,ecb:EXR
 2026-07-28,Fear & Greed crypto,29.000000,alternative.me:fng
 2026-07-28,Nasdaq 100,27763.130000,fred:NASDAQ100
+2026-07-28,Nasdaq 100,27763.135000,yahoo:^NDX
 2026-07-28,Or,4036.300049,yahoo:GC=F
 2026-07-28,S&P 500,7428.780000,fred:SP500
+2026-07-28,S&P 500,7428.780000,yahoo:^GSPC

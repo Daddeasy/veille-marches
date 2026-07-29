@@ -1,7 +1,7 @@
 {
   "date": "2026-07-28",
   "target_date": "2026-07-28",
-  "generated_at": "2026-07-29T08:30:59+00:00",
+  "generated_at": "2026-07-29T12:34:10+00:00",
   "eurusd": 1.1367,
   "markets": {
     "S&P 500": {
@@ -13,35 +13,30 @@
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 0.2104,
-      "pct": 0.2104,
+      "change": -0.318,
+      "pct": -0.318,
       "change_from": "2026-07-27",
       "change_days": 1,
       "w1": -1.071,
       "m1": 1.0166,
       "m3": 4.062,
       "ytd": 8.5206,
-      "hi52": 7609.78,
-      "lo52": 6238.01,
-      "pctile_1y": 24.0,
-      "source": "fred:SP500",
+      "hi52": 7609.7798,
+      "lo52": 6238.0098,
+      "pctile_1y": 35.4,
+      "source": "yahoo:^GSPC+meta",
       "basis": "cloture de seance",
+      "fallback_notes": [
+        "fred:SP500: TimeoutError"
+      ],
       "age_days": 1,
-      "crosscheck": {
-        "comparable": true,
-        "source": "yahoo:^GSPC",
-        "value": 7428.78,
-        "divergence_pct": 0.0,
-        "tolerance_pct": 2.0,
-        "ok": true
-      },
       "target_date": "2026-07-28",
       "on_target": true,
       "eur_level": 6535.391924,
-      "eur_pct": 0.4036
+      "eur_pct": -0.1248
     },
     "Nasdaq 100": {
-      "level": 27763.13,
+      "level": 27763.135,
       "date": "2026-07-28",
       "ticker": "NDX",
       "ccy": "USD",
@@ -49,32 +44,27 @@
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": -0.9846,
-      "pct": -0.9846,
+      "change": -1.7091,
+      "pct": -1.7091,
       "change_from": "2026-07-27",
       "change_days": 1,
       "w1": -4.7746,
       "m1": -4.6538,
-      "m3": 2.716,
-      "ytd": 9.9536,
-      "hi52": 30660.6,
-      "lo52": 22763.31,
-      "pctile_1y": 65.5,
-      "source": "fred:NASDAQ100",
+      "m3": 2.7161,
+      "ytd": 9.9537,
+      "hi52": 30660.5996,
+      "lo52": 22763.3105,
+      "pctile_1y": 85.0,
+      "source": "yahoo:^NDX+meta",
       "basis": "cloture de seance",
+      "fallback_notes": [
+        "fred:NASDAQ100: TimeoutError"
+      ],
       "age_days": 1,
-      "crosscheck": {
-        "comparable": true,
-        "source": "yahoo:^NDX",
-        "value": 27763.135,
-        "divergence_pct": 0.0,
-        "tolerance_pct": 2.0,
-        "ok": true
-      },
       "target_date": "2026-07-28",
       "on_target": true,
-      "eur_level": 24424.3248,
-      "eur_pct": -0.7914
+      "eur_level": 24424.329199,
+      "eur_pct": -1.5159
     },
     "CAC 40": {
       "level": 8446.21,
@@ -274,7 +264,7 @@
       "ytd": 44.1,
       "hi52": 4.71,
       "lo52": 3.953,
-      "pctile_1y": 73.9,
+      "pctile_1y": 73.8,
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
       "age_days": 1,
@@ -303,12 +293,10 @@
       "source": "cnbc:FR10Y-FR",
       "basis": "cloture de seance",
       "fallback_notes": [
-        "webstat:FRMOYTEC10: ValueError"
+        "webstat:FRMOYTEC10: ValueError",
+        "fred:IRLTLT01FRM156N: TimeoutError"
       ],
       "age_days": 1,
-      "crosscheck": {
-        "comparable": false
-      },
       "target_date": "2026-07-28",
       "on_target": true
     },
@@ -364,7 +352,7 @@
       "ytd": 3.0,
       "hi52": 31.05,
       "lo52": 13.47,
-      "pctile_1y": 46.1,
+      "pctile_1y": 45.5,
       "ignored_after_session": [
         "2026-07-29"
       ],
@@ -463,10 +451,10 @@
       ],
       "source": "yahoo:BZ=F",
       "basis": "reglement du contrat a terme",
+      "fallback_notes": [
+        "fred:DCOILBRENTEU: TimeoutError"
+      ],
       "age_days": 1,
-      "crosscheck": {
-        "comparable": false
-      },
       "target_date": "2026-07-28",
       "on_target": true,
       "eur_level": 73.977303,
