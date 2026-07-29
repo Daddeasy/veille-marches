@@ -1,0 +1,768 @@
+{
+  "date": "2026-07-29",
+  "session": "2026-07-28",
+  "generated_at": "2026-07-29T08:01:48Z",
+  "focus": {
+    "title": "L'Iran rompt la trêve par un tir de missiles, la Réserve fédérale décide ce soir",
+    "body": "Les forces des gardiens de la révolution iraniens ont lancé mardi soir plusieurs missiles balistiques contre des bases américaines au Moyen-Orient, premier tir de ce type depuis la suspension des frappes américaines vendredi. Le commandement central américain indique les avoir tous interceptés ; Axios, cité par CNBC, situe la cible en Jordanie. La séance du mardi 28 juillet s'était pourtant close sur une nouvelle détente : le Brent règle à 84,09 dollars, en baisse de 7,05 %, le 10 ans américain revient à 4,604 % et le S&P 500 gagne 0,21 % à 7 428,78, quand le Nasdaq 100 cède 0,98 % à 27 763,13 sous la pression persistante des semi-conducteurs. Le tir a fait remonter le brut léger américain de 3,7 % à environ 82,2 dollars selon CNBC. La Réserve fédérale rend sa décision ce mercredi : le marché donne une chance sur trois à une hausse de 25 pb, pour la deuxième réunion présidée par son nouveau président."
+  },
+  "factset": {
+    "as_of": "2026-07-24",
+    "quarter": "T2 2026",
+    "url": "https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_072426.pdf",
+    "metrics": [
+      {
+        "label": "Bilan des publications",
+        "text": "Pour le T2 2026, 27 % des sociétés du S&P 500 ayant publié leurs résultats réels, 86 % d'entre elles annoncent un bénéfice par action supérieur aux attentes et 80 % un chiffre d'affaires supérieur aux attentes."
+      },
+      {
+        "label": "Croissance des bénéfices",
+        "text": "Pour le T2 2026, le taux de croissance combiné des bénéfices du S&P 500 sur un an s'établit à 37,9 %. Si 37,9 % est le taux effectif du trimestre, ce sera la plus forte croissance des bénéfices publiée par l'indice depuis le T3 2021 (40,3 %)."
+      },
+      {
+        "label": "Révisions des bénéfices",
+        "text": "Au 30 juin, le taux de croissance estimé des bénéfices du S&P 500 sur un an pour le T2 2026 était de 23,2 %. Neuf secteurs affichent aujourd'hui des bénéfices plus élevés qu'au 30 juin, sous l'effet de révisions en hausse des estimations de bénéfice par action et de surprises positives."
+      },
+      {
+        "label": "Prévisions des entreprises",
+        "text": "Pour le T3 2026, 9 sociétés du S&P 500 ont émis une prévision négative de bénéfice par action et 11 sociétés une prévision positive."
+      },
+      {
+        "label": "Valorisation",
+        "text": "Le ratio cours/bénéfice à douze mois glissants du S&P 500 est de 20,1. Ce ratio est supérieur à la moyenne à cinq ans (19,9) et à la moyenne à dix ans (19,0)."
+      }
+    ]
+  },
+  "calendar": {
+    "week_of": "2026-07-27",
+    "note": "Événements classés deux et trois étoiles par le calendrier économique d'Investing.com, restreints aux États-Unis, à la zone euro, à la France, à l'Allemagne, au Royaume-Uni, à la Chine, à l'Inde et au Japon. Horaires de Paris, attendus de consensus du même calendrier. Les variantes d'un même indicateur sont regroupées sur une ligne.",
+    "days": [
+      {
+        "date": "2026-07-27",
+        "events": [
+          {
+            "time": "10:00",
+            "zone": "DE",
+            "label": "Enquête Ifo de juillet : climat des affaires",
+            "actual": "86,6",
+            "forecast": "86,1",
+            "previous": "85,7",
+            "detail": "Anticipations à 86,7 contre 84,3, situation courante à 86,5 contre 87,0."
+          },
+          {
+            "time": "14:30",
+            "zone": "US",
+            "label": "Commandes de biens durables de juin, sur un mois",
+            "actual": "+0,3 %",
+            "forecast": "+1,6 %",
+            "previous": "−4,0 %",
+            "detail": "Hors défense et transport, +0,6 % contre +0,9 % attendu et +1,8 % précédemment."
+          },
+          {
+            "time": "20:50",
+            "zone": "US",
+            "label": "Intervention du président des États-Unis"
+          },
+          {
+            "label": "Résultats : LVMH après la clôture"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-28",
+        "events": [
+          {
+            "time": "07:00",
+            "zone": "JP",
+            "label": "Inflation sous-jacente calculée par la Banque du Japon, sur un an",
+            "actual": "+2,7 %",
+            "previous": "+2,7 %"
+          },
+          {
+            "time": "12:00",
+            "label": "Réunion de l'Organisation des pays exportateurs de pétrole"
+          },
+          {
+            "time": "14:30",
+            "zone": "US",
+            "label": "Balance des échanges de biens de juin, en milliards de dollars",
+            "forecast": "−100,30",
+            "previous": "−105,89"
+          },
+          {
+            "time": "16:00",
+            "zone": "US",
+            "label": "Confiance des consommateurs du Conference Board, juillet",
+            "forecast": "92,4",
+            "previous": "91,2"
+          },
+          {
+            "label": "France : confiance des ménages de juillet, attendue à 85 selon Boursorama"
+          },
+          {
+            "label": "États-Unis : premier jour de la réunion de la Réserve fédérale"
+          },
+          {
+            "label": "Résultats : Safran, Air Liquide, Orange, Kering, UPS, Coca-Cola ; Microsoft et Meta après la clôture américaine"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-29",
+        "events": [
+          {
+            "time": "20:00",
+            "zone": "US",
+            "label": "Décision de taux de la Réserve fédérale, puis communiqué",
+            "forecast": "3,75 %",
+            "previous": "3,75 %"
+          },
+          {
+            "time": "20:30",
+            "zone": "US",
+            "label": "Conférence de presse du comité de politique monétaire"
+          },
+          {
+            "label": "Une hausse d'au moins 25 pb est donnée à 37,9 % mercredi et à près de 81 % pour la réunion de septembre, selon l'outil FedWatch du CME Group cité par Boursorama"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-30",
+        "events": [
+          {
+            "time": "07:30",
+            "zone": "FR",
+            "label": "Produit intérieur brut du deuxième trimestre, sur un trimestre",
+            "forecast": "+0,2 %",
+            "previous": "−0,1 %",
+            "detail": "Précédent de +0,9 % sur un an."
+          },
+          {
+            "time": "07:30",
+            "zone": "FR",
+            "label": "Dépenses de consommation des ménages de juin, sur un mois",
+            "forecast": "−0,1 %",
+            "previous": "+0,5 %"
+          },
+          {
+            "time": "10:00",
+            "zone": "DE",
+            "label": "Produit intérieur brut du deuxième trimestre, sur un trimestre",
+            "forecast": "+0,1 %",
+            "previous": "+0,3 %",
+            "detail": "Précédent de +0,4 % sur un an."
+          },
+          {
+            "time": "11:00",
+            "zone": "EU",
+            "label": "Produit intérieur brut de la zone euro, deuxième trimestre, sur un trimestre",
+            "forecast": "+0,2 %",
+            "previous": "−0,2 %",
+            "detail": "Précédent de +0,3 % sur un an."
+          },
+          {
+            "time": "11:00",
+            "zone": "EU",
+            "label": "Taux de chômage de la zone euro, juin",
+            "forecast": "6,2 %",
+            "previous": "6,2 %"
+          },
+          {
+            "time": "13:00",
+            "zone": "UK",
+            "label": "Décision de taux de la Banque d'Angleterre, juillet",
+            "forecast": "3,75 %",
+            "previous": "3,75 %",
+            "detail": "Répartition des voix précédente : sept pour le statu quo, deux pour une hausse, aucune pour une baisse. Compte rendu publié en même temps."
+          },
+          {
+            "time": "14:00",
+            "zone": "DE",
+            "label": "Indice des prix à la consommation de juillet, sur un mois",
+            "forecast": "+0,7 %",
+            "previous": "−0,3 %",
+            "detail": "Précédent de +2,3 % sur un an."
+          },
+          {
+            "time": "14:30",
+            "zone": "US",
+            "label": "Produit intérieur brut du deuxième trimestre, estimation avancée, sur un trimestre",
+            "forecast": "+2,3 %",
+            "previous": "+2,1 %",
+            "detail": "Indice des prix du produit intérieur brut attendu à +3,7 % contre +3,6 %."
+          },
+          {
+            "time": "14:30",
+            "zone": "US",
+            "label": "Prix des dépenses de consommation de juin, hors énergie et alimentation, sur un mois",
+            "forecast": "+0,1 %",
+            "previous": "+0,3 %",
+            "detail": "Précédent de +3,4 % sur un an. Ensemble de l'indice : précédents de +0,4 % sur un mois et +4,1 % sur un an."
+          },
+          {
+            "time": "14:30",
+            "zone": "US",
+            "label": "Nouvelles demandes hebdomadaires d'allocations chômage",
+            "forecast": "206 000",
+            "previous": "187 000",
+            "detail": "Demandes en cours : précédent de 1 796 000."
+          },
+          {
+            "time": "15:15",
+            "zone": "UK",
+            "label": "Intervention du gouverneur de la Banque d'Angleterre"
+          },
+          {
+            "label": "Résultats : Amazon et Apple"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-31",
+        "events": [
+          {
+            "time": "01:30",
+            "zone": "JP",
+            "label": "Inflation sous-jacente de Tokyo, juillet, sur un an",
+            "forecast": "+1,8 %",
+            "previous": "+1,6 %"
+          },
+          {
+            "time": "01:50",
+            "zone": "JP",
+            "label": "Production industrielle de juin, sur un mois",
+            "forecast": "+0,7 %",
+            "previous": "+0,1 %"
+          },
+          {
+            "time": "03:30",
+            "zone": "CN",
+            "label": "Indice des directeurs d'achats manufacturier de juillet",
+            "forecast": "49,9",
+            "previous": "50,3",
+            "detail": "Non manufacturier attendu à 50,0 contre 50,2, composite précédent à 50,6."
+          },
+          {
+            "time": "05:00",
+            "zone": "JP",
+            "label": "Décision de taux de la Banque du Japon, communiqué et rapport de perspectives",
+            "forecast": "1,00 %",
+            "previous": "1,00 %",
+            "detail": "Conférence de presse à 8 h 30."
+          },
+          {
+            "time": "08:45",
+            "zone": "FR",
+            "label": "Indice des prix à la consommation de juillet, sur un mois",
+            "forecast": "+0,3 %",
+            "previous": "−0,3 %",
+            "detail": "Indice harmonisé : précédent de −0,3 %."
+          },
+          {
+            "time": "09:55",
+            "zone": "DE",
+            "label": "Variation du chômage de juillet",
+            "forecast": "+5 000",
+            "previous": "−1 000",
+            "detail": "Taux de chômage : précédent de 6,3 %."
+          },
+          {
+            "time": "11:00",
+            "zone": "EU",
+            "label": "Indice des prix à la consommation de la zone euro, juillet, sur un an",
+            "forecast": "+2,9 %",
+            "previous": "+2,8 %",
+            "detail": "Sous-jacent attendu à +2,4 % contre +2,4 %, ensemble de l'indice précédent à −0,1 % sur un mois."
+          },
+          {
+            "time": "13:15",
+            "zone": "UK",
+            "label": "Intervention d'un membre du comité de politique monétaire de la Banque d'Angleterre"
+          },
+          {
+            "time": "14:30",
+            "zone": "US",
+            "label": "Indice du coût de l'emploi, deuxième trimestre",
+            "forecast": "+0,8 %",
+            "previous": "+0,9 %"
+          },
+          {
+            "time": "15:45",
+            "zone": "US",
+            "label": "Indice des directeurs d'achats de Chicago, juillet",
+            "previous": "56,7"
+          },
+          {
+            "time": "16:00",
+            "zone": "US",
+            "label": "Enquête de confiance de l'université du Michigan, juillet",
+            "forecast": "54,4",
+            "previous": "54,4",
+            "detail": "Anticipations à 54,0, anticipations d'inflation à un an de 4,2 % et à cinq ans de 3,3 %."
+          },
+          {
+            "label": "Prochain FactSet Earnings Insight, arrêté au 31 juillet"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "source": "Investing.com",
+        "url": "https://www.investing.com/economic-calendar/",
+        "kind": "reference"
+      },
+      {
+        "source": "Réserve fédérale",
+        "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+        "kind": "reference"
+      },
+      {
+        "source": "Bureau of Economic Analysis",
+        "url": "https://www.bea.gov/news/schedule",
+        "kind": "reference"
+      },
+      {
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/baisse-en-vue-en-europe-avec-la-tech-et-de-nombreux-resultats-061a64d572e4e0659b974a796a9a0284",
+        "published": "2026-07-28"
+      }
+    ]
+  },
+  "sections": {
+    "macro": [
+      {
+        "text": "La Réserve fédérale rend sa décision ce mercredi. Le marché intègre une probabilité de 33 % d'une hausse de 25 pb, selon CNBC, pour la deuxième réunion présidée par son nouveau président. Bloomberg rapporte que Citadel Securities et PGIM attribuent une probabilité plus élevée qu'un relèvement soit annoncé dès mercredi, ce qui asseoirait la crédibilité de la nouvelle présidence face à l'inflation.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/dollar-holds-steady-as-fed-decision-looms.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "Le dollar évolue près d'un plus haut d'un mois, soutenu par des flux de valeurs refuges après la reprise des hostilités au Moyen-Orient. L'euro s'établissait à 1,1386 dollar selon CNBC, près d'un plus bas d'un mois, et la livre à 1,3282 dollar. L'indice dollar ressort à 101,43 et le yen à 163,88, toujours à ses plus bas de quarante ans.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/dollar-holds-steady-as-fed-decision-looms.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "Un stratégiste change de SMBC cité par CNBC estime qu'une intervention des autorités japonaises sur le marché des changes est probable, un nouvel affaiblissement du yen après la réunion de la Banque du Japon pouvant en fournir le déclencheur.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/dollar-holds-steady-as-fed-decision-looms.html",
+        "published": "2026-07-29"
+      }
+    ],
+    "geo": [
+      {
+        "text": "Les forces des gardiens de la révolution iraniens ont lancé plusieurs missiles balistiques contre des forces américaines au Moyen-Orient mardi à 17 h 45 heure de New York, selon le commandement central américain, qui indique les avoir tous interceptés. C'est le premier tir balistique contre une base américaine depuis la suspension des frappes décidée vendredi, et il menace la pause de deux jours obtenue entre Washington et Téhéran.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/us-iran-war-hormuz-centcom.html",
+        "published": "2026-07-28",
+        "updated": "2026-07-28",
+        "note_source": "URL datée du 29 alors que la publication est du 28 à 23 h 47 UTC"
+      },
+      {
+        "text": "Le Brent a réglé la séance du 28 juillet à 84,09 dollars, en baisse de 7,05 % sur le relevé du pipeline. Boursorama le donnait à 83,36 dollars en fin de séance parisienne, soit un repli de 5,66 %, et CNBC à 84,09 dollars pour une baisse de 4,8 % : les trois références diffèrent par leur heure de relevé et leur échéance de contrat. Après le tir iranien, CNBC donne le brut léger américain en hausse de 3,7 % à environ 82,2 dollars.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/cnbc-iran-strikes-american-military-jordan-japan-earthquake-sk-hynix-earnings-.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "Un séisme de magnitude 7,1 a frappé Kumamoto, au Japon, faisant au moins deux morts, l'un dans une explosion survenue dans un centre commercial et l'autre dans l'effondrement d'un bâtiment. La région est l'un des pôles asiatiques du semi-conducteur : TSMC, Sony et Fujifilm ont évacué leurs personnels mardi, TSMC indiquant son site intact et ses opérations en reprise progressive après inspection des structures. Tokyo Electron a suspendu deux usines jusqu'à mercredi et Honda a arrêté son usine de motocycles.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/cnbc-iran-strikes-american-military-jordan-japan-earthquake-sk-hynix-earnings-.html",
+        "published": "2026-07-29"
+      }
+    ],
+    "micro": [
+      {
+        "text": "SK Hynix publie un trimestre record qui déçoit : le résultat opérationnel bondit de près de 557 % sur un an et le chiffre d'affaires de 257 %, mais les deux manquent les attentes, les revenus ressortant à 79 320 milliards de wons contre 84 000 milliards attendus selon les estimations LSEG citées par CNBC. Le titre coté à Séoul gagnait jusqu'à 4,5 % mercredi matin.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/cnbc-iran-strikes-american-military-jordan-japan-earthquake-sk-hynix-earnings-.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "Apple a brièvement franchi les 5 000 milliards de dollars de capitalisation mardi, au lendemain de son passage devant Nvidia comme première capitalisation mondiale. Le titre progresse de 25 % depuis le début de l'année et a clôturé à 340,08 dollars. CNBC relève que le groupe a maintenu ses dépenses d'investissement basses là où les grands opérateurs de centres de données y engagent des centaines de milliards, et que les investisseurs récompensent cette retenue.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/cnbc-iran-strikes-american-military-jordan-japan-earthquake-sk-hynix-earnings-.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "La pression sur le matériel s'est étendue au stockage et à la mémoire sur la séance du 28 juillet. Parmi les valeurs de plus de 100 milliards de dollars, Sandisk cède 14,25 %, Corning 12,10 %, SK hynix 8,98 %, Micron 8,85 %, Seagate 8,53 % et Dell 8,15 %. Les six plus fortes hausses relèvent en face de la consommation et des services : Unilever gagne 8,96 %, Accenture 6,88 %, Booking 6,70 %, IBM 5,21 %, Coca-Cola 5,00 % et ServiceNow 4,79 %.",
+        "source": "Nasdaq",
+        "url": "https://www.nasdaq.com/market-activity/stocks/screener",
+        "published": "2026-07-29",
+        "date_unverified": true,
+        "note_source": "relevé de cotation, capitalisations supérieures à 100 milliards de dollars"
+      },
+      {
+        "text": "À Paris, Capgemini signe la meilleure performance du CAC 40 à 101,70 euros, en hausse de 6,92 %, devant Kering à 250,50 euros (+3,15 %) et Hermès à 1 695,50 euros (+2,20 %). LVMH gagne 0,75 % à 470,30 euros au lendemain de ses résultats. STMicroelectronics recule de 3,07 % à 44,48 euros, Boursorama rattachant la pression sur le secteur au rattrapage technologique chinois.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-au-bonheur-des-valeurs-sures-face-aux-remous-de-l-ia-851f990782be4b1bcac4779cafef6c0f",
+        "published": "2026-07-28"
+      }
+    ],
+    "actions": [
+      {
+        "text": "Aux États-Unis, la séance du 28 juillet laisse le S&P 500 à 7 428,78 (+0,21 %) et le Nasdaq 100 à 27 763,13 (−0,98 %). Après le tir iranien, CNBC donne les contrats à terme sur le S&P 500 en très légère hausse, ceux sur le Nasdaq 100 proches de l'équilibre et ceux sur le Dow Jones en baisse de 38 points, soit environ 0,1 %.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/cnbc-iran-strikes-american-military-jordan-japan-earthquake-sk-hynix-earnings-.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "En Europe, le CAC 40 a clôturé le 28 juillet à 8 458,78, en hausse de 0,63 %, troisième séance consécutive de progression selon Boursorama, portée par le repli du pétrole, la détente des taux et un report sur les valeurs sûres. Le relevé du pipeline reste pour sa part daté du 27 juillet sur les indices européens, à 8 446,21 pour le CAC 40 et 6 335,10 pour l'Euro Stoxx 50 : la source ne publie pas encore la séance du 28.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-au-bonheur-des-valeurs-sures-face-aux-remous-de-l-ia-851f990782be4b1bcac4779cafef6c0f",
+        "published": "2026-07-28"
+      },
+      {
+        "text": "Les indices asiatiques du pipeline restent également datés du 27 juillet — Nikkei 225 à 64 931,19, Shanghai Composite à 3 858,25, KOSPI à 6 755,75 — et ne peuvent donc pas être décrits comme des cours de la veille. Le VIX est dans le même cas, à 17,95 au 27 juillet.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/cnbc-iran-strikes-american-military-jordan-japan-earthquake-sk-hynix-earnings-.html",
+        "published": "2026-07-29"
+      },
+      {
+        "text": "Sur les autres actifs au 28 juillet, l'or recule à 4 036,30 dollars (−1,31 %) et l'euro s'établit à 1,1367 dollar au fixing de la Banque centrale européenne (−0,19 %). Le bitcoin ressort à 63 859,60 dollars, en baisse de 2,14 %, et l'indice Fear & Greed crypto à 29, en zone de peur.",
+        "source": "CNBC",
+        "url": "https://www.cnbc.com/2026/07/29/dollar-holds-steady-as-fed-decision-looms.html",
+        "published": "2026-07-29"
+      }
+    ],
+    "obligations": [
+      {
+        "text": "Le rendement du 10 ans américain a terminé la séance du 28 juillet à 4,604 %, en baisse de 4,3 pb, prolongeant la détente entamée avec le repli du pétrole.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-au-bonheur-des-valeurs-sures-face-aux-remous-de-l-ia-851f990782be4b1bcac4779cafef6c0f",
+        "published": "2026-07-28"
+      },
+      {
+        "text": "Le 10 ans français revient à 3,888 %, en baisse de 3,21 pb, et le 10 ans allemand à 3,109 %, en repli de 1,88 pb. L'écart entre les deux ressort à 78 pb.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-au-bonheur-des-valeurs-sures-face-aux-remous-de-l-ia-851f990782be4b1bcac4779cafef6c0f",
+        "published": "2026-07-28"
+      },
+      {
+        "text": "Boursorama rattache la hausse de la Bourse de Paris au recul des taux et à l'intégration par les investisseurs de la baisse des prix du pétrole, qui réduit le risque inflationniste.",
+        "source": "Boursorama",
+        "url": "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-au-bonheur-des-valeurs-sures-face-aux-remous-de-l-ia-851f990782be4b1bcac4779cafef6c0f",
+        "published": "2026-07-28"
+      }
+    ]
+  },
+  "earnings": {
+    "as_of": "2026-07-29",
+    "source": "Nasdaq",
+    "url": "https://www.nasdaq.com/market-activity/earnings",
+    "note": "Sociétés cotées aux États-Unis dont la capitalisation dépasse 50 milliards de dollars, huit au plus par jour, les plus grandes d'abord. Le calendrier du Nasdaq ne couvre pas les cotations européennes : pour celles-ci, l'agenda de presse reste la source.",
+    "days": [
+      {
+        "date": "2026-07-29",
+        "companies": [
+          {
+            "name": "Microsoft",
+            "symbol": "MSFT",
+            "when": "après la clôture",
+            "eps_forecast": "4,21 $",
+            "eps_last_year": "3,65 $",
+            "cap": "2890 Md$"
+          },
+          {
+            "name": "Meta Platforms",
+            "symbol": "META",
+            "when": "après la clôture",
+            "eps_forecast": "7,13 $",
+            "eps_last_year": "7,14 $",
+            "cap": "1507 Md$"
+          },
+          {
+            "name": "Lam Research",
+            "symbol": "LRCX",
+            "when": "après la clôture",
+            "eps_forecast": "1,69 $",
+            "eps_last_year": "1,33 $",
+            "cap": "365 Md$"
+          },
+          {
+            "name": "HSBC Holdings",
+            "symbol": "HSBC",
+            "when": "horaire non communiqué",
+            "eps_forecast": "2,24 $",
+            "eps_last_year": "1,95 $",
+            "cap": "356 Md$"
+          },
+          {
+            "name": "Procter & Gamble",
+            "symbol": "PG",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,41 $",
+            "eps_last_year": "1,48 $",
+            "cap": "346 Md$"
+          },
+          {
+            "name": "Arm Holdings",
+            "symbol": "ARM",
+            "when": "après la clôture",
+            "eps_forecast": "0,18 $",
+            "eps_last_year": "0,16 $",
+            "cap": "283 Md$"
+          },
+          {
+            "name": "Amphenol",
+            "symbol": "APH",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,19 $",
+            "eps_last_year": "0,81 $",
+            "cap": "184 Md$"
+          },
+          {
+            "name": "QUALCOMM Incorporated",
+            "symbol": "QCOM",
+            "when": "après la clôture",
+            "eps_forecast": "1,54 $",
+            "eps_last_year": "2,29 $",
+            "cap": "179 Md$"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-30",
+        "companies": [
+          {
+            "name": "Apple",
+            "symbol": "AAPL",
+            "when": "après la clôture",
+            "eps_forecast": "1,88 $",
+            "eps_last_year": "1,57 $",
+            "cap": "4948 Md$"
+          },
+          {
+            "name": "Amazon.com",
+            "symbol": "AMZN",
+            "when": "après la clôture",
+            "eps_forecast": "1,81 $",
+            "eps_last_year": "1,68 $",
+            "cap": "2489 Md$"
+          },
+          {
+            "name": "Mastercard Incorporated",
+            "symbol": "MA",
+            "when": "avant l'ouverture",
+            "eps_forecast": "4,77 $",
+            "eps_last_year": "4,15 $",
+            "cap": "487 Md$"
+          },
+          {
+            "name": "Shell",
+            "symbol": "SHEL",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,02 $",
+            "eps_last_year": "1,42 $",
+            "cap": "251 Md$"
+          },
+          {
+            "name": "Anheuser-Busch Inbev SA",
+            "symbol": "BUD",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,09 $",
+            "eps_last_year": "0,98 $",
+            "cap": "159 Md$"
+          },
+          {
+            "name": "Mizuho Financial",
+            "symbol": "MFG",
+            "when": "horaire non communiqué",
+            "eps_forecast": "0,17 $",
+            "eps_last_year": "0,15 $",
+            "cap": "132 Md$"
+          },
+          {
+            "name": "Stryker",
+            "symbol": "SYK",
+            "when": "après la clôture",
+            "eps_forecast": "3,46 $",
+            "eps_last_year": "3,13 $",
+            "cap": "129 Md$"
+          },
+          {
+            "name": "Bristol-Myers Squibb",
+            "symbol": "BMY",
+            "when": "avant l'ouverture",
+            "eps_forecast": "1,59 $",
+            "eps_last_year": "1,46 $",
+            "cap": "128 Md$"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-31",
+        "companies": [
+          {
+            "name": "ExxonMobil Holdings",
+            "symbol": "XOM",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,87 $",
+            "eps_last_year": "1,64 $",
+            "cap": "642 Md$"
+          },
+          {
+            "name": "AbbVie",
+            "symbol": "ABBV",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,66 $",
+            "eps_last_year": "2,97 $",
+            "cap": "454 Md$"
+          },
+          {
+            "name": "Chevron",
+            "symbol": "CVX",
+            "when": "avant l'ouverture",
+            "eps_forecast": "5,81 $",
+            "eps_last_year": "1,77 $",
+            "cap": "378 Md$"
+          },
+          {
+            "name": "Linde",
+            "symbol": "LIN",
+            "when": "avant l'ouverture",
+            "eps_forecast": "4,49 $",
+            "eps_last_year": "4,09 $",
+            "cap": "235 Md$"
+          },
+          {
+            "name": "Sumitomo Mitsui Financial",
+            "symbol": "SMFG",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,44 $",
+            "eps_last_year": "0,40 $",
+            "cap": "168 Md$"
+          },
+          {
+            "name": "UBS AG",
+            "symbol": "UBS",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,90 $",
+            "eps_last_year": "0,72 $",
+            "cap": "163 Md$"
+          },
+          {
+            "name": "Eaton",
+            "symbol": "ETN",
+            "when": "avant l'ouverture",
+            "eps_forecast": "3,08 $",
+            "eps_last_year": "2,95 $",
+            "cap": "155 Md$"
+          },
+          {
+            "name": "Enbridge",
+            "symbol": "ENB",
+            "when": "avant l'ouverture",
+            "eps_forecast": "0,43 $",
+            "eps_last_year": "0,47 $",
+            "cap": "121 Md$"
+          }
+        ]
+      }
+    ],
+    "movers": {
+      "up": [
+        {
+          "name": "Unilever PLC American Depositary Shares (each representing One Ordinary Share)",
+          "symbol": "UL",
+          "pct": "+8,96 %",
+          "last": "$66.87",
+          "sector": "Consumer Discretionary",
+          "cap": "146 Md$"
+        },
+        {
+          "name": "Accenture plc Ordinary Shares (Ireland)",
+          "symbol": "ACN",
+          "pct": "+6,88 %",
+          "last": "$164.66",
+          "sector": "Consumer Discretionary",
+          "cap": "110 Md$"
+        },
+        {
+          "name": "Booking Holdings",
+          "symbol": "BKNG",
+          "pct": "+6,70 %",
+          "last": "$199.31",
+          "sector": "Consumer Discretionary",
+          "cap": "154 Md$"
+        },
+        {
+          "name": "International Business Machines",
+          "symbol": "IBM",
+          "pct": "+5,21 %",
+          "last": "$227.55",
+          "sector": "Technology",
+          "cap": "214 Md$"
+        },
+        {
+          "name": "Coca-Cola",
+          "symbol": "KO",
+          "pct": "+5,00 %",
+          "last": "$88.27",
+          "sector": "Consumer Staples",
+          "cap": "380 Md$"
+        },
+        {
+          "name": "ServiceNow",
+          "symbol": "NOW",
+          "pct": "+4,79 %",
+          "last": "$110.62",
+          "sector": "Technology",
+          "cap": "114 Md$"
+        }
+      ],
+      "down": [
+        {
+          "name": "Sandisk",
+          "symbol": "SNDK",
+          "pct": "−14,25 %",
+          "last": "$1096.10",
+          "sector": "Technology",
+          "cap": "162 Md$"
+        },
+        {
+          "name": "Corning Incorporated",
+          "symbol": "GLW",
+          "pct": "−12,10 %",
+          "last": "$126.01",
+          "sector": "Industrials",
+          "cap": "108 Md$"
+        },
+        {
+          "name": "SK hynix Inc. American Depositary Shares",
+          "symbol": "SKHY",
+          "pct": "−8,98 %",
+          "last": "$130.17",
+          "sector": "Technology",
+          "cap": "949 Md$"
+        },
+        {
+          "name": "Micron Technology",
+          "symbol": "MU",
+          "pct": "−8,85 %",
+          "last": "$820.53",
+          "sector": "Technology",
+          "cap": "927 Md$"
+        },
+        {
+          "name": "Seagate Technology Holdings PLC Ordinary Shares (Ireland)",
+          "symbol": "STX",
+          "pct": "−8,53 %",
+          "last": "$747.30",
+          "sector": "Technology",
+          "cap": "168 Md$"
+        },
+        {
+          "name": "Dell Technologies Inc. Class C",
+          "symbol": "DELL",
+          "pct": "−8,15 %",
+          "last": "$392.10",
+          "sector": "Technology",
+          "cap": "254 Md$"
+        }
+      ]
+    }
+  }
+}
