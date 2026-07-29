@@ -16,6 +16,25 @@ on:
     # cloture de la veille — ce qui est precisement ce que l'on veut. Chaque
     # instrument porte de toute facon sa propre date dans le JSON.
     - cron: "0 5 * * 1-5"
+    #
+    # Collecte du soir, 22:00 UTC, et c'est desormais ELLE qui compte. Motif mesure
+    # le 29/07/2026 : les barres quotidiennes de Yahoo sautent la derniere seance
+    # close — la serie du CAC donnait 22, 23, 27 puis 29 juillet, le 24 et le 28
+    # manquants alors que les deux etaient des seances completes. Cette cloture
+    # n'existe que dans meta.regularMarketPrice, et seulement jusqu'a l'ouverture
+    # suivante.
+    #
+    # Le cron de 5h00 ci-dessus etait cense la capter. Il n'est jamais parti a
+    # l'heure : ses trois executions reelles ont eu lieu a 12h10, 13h57 et 12h19
+    # UTC, GitHub retardant la planification de plusieurs heures. En pleine seance,
+    # meta porte deja le jour en cours et la veille a disparu — six instruments se
+    # sont retrouves bloques au 27/07 dans le relevé du 29.
+    #
+    # A 22:00 UTC toutes les places citees ont ferme : New York a 20:00, Londres a
+    # 15:30, Tokyo a 06:00. La cloture du jour est donc dans meta, elle est archivee
+    # dans series.csv, et la collecte du lendemain la retrouve meme si elle tombe en
+    # pleine seance. Un retard de cron d'une heure ou deux reste sans consequence.
+    - cron: "0 22 * * 1-5"
   workflow_dispatch:
 
 permissions:

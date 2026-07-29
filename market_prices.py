@@ -772,6 +772,39 @@ INSTRUMENTS = [
 
 # ------------------------------------------------------------- indicateurs ---
 
+# Heure UTC a partir de laquelle toutes les places citees ont ferme : New York
+# cloture a 20h00 UTC l'ete, Londres a 15h30, Tokyo a 06h00. Une heure de marge.
+HEURE_TOUT_FERME = 21
+
+
+def derniere_seance_close(maintenant: dt.datetime | None = None) -> dt.date:
+    """Derniere seance BOURSIERE close, et non derniere journee du calendrier.
+
+    Cette fonction remplace un simple « jour ouvre precedent », et le motif est
+    mesure. Les barres quotidiennes de Yahoo sautent systematiquement la derniere
+    seance close : au 29/07/2026 la serie du CAC donnait 22, 23, 27 puis 29 juillet,
+    le 24 et le 28 manquants alors que les deux etaient des seances completes. Cette
+    cloture n'existe que dans meta.regularMarketPrice, et seulement jusqu'a
+    l'ouverture suivante.
+
+    Tout le dispositif reposait donc sur une collecte marches fermes. Or le cron de
+    5h00 UTC n'est jamais parti a l'heure : ses trois executions reelles ont eu lieu
+    a 12h10, 13h57 et 12h19 UTC, GitHub retardant la planification de plusieurs
+    heures. En pleine seance, meta porte deja le jour en cours et la veille a
+    disparu — d'ou six instruments bloques au 27/07 dans le relevé du 29.
+
+    La reponse est d'ajouter une collecte du soir, apres la cloture de New York, et
+    de faire suivre la date cible : passe 21h00 UTC, la seance close est celle du
+    jour, pas celle de la veille. Le point est alors archive dans series.csv, et la
+    collecte du lendemain le retrouve meme si elle tombe en pleine seance.
+    """
+    maintenant = maintenant or dt.datetime.now(dt.timezone.utc)
+    jour = maintenant.date()
+    if jour.weekday() < 5 and maintenant.hour >= HEURE_TOUT_FERME:
+        return jour
+    return prev_business_day(jour)
+
+
 def prev_business_day(today: dt.date) -> dt.date:
     """Derniere journee ouvree strictement avant today (lundi -> vendredi)."""
     d = today - dt.timedelta(days=1)
@@ -1101,7 +1134,7 @@ def fetch_instrument(inst: Instrument, stored: Series | None = None) -> dict:
                 "zone": inst.zone, "kind": inst.kind}
 
     today = dt.date.today()
-    target = prev_business_day(today)
+    target = derniere_seance_close()
     # Historique d'abord, coupe ensuite. L'ordre importe : couper une serie a
     # laquelle il manque la seance cible la ramene a l'avant-veille, alors que la
     # valeur est deja dans series.csv.
@@ -1357,7 +1390,7 @@ def main() -> int:
              if "date" in e and not e.get("traded_247")]
     ref_date = max(dates) if dates else dt.date.today().isoformat()
 
-    target = prev_business_day(dt.date.today())
+    target = derniere_seance_close()
 
     diagnostics = {
         "ok": sum(1 for e in markets.values() if "error" not in e),
