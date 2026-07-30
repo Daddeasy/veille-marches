@@ -1,7 +1,7 @@
 {
   "date": "2026-07-29",
   "target_date": "2026-07-29",
-  "generated_at": "2026-07-30T07:43:39+00:00",
+  "generated_at": "2026-07-30T12:04:18+00:00",
   "eurusd": 1.138,
   "markets": {
     "S&P 500": {
@@ -259,7 +259,7 @@
       "ytd": 45.9,
       "hi52": 4.71,
       "lo52": 3.953,
-      "pctile_1y": 31.6,
+      "pctile_1y": 29.8,
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
       "age_days": 1,
