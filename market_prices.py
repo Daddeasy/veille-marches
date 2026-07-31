@@ -1138,14 +1138,29 @@ def fetch_instrument(inst: Instrument, stored: Series | None = None) -> dict:
     # Historique d'abord, coupe ensuite. L'ordre importe : couper une serie a
     # laquelle il manque la seance cible la ramene a l'avant-veille, alors que la
     # valeur est deja dans series.csv.
-    # L'archive ne complete la serie que sur les points ecrits par LA MEME source.
-    # Sans ce filtre, un point laisse par une source de repli ecrase la primaire tout
-    # en gardant son etiquette : le 10 ans allemand affichait 3,240 — la courbe
-    # ajustee de la Bundesbank — sous le libelle cnbc:DE10Y-DE, qui cote l'emprunt de
-    # reference a 3,127. Deux conventions melangees et une etiquette qui mentait.
+    # Quelles sources de l'archive peuvent completer la serie.
+    #
+    # Premiere version : la source repondante uniquement. Trop strict, mesure le
+    # 31/07/2026 — l'archive portait la cloture du S&P au 30/07 sous yahoo:^GSPC
+    # quand la primaire du jour etait fred:SP500, le point etait donc ecarte et
+    # l'indice retombait au 29/07 avec une valeur differente de celle publiee la
+    # veille. Or sur cet instrument les deux sources mesurent la meme cloture et
+    # concordent a la decimale.
+    #
+    # Regle retenue : toutes les sources declarees pour l'instrument, SAUF si
+    # celui-ci annonce une tolerance de recoupement elargie. Ce champ est
+    # precisement le marqueur des sources non interchangeables — le 10 ans
+    # allemand porte xcheck_tol a 6 % parce que la courbe ajustee de la Bundesbank
+    # et l'emprunt de reference de CNBC divergent par construction, et melanger les
+    # deux affichait 3,240 sous le libelle cnbc:DE10Y-DE.
     if stored:
-        racine = _base_source(primary["source"])
-        memes = [(d, v) for d, v, src in stored if _base_source(src) == racine]
+        if inst.xcheck_tol > 2.0:
+            acceptables = {_base_source(primary["source"])}
+        else:
+            acceptables = {_base_source(getattr(s, "label", ""))
+                           for s in inst.sources}
+        memes = [(d, v) for d, v, src in stored
+                 if _base_source(src) in acceptables]
         if memes:
             primary_series = merge_stored(memes, primary_series)
     # Coupe avant tout calcul : niveau, variation, bornes 52 semaines et

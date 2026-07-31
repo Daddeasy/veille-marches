@@ -1,7 +1,7 @@
 {
   "date": "2026-07-30",
   "target_date": "2026-07-30",
-  "generated_at": "2026-07-31T12:28:34+00:00",
+  "generated_at": "2026-07-31T15:29:23+00:00",
   "eurusd": 1.1476,
   "markets": {
     "S&P 500": {
@@ -24,6 +24,9 @@
       "hi52": 7609.7798,
       "lo52": 6238.0098,
       "pctile_1y": 96.7,
+      "ignored_after_session": [
+        "2026-07-31"
+      ],
       "source": "yahoo:^GSPC",
       "basis": "cloture de seance",
       "fallback_notes": [
@@ -36,7 +39,7 @@
       "eur_pct": 0.8168
     },
     "Nasdaq 100": {
-      "level": 28106.3496,
+      "level": 28106.35,
       "date": "2026-07-30",
       "ticker": "NDX",
       "ccy": "USD",
@@ -55,6 +58,9 @@
       "hi52": 30660.5996,
       "lo52": 22763.3105,
       "pctile_1y": 98.9,
+      "ignored_after_session": [
+        "2026-07-31"
+      ],
       "source": "yahoo:^NDX",
       "basis": "cloture de seance",
       "fallback_notes": [
@@ -63,7 +69,7 @@
       "age_days": 1,
       "target_date": "2026-07-30",
       "on_target": true,
-      "eur_level": 24491.416521,
+      "eur_level": 24491.41687,
       "eur_pct": 2.5178
     },
     "CAC 40": {
@@ -147,7 +153,7 @@
       "ignored_after_session": [
         "2026-07-31"
       ],
-      "source": "yahoo:^N225",
+      "source": "yahoo:^N225+meta",
       "basis": "cloture de seance",
       "age_days": 1,
       "target_date": "2026-07-30",
@@ -205,7 +211,7 @@
       "ignored_after_session": [
         "2026-07-31"
       ],
-      "source": "yahoo:^KS11",
+      "source": "yahoo:^KS11+meta",
       "basis": "cloture de seance",
       "age_days": 1,
       "target_date": "2026-07-30",
@@ -231,6 +237,9 @@
       "hi52": 1.1974,
       "lo52": 1.134,
       "pctile_1y": 96.8,
+      "ignored_after_session": [
+        "2026-07-31"
+      ],
       "source": "ecb:EXR",
       "basis": "fixing BCE 14h15 CET",
       "age_days": 1,
@@ -260,6 +269,9 @@
       "hi52": 4.71,
       "lo52": 3.953,
       "pctile_1y": 71.3,
+      "ignored_after_session": [
+        "2026-07-31"
+      ],
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
       "age_days": 1,
@@ -280,8 +292,10 @@
       "pct": null,
       "change_from": "2026-07-29",
       "change_days": 1,
+      "w1": 27.82,
+      "m1": 27.82,
       "hi52": 3.98,
-      "lo52": 3.8884,
+      "lo52": 3.68,
       "ignored_after_session": [
         "2026-07-31"
       ],
@@ -535,6 +549,12 @@
         ]
       ],
       [
+        "10Y US",
+        [
+          "2026-07-31"
+        ]
+      ],
+      [
         "Bitcoin",
         [
           "2026-07-31"
@@ -548,6 +568,12 @@
       ],
       [
         "CAC 40",
+        [
+          "2026-07-31"
+        ]
+      ],
+      [
+        "EUR/USD",
         [
           "2026-07-31"
         ]
@@ -571,6 +597,12 @@
         ]
       ],
       [
+        "Nasdaq 100",
+        [
+          "2026-07-31"
+        ]
+      ],
+      [
         "Nikkei 225",
         [
           "2026-07-31"
@@ -578,6 +610,12 @@
       ],
       [
         "Or",
+        [
+          "2026-07-31"
+        ]
+      ],
+      [
+        "S&P 500",
         [
           "2026-07-31"
         ]

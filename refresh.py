@@ -32,10 +32,19 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import io
 import json
 import os
 import subprocess
 import sys
+
+# Le pilote reaffiche la sortie des scripts qu'il lance, et celle-ci contient des
+# signes moins typographiques et des accents. La console Windows etant en cp1252,
+# il plantait en plein milieu — apres avoir pourtant fait le travail. Chaque
+# collecteur protege deja sa propre sortie ; il fallait proteger celle-ci aussi.
+if hasattr(sys.stdout, "buffer"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8",
+                                  errors="replace", line_buffering=True)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 NEWS = os.path.join(ROOT, "news")
