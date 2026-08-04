@@ -286,3 +286,15 @@ date,instrument,value,source
 2026-07-31,S&P 500,7489.720215,yahoo:^GSPC
 2026-07-31,Shanghai Comp.,3832.261963,yahoo:000001.SS
 2026-07-31,VIX,15.990000,fred:VIXCLS
+2026-08-01,Bitcoin,62760.000000,kraken:XBTUSD
+2026-08-01,Fear & Greed crypto,27.000000,alternative.me:fng
+2026-08-02,Bitcoin,63500.000000,kraken:XBTUSD
+2026-08-02,Fear & Greed crypto,27.000000,alternative.me:fng
+2026-08-03,10Y Allemagne,3.150900,cnbc:DE10Y-DE
+2026-08-03,10Y France,3.934800,cnbc:FR10Y-FR
+2026-08-03,10Y US,4.686000,fred:DGS10
+2026-08-03,Bitcoin,63461.700000,kraken:XBTUSD
+2026-08-03,EUR/USD,1.153500,ecb:EXR
+2026-08-03,Fear & Greed crypto,28.000000,alternative.me:fng
+2026-08-03,Nasdaq 100,28776.803000,yahoo:^NDX
+2026-08-03,S&P 500,7600.500000,yahoo:^GSPC
