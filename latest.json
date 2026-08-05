@@ -1,7 +1,7 @@
 {
   "date": "2026-08-04",
   "target_date": "2026-08-04",
-  "generated_at": "2026-08-05T07:51:34+00:00",
+  "generated_at": "2026-08-05T12:23:27+00:00",
   "eurusd": 1.1515,
   "markets": {
     "S&P 500": {
@@ -485,7 +485,12 @@
       "basis": "cloture 00h UTC",
       "age_days": 1,
       "crosscheck": {
-        "comparable": false
+        "comparable": true,
+        "source": "yahoo:BTC-USD",
+        "value": 64055.953125,
+        "divergence_pct": 0.004,
+        "tolerance_pct": 2.0,
+        "ok": true
       },
       "target_date": "2026-08-04",
       "on_target": true,
