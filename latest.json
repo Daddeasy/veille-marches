@@ -1,7 +1,7 @@
 {
   "date": "2026-10-02",
   "target_date": "2026-10-02",
-  "generated_at": "2026-10-03T00:49:31+00:00",
+  "generated_at": "2026-10-05T11:58:45+00:00",
   "eurusd": 1.1225,
   "markets": {
     "S&P 500": {
@@ -29,7 +29,7 @@
       "fallback_notes": [
         "fred:SP500: TimeoutError"
       ],
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true,
       "eur_level": 6879.928909,
@@ -60,7 +60,7 @@
       "fallback_notes": [
         "fred:NASDAQ100: TimeoutError"
       ],
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true,
       "eur_level": 27445.818797,
@@ -86,9 +86,12 @@
       "hi52": 8726.03,
       "lo52": 7665.6201,
       "pctile_1y": 70.7,
-      "source": "yahoo:^FCHI+meta",
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
+      "source": "yahoo:^FCHI",
       "basis": "cloture de seance",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -112,9 +115,12 @@
       "hi52": 6551.22,
       "lo52": 5501.2798,
       "pctile_1y": 77.1,
-      "source": "yahoo:^STOXX50E+meta",
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
+      "source": "yahoo:^STOXX50E",
       "basis": "cloture de seance",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -138,9 +144,12 @@
       "hi52": 72366.3438,
       "lo52": 44936.7305,
       "pctile_1y": 46.8,
-      "source": "yahoo:^N225+meta",
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
+      "source": "yahoo:^N225",
       "basis": "cloture de seance",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -166,7 +175,7 @@
       "pctile_1y": 33.5,
       "source": "yahoo:000001.SS",
       "basis": "cloture de seance",
-      "age_days": 3,
+      "age_days": 5,
       "target_date": "2026-10-02",
       "on_target": false,
       "lag_days": 2
@@ -191,9 +200,9 @@
       "hi52": 9114.5498,
       "lo52": 3549.21,
       "pctile_1y": 18.4,
-      "source": "yahoo:^KS11+meta",
+      "source": "yahoo:^KS11",
       "basis": "cloture de seance",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -219,14 +228,9 @@
       "pctile_1y": 92.1,
       "source": "ecb:EXR",
       "basis": "fixing BCE 14h15 CET",
-      "age_days": 1,
+      "age_days": 3,
       "crosscheck": {
-        "comparable": true,
-        "source": "yahoo:EURUSD=X",
-        "value": 1.125746,
-        "divergence_pct": 0.289,
-        "tolerance_pct": 2.0,
-        "ok": true
+        "comparable": false
       },
       "target_date": "2026-10-02",
       "on_target": true
@@ -250,10 +254,10 @@
       "ytd": 111.4,
       "hi52": 5.293,
       "lo52": 3.953,
-      "pctile_1y": 67.3,
+      "pctile_1y": 68.0,
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -277,13 +281,16 @@
       "hi52": 4.9349,
       "lo52": 3.68,
       "pctile_1y": 76.5,
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
       "source": "cnbc:FR10Y-FR",
       "basis": "cloture de seance",
       "fallback_notes": [
         "webstat:FRMOYTEC10: ValueError",
         "fred:IRLTLT01FRM156N: TimeoutError"
       ],
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -307,13 +314,18 @@
       "lo52": 3.103,
       "pctile_1y": 90.0,
       "ignored_after_session": [
-        "2026-10-03"
+        "2026-10-05"
       ],
       "source": "cnbc:DE10Y-DE",
       "basis": "cloture de seance",
-      "age_days": 1,
+      "age_days": 3,
       "crosscheck": {
-        "comparable": false
+        "comparable": true,
+        "source": "bundesbank:DE10Y",
+        "value": 3.49,
+        "divergence_pct": 1.016,
+        "tolerance_pct": 6.0,
+        "ok": true
       },
       "target_date": "2026-10-02",
       "on_target": true
@@ -338,9 +350,12 @@
       "hi52": 31.05,
       "lo52": 13.47,
       "pctile_1y": 69.0,
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
       "source": "fred:VIXCLS+yahoo:^VIX",
       "basis": "cloture de seance",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -367,11 +382,13 @@
       "lo52": 5.0,
       "pctile_1y": 43.8,
       "ignored_after_session": [
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-04",
+        "2026-10-05"
       ],
       "source": "alternative.me:fng",
       "basis": "publication quotidienne 00h UTC",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true
     },
@@ -395,9 +412,12 @@
       "hi52": 5318.3999,
       "lo52": 3868.1001,
       "pctile_1y": 38.8,
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
       "source": "yahoo:GC=F",
       "basis": "reglement du contrat a terme",
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true,
       "eur_level": 3716.792962,
@@ -424,12 +444,15 @@
       "hi52": 118.35,
       "lo52": 58.92,
       "pctile_1y": 15.9,
+      "ignored_after_session": [
+        "2026-10-05"
+      ],
       "source": "yahoo:BZ=F",
       "basis": "reglement du contrat a terme",
       "fallback_notes": [
         "fred:DCOILBRENTEU: TimeoutError"
       ],
-      "age_days": 1,
+      "age_days": 3,
       "target_date": "2026-10-02",
       "on_target": true,
       "eur_level": 91.492205,
@@ -457,13 +480,20 @@
       "lo52": 58531.9,
       "pctile_1y": 21.8,
       "ignored_after_session": [
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-04",
+        "2026-10-05"
       ],
       "source": "kraken:XBTUSD",
       "basis": "cloture 00h UTC",
-      "age_days": 1,
+      "age_days": 3,
       "crosscheck": {
-        "comparable": false
+        "comparable": true,
+        "source": "yahoo:BTC-USD",
+        "value": 84497.210938,
+        "divergence_pct": 0.008,
+        "tolerance_pct": 2.0,
+        "ok": true
       },
       "target_date": "2026-10-02",
       "on_target": true,
@@ -506,19 +536,65 @@
       [
         "10Y Allemagne",
         [
-          "2026-10-03"
+          "2026-10-05"
+        ]
+      ],
+      [
+        "10Y France",
+        [
+          "2026-10-05"
         ]
       ],
       [
         "Bitcoin",
         [
-          "2026-10-03"
+          "2026-10-03",
+          "2026-10-04",
+          "2026-10-05"
+        ]
+      ],
+      [
+        "Brent",
+        [
+          "2026-10-05"
+        ]
+      ],
+      [
+        "CAC 40",
+        [
+          "2026-10-05"
+        ]
+      ],
+      [
+        "Euro Stoxx 50",
+        [
+          "2026-10-05"
         ]
       ],
       [
         "Fear & Greed crypto",
         [
-          "2026-10-03"
+          "2026-10-03",
+          "2026-10-04",
+          "2026-10-05"
+        ]
+      ],
+      [
+        "Nikkei 225",
+        [
+          "2026-10-05"
+        ]
+      ],
+      [
+        "Or",
+        [
+          "2026-10-05"
+        ]
+      ],
+      [
+        "VIX",
+        [
+          "2026-10-05"
         ]
       ]
     ]
