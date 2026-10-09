@@ -1,7 +1,7 @@
 {
   "date": "2026-10-08",
   "target_date": "2026-10-08",
-  "generated_at": "2026-10-09T01:33:28+00:00",
+  "generated_at": "2026-10-09T11:36:45+00:00",
   "eurusd": 1.1186,
   "markets": {
     "S&P 500": {
@@ -86,6 +86,9 @@
       "hi52": 8726.03,
       "lo52": 7665.6201,
       "pctile_1y": 52.9,
+      "ignored_after_session": [
+        "2026-10-09"
+      ],
       "source": "yahoo:^FCHI",
       "basis": "cloture de seance",
       "age_days": 1,
@@ -112,6 +115,9 @@
       "hi52": 6551.22,
       "lo52": 5501.2798,
       "pctile_1y": 68.7,
+      "ignored_after_session": [
+        "2026-10-09"
+      ],
       "source": "yahoo:^STOXX50E",
       "basis": "cloture de seance",
       "age_days": 1,
@@ -167,6 +173,9 @@
       "hi52": 4242.5718,
       "lo52": 3764.155,
       "pctile_1y": 65.9,
+      "ignored_after_session": [
+        "2026-10-09"
+      ],
       "source": "yahoo:000001.SS",
       "basis": "cloture de seance",
       "age_days": 1,
@@ -247,7 +256,7 @@
       "ytd": 106.8,
       "hi52": 5.311,
       "lo52": 3.953,
-      "pctile_1y": 76.4,
+      "pctile_1y": 75.7,
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
       "age_days": 1,
@@ -274,6 +283,9 @@
       "hi52": 4.9349,
       "lo52": 3.68,
       "pctile_1y": 58.2,
+      "ignored_after_session": [
+        "2026-10-09"
+      ],
       "source": "cnbc:FR10Y-FR",
       "basis": "cloture de seance",
       "fallback_notes": [
@@ -303,6 +315,9 @@
       "hi52": 3.6293,
       "lo52": 3.103,
       "pctile_1y": 35.2,
+      "ignored_after_session": [
+        "2026-10-09"
+      ],
       "source": "cnbc:DE10Y-DE",
       "basis": "cloture de seance",
       "age_days": 1,
@@ -337,6 +352,9 @@
       "hi52": 31.05,
       "lo52": 13.47,
       "pctile_1y": 25.5,
+      "ignored_after_session": [
+        "2026-10-09"
+      ],
       "source": "fred:VIXCLS+yahoo:^VIX",
       "basis": "cloture de seance",
       "age_days": 1,
@@ -375,40 +393,39 @@
       "on_target": true
     },
     "Or": {
-      "level": 4140.7002,
-      "date": "2026-10-07",
+      "level": 4157.0,
+      "date": "2026-10-08",
       "ticker": "XAU",
       "ccy": "USD",
       "zone": "COM",
       "kind": "price",
       "unit": "pct",
       "dec": 2,
-      "change": -1.1082,
-      "pct": -1.1082,
-      "change_from": "2026-10-06",
+      "change": 0.3936,
+      "pct": 0.3936,
+      "change_from": "2026-10-07",
       "change_days": 1,
-      "w1": -1.0987,
-      "m1": -7.2756,
-      "m3": 1.4281,
-      "ytd": -4.6163,
+      "w1": -1.078,
+      "m1": -5.5892,
+      "m3": 0.3912,
+      "ytd": -4.2409,
       "hi52": 5318.3999,
       "lo52": 3960.5,
-      "pctile_1y": 57.0,
+      "pctile_1y": 22.4,
       "ignored_after_session": [
         "2026-10-09"
       ],
       "source": "yahoo:GC=F",
       "basis": "reglement du contrat a terme",
-      "age_days": 2,
+      "age_days": 1,
       "target_date": "2026-10-08",
-      "on_target": false,
-      "lag_days": 1,
-      "eur_level": 3701.680851,
-      "eur_pct": -1.1887
+      "on_target": true,
+      "eur_level": 3716.252458,
+      "eur_pct": 0.3131
     },
     "Brent": {
-      "level": 100.2,
-      "date": "2026-10-07",
+      "level": 104.28,
+      "date": "2026-10-08",
       "ticker": "BRENT",
       "ccy": "USD",
       "zone": "COM",
@@ -416,17 +433,17 @@
       "unit": "pct",
       "dec": 2,
       "note": "contrat a terme du mois avant ; recoupe avec le comptant FRED",
-      "change": -0.3778,
-      "pct": -0.3778,
-      "change_from": "2026-10-06",
+      "change": 4.0719,
+      "pct": 4.0719,
+      "change_from": "2026-10-07",
       "change_days": 1,
-      "w1": -3.2165,
-      "m1": 3.1076,
-      "m3": 28.4286,
-      "ytd": 64.6672,
+      "w1": 1.9255,
+      "m1": 4.8567,
+      "m3": 36.671,
+      "ytd": 71.3722,
       "hi52": 118.35,
       "lo52": 58.92,
-      "pctile_1y": 15.9,
+      "pctile_1y": 81.2,
       "ignored_after_session": [
         "2026-10-09"
       ],
@@ -435,12 +452,11 @@
       "fallback_notes": [
         "fred:DCOILBRENTEU: TimeoutError"
       ],
-      "age_days": 2,
+      "age_days": 1,
       "target_date": "2026-10-08",
-      "on_target": false,
-      "lag_days": 1,
-      "eur_level": 89.576256,
-      "eur_pct": -0.4583
+      "on_target": true,
+      "eur_level": 93.223672,
+      "eur_pct": 3.9914
     },
     "Bitcoin": {
       "level": 81683.8,
@@ -470,7 +486,12 @@
       "basis": "cloture 00h UTC",
       "age_days": 1,
       "crosscheck": {
-        "comparable": false
+        "comparable": true,
+        "source": "yahoo:BTC-USD",
+        "value": 81676.335938,
+        "divergence_pct": 0.009,
+        "tolerance_pct": 2.0,
+        "ok": true
       },
       "target_date": "2026-10-08",
       "on_target": true,
@@ -489,6 +510,7 @@
       "10Y France",
       "10Y US",
       "Bitcoin",
+      "Brent",
       "CAC 40",
       "EUR/USD",
       "Euro Stoxx 50",
@@ -496,24 +518,26 @@
       "KOSPI",
       "Nasdaq 100",
       "Nikkei 225",
+      "Or",
       "S&P 500",
       "Shanghai Comp.",
       "VIX"
     ],
-    "off_target": [
-      [
-        "Or",
-        "2026-10-07",
-        1
-      ],
-      [
-        "Brent",
-        "2026-10-07",
-        1
-      ]
-    ],
+    "off_target": [],
     "not_applicable": [],
     "ignored_after_session": [
+      [
+        "10Y Allemagne",
+        [
+          "2026-10-09"
+        ]
+      ],
+      [
+        "10Y France",
+        [
+          "2026-10-09"
+        ]
+      ],
       [
         "Bitcoin",
         [
@@ -522,6 +546,18 @@
       ],
       [
         "Brent",
+        [
+          "2026-10-09"
+        ]
+      ],
+      [
+        "CAC 40",
+        [
+          "2026-10-09"
+        ]
+      ],
+      [
+        "Euro Stoxx 50",
         [
           "2026-10-09"
         ]
@@ -540,6 +576,18 @@
       ],
       [
         "Or",
+        [
+          "2026-10-09"
+        ]
+      ],
+      [
+        "Shanghai Comp.",
+        [
+          "2026-10-09"
+        ]
+      ],
+      [
+        "VIX",
         [
           "2026-10-09"
         ]
