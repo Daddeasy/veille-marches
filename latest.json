@@ -1,291 +1,264 @@
 {
-  "date": "2026-11-26",
-  "target_date": "2026-11-26",
-  "generated_at": "2026-11-27T14:32:10+00:00",
-  "eurusd": 1.0975,
+  "date": "2026-11-27",
+  "target_date": "2026-11-27",
+  "generated_at": "2026-11-28T03:38:53+00:00",
+  "eurusd": 1.0957,
   "markets": {
     "S&P 500": {
-      "level": 7182.7798,
-      "date": "2026-11-25",
+      "level": 7297.4902,
+      "date": "2026-11-27",
       "ticker": "SPX",
       "ccy": "USD",
       "zone": "US",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": -0.2543,
-      "pct": -0.2543,
-      "change_from": "2026-11-24",
-      "change_days": 1,
-      "w1": -1.9232,
-      "m1": -6.4349,
-      "m3": -6.4218,
-      "ytd": 4.927,
+      "change": 1.597,
+      "pct": 1.597,
+      "change_from": "2026-11-25",
+      "change_days": 2,
+      "w1": 5.6017,
+      "m1": -5.7656,
+      "m3": -5.3719,
+      "ytd": 6.6027,
       "hi52": 7818.9302,
       "lo52": 6343.7202,
-      "pctile_1y": 25.4,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 92.7,
       "source": "yahoo:^GSPC",
       "basis": "cloture de seance",
       "fallback_notes": [
         "fred:SP500: TimeoutError"
       ],
-      "age_days": 2,
-      "target_date": "2026-11-26",
-      "on_target": false,
-      "lag_days": 1,
-      "eur_level": 6544.674077,
-      "eur_pct": -0.6201
+      "age_days": 1,
+      "target_date": "2026-11-27",
+      "on_target": true,
+      "eur_level": 6660.117003,
+      "eur_pct": 1.761
     },
     "Nasdaq 100": {
-      "level": 26046.8965,
-      "date": "2026-11-25",
+      "level": 26726.3887,
+      "date": "2026-11-27",
       "ticker": "NDX",
       "ccy": "USD",
       "zone": "US",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": -0.6381,
-      "pct": -0.6381,
-      "change_from": "2026-11-24",
-      "change_days": 1,
-      "w1": -3.9436,
-      "m1": -11.022,
-      "m3": -10.8731,
-      "ytd": 3.1566,
+      "change": 2.6087,
+      "pct": 2.6087,
+      "change_from": "2026-11-25",
+      "change_days": 2,
+      "w1": 6.7818,
+      "m1": -10.3537,
+      "m3": -9.1972,
+      "ytd": 5.8477,
       "hi52": 31224.6855,
       "lo52": 22953.3809,
-      "pctile_1y": 40.6,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 93.8,
       "source": "yahoo:^NDX",
       "basis": "cloture de seance",
       "fallback_notes": [
         "fred:NASDAQ100: TimeoutError"
       ],
-      "age_days": 2,
-      "target_date": "2026-11-26",
-      "on_target": false,
-      "lag_days": 1,
-      "eur_level": 23732.935308,
-      "eur_pct": -1.0039
+      "age_days": 1,
+      "target_date": "2026-11-27",
+      "on_target": true,
+      "eur_level": 24392.067811,
+      "eur_pct": 2.7727
     },
     "CAC 40": {
-      "level": 8108.7402,
-      "date": "2026-11-26",
+      "level": 8156.0898,
+      "date": "2026-11-27",
       "ticker": "CAC",
       "ccy": "EUR",
       "zone": "EU",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 1.606,
-      "pct": 1.606,
-      "change_from": "2026-11-25",
+      "change": 0.5839,
+      "pct": 0.5839,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": 0.3465,
-      "m1": 2.8096,
-      "m3": -2.5377,
-      "ytd": -0.5002,
+      "w1": 2.8803,
+      "m1": 3.4123,
+      "m3": -2.9173,
+      "ytd": 0.0809,
       "hi52": 8726.03,
       "lo52": 7665.6201,
-      "pctile_1y": 91.4,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 57.5,
       "source": "yahoo:^FCHI",
       "basis": "cloture de seance",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "Euro Stoxx 50": {
-      "level": 6014.7402,
-      "date": "2026-11-26",
+      "level": 6089.2002,
+      "date": "2026-11-27",
       "ticker": "SX5E",
       "ccy": "EUR",
       "zone": "EU",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 2.0406,
-      "pct": 2.0406,
-      "change_from": "2026-11-25",
+      "change": 1.238,
+      "pct": 1.238,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -1.6212,
-      "m1": -2.4324,
-      "m3": -6.3814,
-      "ytd": 3.77,
+      "w1": 2.4781,
+      "m1": -1.2745,
+      "m3": -6.113,
+      "ytd": 5.0547,
       "hi52": 6551.22,
       "lo52": 5501.2798,
-      "pctile_1y": 94.9,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 82.2,
       "source": "yahoo:^STOXX50E",
       "basis": "cloture de seance",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "Nikkei 225": {
-      "level": 57499.1602,
-      "date": "2026-11-26",
+      "level": 58711.1094,
+      "date": "2026-11-27",
       "ticker": "NKY",
       "ccy": "JPY",
       "zone": "JP",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 0.8552,
-      "pct": 0.8552,
-      "change_from": "2026-11-25",
+      "change": 2.1078,
+      "pct": 2.1078,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -3.2721,
-      "m1": -9.1186,
-      "m3": -13.0539,
-      "ytd": 14.2228,
+      "w1": 4.0301,
+      "m1": -8.1982,
+      "m3": -11.5871,
+      "ytd": 16.6303,
       "hi52": 72366.3438,
       "lo52": 49001.5,
-      "pctile_1y": 40.4,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 75.1,
       "source": "yahoo:^N225",
       "basis": "cloture de seance",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "Shanghai Comp.": {
-      "level": 3476.8821,
-      "date": "2026-11-26",
+      "level": 3606.4871,
+      "date": "2026-11-27",
       "ticker": "SHCOMP",
       "ccy": "CNY",
       "zone": "CN",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 0.0119,
-      "pct": 0.0119,
-      "change_from": "2026-11-25",
+      "change": 3.7276,
+      "pct": 3.7276,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -2.8157,
-      "m1": -4.6986,
-      "m3": -12.1239,
-      "ytd": -12.3955,
+      "w1": 2.0571,
+      "m1": -2.0367,
+      "m3": -8.7469,
+      "ytd": -9.1299,
       "hi52": 4242.5718,
       "lo52": 3476.47,
-      "pctile_1y": 1.9,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 100.0,
       "source": "yahoo:000001.SS",
       "basis": "cloture de seance",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "KOSPI": {
-      "level": 4711.21,
-      "date": "2026-11-26",
+      "level": 4915.6802,
+      "date": "2026-11-27",
       "ticker": "KOSPI",
       "ccy": "KRW",
       "zone": "KR",
       "kind": "index",
       "unit": "pct",
       "dec": 2,
-      "change": 0.2916,
-      "pct": 0.2916,
-      "change_from": "2026-11-25",
+      "change": 4.3401,
+      "pct": 4.3401,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -8.3046,
-      "m1": -16.4433,
-      "m3": -31.8438,
-      "ytd": 11.7945,
+      "w1": 0.9388,
+      "m1": -18.2415,
+      "m3": -27.5922,
+      "ytd": 16.6465,
       "hi52": 9114.5498,
       "lo52": 3920.3701,
-      "pctile_1y": 9.7,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 80.7,
       "source": "yahoo:^KS11",
       "basis": "cloture de seance",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "EUR/USD": {
-      "level": 1.0975,
-      "date": "2026-11-26",
+      "level": 1.0957,
+      "date": "2026-11-27",
       "ticker": "EURUSD",
       "ccy": "USD",
       "zone": "FX",
       "kind": "fx",
       "unit": "pct",
       "dec": 4,
-      "change": 0.3658,
-      "pct": 0.3658,
-      "change_from": "2026-11-25",
+      "change": -0.164,
+      "pct": -0.164,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -0.1547,
-      "m1": -1.5695,
-      "m3": -5.7535,
-      "ytd": -6.5957,
+      "w1": -0.3003,
+      "m1": -1.5809,
+      "m3": -5.892,
+      "ytd": -6.7489,
       "hi52": 1.1974,
       "lo52": 1.0935,
-      "pctile_1y": 77.1,
+      "pctile_1y": 41.1,
       "source": "ecb:EXR",
       "basis": "fixing BCE 14h15 CET",
       "age_days": 1,
       "crosscheck": {
         "comparable": true,
         "source": "yahoo:EURUSD=X",
-        "value": 1.097008,
-        "divergence_pct": 0.045,
+        "value": 1.097213,
+        "divergence_pct": 0.138,
         "tolerance_pct": 2.0,
         "ok": true
       },
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "10Y US": {
-      "level": 4.848,
-      "date": "2026-11-25",
+      "level": 4.936,
+      "date": "2026-11-27",
       "ticker": "US10Y",
       "ccy": "%",
       "zone": "US",
       "kind": "yield",
       "unit": "bp",
       "dec": 3,
-      "change": -5.6,
+      "change": 8.8,
       "pct": null,
-      "change_from": "2026-11-24",
-      "change_days": 1,
-      "w1": -21.8,
-      "m1": -13.8,
-      "m3": 18.4,
-      "ytd": 68.5,
+      "change_from": "2026-11-25",
+      "change_days": 2,
+      "w1": 2.4,
+      "m1": -10.9,
+      "m3": 21.6,
+      "ytd": 77.3,
       "hi52": 5.311,
       "lo52": 3.962,
-      "pctile_1y": 81.9,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 95.6,
       "source": "fred:DGS10+yahoo:^TNX",
       "basis": "H.15 en historique, cloture pour le dernier point",
-      "age_days": 2,
-      "target_date": "2026-11-26",
-      "on_target": false,
-      "lag_days": 1
+      "age_days": 1,
+      "target_date": "2026-11-27",
+      "on_target": true
     },
     "10Y France": {
-      "level": 4.7429,
-      "date": "2026-11-26",
+      "level": 4.7047,
+      "date": "2026-11-27",
       "ticker": "FR10Y",
       "ccy": "%",
       "zone": "EU",
@@ -293,18 +266,18 @@
       "unit": "bp",
       "dec": 3,
       "note": "CNBC en quotidien ; BdF TEC 10 si cle ; sinon FRED mensuel",
-      "change": 1.04,
+      "change": -3.82,
       "pct": null,
-      "change_from": "2026-11-25",
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -18.93,
-      "m1": -17.29,
-      "m3": 64.34,
+      "w1": -16.63,
+      "m1": -21.18,
+      "m3": 56.57,
       "hi52": 5.0796,
       "lo52": 3.68,
-      "pctile_1y": 17.8,
+      "pctile_1y": 44.0,
       "ignored_after_session": [
-        "2026-11-27"
+        "2026-11-28"
       ],
       "source": "cnbc:FR10Y-FR",
       "basis": "cloture de seance",
@@ -313,12 +286,12 @@
         "fred:IRLTLT01FRM156N: TimeoutError"
       ],
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "10Y Allemagne": {
-      "level": 3.2589,
-      "date": "2026-11-26",
+      "level": 3.2664,
+      "date": "2026-11-27",
       "ticker": "DE10Y",
       "ccy": "%",
       "zone": "EU",
@@ -326,18 +299,18 @@
       "unit": "bp",
       "dec": 3,
       "note": "emprunt de reference via CNBC ; courbe Bundesbank en repli",
-      "change": 3.99,
+      "change": 0.75,
       "pct": null,
-      "change_from": "2026-11-25",
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -13.82,
-      "m1": -10.35,
-      "m3": -0.74,
+      "w1": -2.49,
+      "m1": -9.57,
+      "m3": -2.58,
       "hi52": 3.6293,
       "lo52": 3.103,
-      "pctile_1y": 73.0,
+      "pctile_1y": 20.0,
       "ignored_after_session": [
-        "2026-11-27"
+        "2026-11-28"
       ],
       "source": "cnbc:DE10Y-DE",
       "basis": "cloture de seance",
@@ -345,46 +318,43 @@
       "crosscheck": {
         "comparable": true,
         "source": "bundesbank:DE10Y",
-        "value": 3.32,
-        "divergence_pct": 1.875,
+        "value": 3.36,
+        "divergence_pct": 2.866,
         "tolerance_pct": 6.0,
         "ok": true
       },
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "VIX": {
-      "level": 26.8,
-      "date": "2026-11-26",
+      "level": 23.81,
+      "date": "2026-11-27",
       "ticker": "VIX",
       "ccy": "pts",
       "zone": "US",
       "kind": "points",
       "unit": "pts",
       "dec": 2,
-      "change": -1.49,
+      "change": -2.99,
       "pct": null,
-      "change_from": "2026-11-25",
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -1.64,
-      "m1": 9.28,
-      "m3": 12.29,
-      "ytd": 11.85,
+      "w1": -12.08,
+      "m1": 6.9,
+      "m3": 9.38,
+      "ytd": 8.86,
       "hi52": 35.89,
       "lo52": 13.47,
-      "pctile_1y": 75.5,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 91.7,
       "source": "fred:VIXCLS+yahoo:^VIX",
       "basis": "cloture de seance",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "Fear & Greed crypto": {
-      "level": 11.0,
-      "date": "2026-11-26",
+      "level": 12.0,
+      "date": "2026-11-27",
       "ticker": "FNG",
       "ccy": "0-100",
       "zone": "CRY",
@@ -393,61 +363,57 @@
       "dec": 0,
       "note": "alternative.me — 0 = peur extreme, 100 = avidite extreme",
       "traded_247": true,
-      "change": -2.0,
+      "change": 1.0,
       "pct": null,
-      "change_from": "2026-11-25",
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": 1.0,
-      "m1": -37.0,
-      "m3": -60.0,
-      "ytd": -9.0,
+      "w1": 0.0,
+      "m1": -39.0,
+      "m3": -61.0,
+      "ytd": -8.0,
       "hi52": 78.0,
       "lo52": 5.0,
-      "pctile_1y": 43.8,
+      "pctile_1y": 28.5,
       "ignored_after_session": [
-        "2026-11-27"
+        "2026-11-28"
       ],
       "source": "alternative.me:fng",
       "basis": "publication quotidienne 00h UTC",
       "age_days": 1,
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true
     },
     "Or": {
-      "level": 3535.8,
-      "date": "2026-11-25",
+      "level": 3668.5,
+      "date": "2026-11-27",
       "ticker": "XAU",
       "ccy": "USD",
       "zone": "COM",
       "kind": "price",
       "unit": "pct",
       "dec": 2,
-      "change": -0.7328,
-      "pct": -0.7328,
-      "change_from": "2026-11-24",
-      "change_days": 1,
-      "w1": -5.5079,
-      "m1": -12.4455,
-      "m3": -23.1047,
-      "ytd": -18.5506,
+      "change": 3.753,
+      "pct": 3.753,
+      "change_from": "2026-11-25",
+      "change_days": 2,
+      "w1": 3.6592,
+      "m1": -9.4555,
+      "m3": -18.552,
+      "ytd": -15.4938,
       "hi52": 5318.3999,
       "lo52": 3535.8,
-      "pctile_1y": 40.1,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 96.7,
       "source": "yahoo:GC=F",
       "basis": "reglement du contrat a terme",
-      "age_days": 2,
-      "target_date": "2026-11-26",
-      "on_target": false,
-      "lag_days": 1,
-      "eur_level": 3221.685649,
-      "eur_pct": -1.0986
+      "age_days": 1,
+      "target_date": "2026-11-27",
+      "on_target": true,
+      "eur_level": 3348.08798,
+      "eur_pct": 3.917
     },
     "Brent": {
-      "level": 94.61,
-      "date": "2026-11-25",
+      "level": 90.84,
+      "date": "2026-11-27",
       "ticker": "BRENT",
       "ccy": "USD",
       "zone": "COM",
@@ -455,35 +421,31 @@
       "unit": "pct",
       "dec": 2,
       "note": "contrat a terme du mois avant ; recoupe avec le comptant FRED",
-      "change": 3.512,
-      "pct": 3.512,
-      "change_from": "2026-11-24",
-      "change_days": 1,
-      "w1": 2.8929,
-      "m1": -18.3058,
-      "m3": 7.7072,
-      "ytd": 55.4807,
+      "change": -3.9848,
+      "pct": -3.9848,
+      "change_from": "2026-11-25",
+      "change_days": 2,
+      "w1": 1.0793,
+      "m1": -21.2279,
+      "m3": 2.8882,
+      "ytd": 49.2851,
       "hi52": 118.35,
       "lo52": 58.92,
-      "pctile_1y": 75.5,
-      "ignored_after_session": [
-        "2026-11-27"
-      ],
+      "pctile_1y": 79.3,
       "source": "yahoo:BZ=F",
       "basis": "reglement du contrat a terme",
       "fallback_notes": [
         "fred:DCOILBRENTEU: TimeoutError"
       ],
-      "age_days": 2,
-      "target_date": "2026-11-26",
-      "on_target": false,
-      "lag_days": 1,
-      "eur_level": 86.205011,
-      "eur_pct": 3.1462
+      "age_days": 1,
+      "target_date": "2026-11-27",
+      "on_target": true,
+      "eur_level": 82.905905,
+      "eur_pct": -3.8208
     },
     "Bitcoin": {
-      "level": 60499.2,
-      "date": "2026-11-26",
+      "level": 59863.7,
+      "date": "2026-11-27",
       "ticker": "BTC",
       "ccy": "USD",
       "zone": "CRY",
@@ -491,35 +453,30 @@
       "unit": "pct",
       "dec": 2,
       "traded_247": true,
-      "change": 0.2163,
-      "pct": 0.2163,
-      "change_from": "2026-11-25",
+      "change": -1.0504,
+      "pct": -1.0504,
+      "change_from": "2026-11-26",
       "change_days": 1,
-      "w1": -2.2843,
-      "m1": -25.1256,
-      "m3": -24.6265,
-      "ytd": -31.8179,
+      "w1": 1.7981,
+      "m1": -26.3552,
+      "m3": -23.0957,
+      "ytd": -32.5341,
       "hi52": 96933.3,
       "lo52": 58531.9,
-      "pctile_1y": 12.5,
+      "pctile_1y": 46.0,
       "ignored_after_session": [
-        "2026-11-27"
+        "2026-11-28"
       ],
       "source": "kraken:XBTUSD",
       "basis": "cloture 00h UTC",
       "age_days": 1,
       "crosscheck": {
-        "comparable": true,
-        "source": "yahoo:BTC-USD",
-        "value": 60494.710938,
-        "divergence_pct": 0.007,
-        "tolerance_pct": 2.0,
-        "ok": true
+        "comparable": false
       },
-      "target_date": "2026-11-26",
+      "target_date": "2026-11-27",
       "on_target": true,
-      "eur_level": 55124.555809,
-      "eur_pct": -0.1495
+      "eur_level": 54635.119102,
+      "eur_pct": -0.8864
     }
   },
   "diagnostics": {
@@ -527,137 +484,50 @@
     "errors": [],
     "stale": [],
     "suspect": [],
-    "target_date": "2026-11-26",
+    "target_date": "2026-11-27",
     "aligned": [
       "10Y Allemagne",
       "10Y France",
+      "10Y US",
       "Bitcoin",
+      "Brent",
       "CAC 40",
       "EUR/USD",
       "Euro Stoxx 50",
       "Fear & Greed crypto",
       "KOSPI",
+      "Nasdaq 100",
       "Nikkei 225",
+      "Or",
+      "S&P 500",
       "Shanghai Comp.",
       "VIX"
     ],
-    "off_target": [
-      [
-        "S&P 500",
-        "2026-11-25",
-        1
-      ],
-      [
-        "Nasdaq 100",
-        "2026-11-25",
-        1
-      ],
-      [
-        "10Y US",
-        "2026-11-25",
-        1
-      ],
-      [
-        "Or",
-        "2026-11-25",
-        1
-      ],
-      [
-        "Brent",
-        "2026-11-25",
-        1
-      ]
-    ],
+    "off_target": [],
     "not_applicable": [],
     "ignored_after_session": [
       [
         "10Y Allemagne",
         [
-          "2026-11-27"
+          "2026-11-28"
         ]
       ],
       [
         "10Y France",
         [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "10Y US",
-        [
-          "2026-11-27"
+          "2026-11-28"
         ]
       ],
       [
         "Bitcoin",
         [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "Brent",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "CAC 40",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "Euro Stoxx 50",
-        [
-          "2026-11-27"
+          "2026-11-28"
         ]
       ],
       [
         "Fear & Greed crypto",
         [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "KOSPI",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "Nasdaq 100",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "Nikkei 225",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "Or",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "S&P 500",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "Shanghai Comp.",
-        [
-          "2026-11-27"
-        ]
-      ],
-      [
-        "VIX",
-        [
-          "2026-11-27"
+          "2026-11-28"
         ]
       ]
     ]
